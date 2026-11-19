@@ -40,7 +40,9 @@ Nada más. Si se te ocurre algo extra, proponelo, pero no lo hagas sin que Santi
 - Zod para revisar el JSON de rutina que se pega.
 - Gráficos simples en SVG o con Recharts.
 - Vitest para probar la lógica.
-- Publicación gratis en GitHub Pages con GitHub Actions, en cada cambio a `main`. Ojo: en `vite.config.ts` poné `base` con el nombre del repo (`/entrena-santi/`). Si no, la página sale en blanco.
+- Publicación gratis en GitHub Pages con GitHub Actions, en cada cambio a `main`. Ojo: en `vite.config.ts` poné `base` con el nombre del repo (`/entrena-app/`). Si no, la página sale en blanco. Link de la app: https://afafafafaseas-beep.github.io/entrena-app/
+- Las letras (Barlow y Barlow Condensed) van dentro de la app con `@fontsource`, no desde Google Fonts, para que se vean sin internet.
+- En la PC de Santi el proyecto está en `E:\Proyectos\entrena-app` (no en `E:\PROYECTOS CLAUDE`, que es de solo lectura). Git está en `C:\Program Files\Git\cmd\git.exe`.
 - En iPhone, Safari puede borrar los datos de una página que no está en la pantalla de inicio si no se usa en 7 días. En la pantalla "Más", explicá cómo agregarla al inicio (Compartir → Agregar a inicio) y recordá hacer el backup.
 
 ## 5. Pantallas (barra de abajo con 5 pestañas)
