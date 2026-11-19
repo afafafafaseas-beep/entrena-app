@@ -1,10 +1,17 @@
-import { describe, expect, it, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 import App from './App'
-import { tabFromHash } from './tabs'
-import { semanaActual } from './screens/Screens'
+import { parseRuta, rutaA, tabFromHash } from './tabs'
+import { semanaActual } from './screens/Hoy'
+import { asegurarRutinaBase, cargarRutina, db, rutinaActiva } from './db'
 
-describe('tabFromHash', () => {
+beforeEach(async () => {
+  window.location.hash = ''
+  await db.delete()
+  await db.open()
+})
+
+describe('rutas', () => {
   it('lee la pestaña de la dirección', () => {
     expect(tabFromHash('#/progreso')).toBe('progreso')
     expect(tabFromHash('#mas')).toBe('mas')
@@ -12,6 +19,12 @@ describe('tabFromHash', () => {
   it('si no hay o no existe, vuelve a Hoy', () => {
     expect(tabFromHash('')).toBe('hoy')
     expect(tabFromHash('#/cualquiera')).toBe('hoy')
+  })
+  it('lee lo que va después de la pestaña, con tildes y espacios', () => {
+    expect(parseRuta(rutaA('ejercicios', 'Nórdicos con banda'))).toEqual({
+      tab: 'ejercicios',
+      sub: ['Nórdicos con banda'],
+    })
   })
 })
 
@@ -28,17 +41,34 @@ describe('semanaActual', () => {
   })
 })
 
-describe('App', () => {
-  beforeEach(() => {
-    window.location.hash = ''
+describe('datos', () => {
+  it('carga la rutina base una sola vez', async () => {
+    await Promise.all([asegurarRutinaBase(), asegurarRutinaBase()])
+    await asegurarRutinaBase()
+    expect(await db.rutinas.count()).toBe(1)
+    expect((await rutinaActiva())?.base).toBe(true)
   })
 
-  it('muestra las 5 pestañas y arranca en Hoy', () => {
+  it('una rutina nueva queda activa y la anterior se guarda', async () => {
+    await asegurarRutinaBase()
+    const base = (await rutinaActiva())!
+    await cargarRutina({ ...base.rutina, nombre: 'Semana 1 · Re-entrada', semana: 1 })
+    const activa = (await rutinaActiva())!
+    expect(activa.rutina.nombre).toBe('Semana 1 · Re-entrada')
+    expect(activa.base).toBe(false)
+    expect(await db.rutinas.count()).toBe(2)
+  })
+})
+
+describe('App', () => {
+  it('muestra las 5 pestañas, arranca en Hoy y avisa de la rutina vieja', async () => {
     render(<App />)
     for (const nombre of ['Hoy', 'Entrenar', 'Ejercicios', 'Progreso', 'Más']) {
       expect(screen.getByRole('button', { name: nombre })).toBeInTheDocument()
     }
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Hoy')
+    expect(await screen.findByText('Cargá la rutina nueva del PF en Más')).toBeInTheDocument()
+    expect(await screen.findByText('Día 1')).toBeInTheDocument()
   })
 
   it('cambia de pantalla al tocar una pestaña', () => {
@@ -47,5 +77,43 @@ describe('App', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Más')
     expect(screen.getByRole('button', { name: 'Más' })).toHaveAttribute('aria-current', 'page')
     expect(window.location.hash).toBe('#/mas')
+  })
+
+  it('la pestaña Ejercicios lista y filtra', async () => {
+    window.location.hash = '#/ejercicios'
+    render(<App />)
+    expect(await screen.findByText('Sentadilla trasera')).toBeInTheDocument()
+    fireEvent.change(screen.getByLabelText('Buscar ejercicio'), { target: { value: 'nordico' } })
+    expect(screen.getByText('1 ejercicio')).toBeInTheDocument()
+    expect(screen.getByText('Nórdicos con banda')).toBeInTheDocument()
+  })
+
+  it('la ficha muestra cómo se hace y el botón de video', async () => {
+    window.location.hash = rutaA('ejercicios', 'Press banca')
+    render(<App />)
+    expect(await screen.findByText(/Omóplatos juntos/)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Ver video' })).toHaveAttribute(
+      'href',
+      'https://www.youtube.com/results?search_query=bench%20press%20exercise',
+    )
+    expect(await screen.findByText('Día 1')).toBeInTheDocument()
+  })
+
+  it('cargar rutina: revisa, muestra el error y después la carga', async () => {
+    window.location.hash = '#/mas/cargar'
+    render(<App />)
+    const caja = screen.getByRole('textbox')
+    const mala = { nombre: 'S1', dias: [{ id: 'd1', nombre: 'Día 1', bloques: [{ nombre: 'Potencia 1', tipo: 'fuerza', ejercicios: [{ nombre: 'Saltos', reps: '3' }] }] }] }
+    fireEvent.change(caja, { target: { value: JSON.stringify(mala) } })
+    fireEvent.click(screen.getByRole('button', { name: 'Revisar' }))
+    expect(screen.getByRole('alert')).toHaveTextContent('Al bloque Potencia 1 del Día 1 le falta decir cuántas vueltas.')
+
+    const buena = { ...mala, semana: 1, dias: [{ ...mala.dias[0], bloques: [{ ...mala.dias[0].bloques[0], vueltas: 3 }] }] }
+    fireEvent.change(caja, { target: { value: 'Acá va: ' + JSON.stringify(buena) } })
+    fireEvent.click(screen.getByRole('button', { name: 'Revisar' }))
+    expect(screen.getByRole('status')).toHaveTextContent('Semana 1: 1 día, 1 ejercicio')
+    fireEvent.click(screen.getByRole('button', { name: /Cargar esta rutina/ }))
+    expect(await screen.findByText('Rutina cargada')).toBeInTheDocument()
+    expect((await rutinaActiva())?.rutina.nombre).toBe('S1')
   })
 })

@@ -1,0 +1,1013 @@
+[
+ {
+  "nombre": "Sóleo + rodilla isométrico",
+  "video": "seated soleus isometric",
+  "zonas": [
+   "rodilla",
+   "tobillo"
+  ],
+  "como": "Sentado con la rodilla a 90° y peso sobre el muslo, empujá con la planta como si subieras el talón y sostené.",
+  "sirve": "Carga el tendón y el sóleo sin impacto. Es la base para la tendinopatía."
+ },
+ {
+  "nombre": "Isométrico de isquios",
+  "video": "hamstring bridge isometric hold",
+  "zonas": [
+   "posterior",
+   "rodilla"
+  ],
+  "como": "Boca arriba con los talones en un banco, subí la cadera y sostené apretando los isquios.",
+  "sirve": "Isquios fuertes frenan mejor y cuidan la rodilla al aterrizar."
+ },
+ {
+  "nombre": "Elevación de sóleo isométrica",
+  "video": "seated soleus raise",
+  "zonas": [
+   "tobillo",
+   "rodilla"
+  ],
+  "como": "Sentado con peso sobre las rodillas, subí los talones y sostené arriba.",
+  "sirve": "El sóleo absorbe gran parte del impacto del salto."
+ },
+ {
+  "nombre": "Nórdicos con banda",
+  "video": "banded nordic curl",
+  "zonas": [
+   "posterior"
+  ],
+  "como": "De rodillas con los tobillos trabados, bajá el torso lo más lento posible con la banda ayudándote.",
+  "sirve": "Isquios fuertes en el frenado: previene desgarros."
+ },
+ {
+  "nombre": "Sentadilla isométrica con talones elevados",
+  "video": "heel elevated isometric squat",
+  "zonas": [
+   "rodilla"
+  ],
+  "como": "Talones sobre un disco, mancuerna al pecho, bajá a 70-90° y sostené.",
+  "sirve": "Isométrico clásico que baja el dolor rotuliano y fortalece el tendón."
+ },
+ {
+  "nombre": "Spanish squat",
+  "video": "spanish squat patellar tendon",
+  "zonas": [
+   "rodilla"
+  ],
+  "como": "Banda pesada detrás de las rodillas atada al rack. Cola atrás, tronco recto, bajá y sostené.",
+  "sirve": "Mucho cuádriceps con poca presión en la rodilla."
+ },
+ {
+  "nombre": "Wall sit",
+  "video": "wall sit",
+  "zonas": [
+   "rodilla"
+  ],
+  "como": "Espalda contra la pared, rodillas a 60-90°, sostené.",
+  "sirve": "Isométrico simple para el tendón, sin equipo."
+ },
+ {
+  "nombre": "Decline squat excéntrico",
+  "video": "decline squat eccentric patellar tendon",
+  "zonas": [
+   "rodilla"
+  ],
+  "como": "En una tabla inclinada, bajá en 3-4 segundos y subí con las dos piernas.",
+  "sirve": "Fortalece el tendón en la fase que más carga al frenar."
+ },
+ {
+  "nombre": "Tibialis raise",
+  "video": "tibialis raise",
+  "zonas": [
+   "tobillo"
+  ],
+  "como": "Espalda en la pared y talones adelante, levantá las puntas de los pies.",
+  "sirve": "Tobillo más estable al caer."
+ },
+ {
+  "nombre": "Elevación de gemelos en máquina",
+  "video": "standing machine calf raise",
+  "zonas": [
+   "tobillo"
+  ],
+  "como": "Rodillas estiradas, subí al máximo y bajá lento.",
+  "sirve": "Más impulso de tobillo en el salto."
+ },
+ {
+  "nombre": "Estiramiento de dorsiflexión semiarrodillado",
+  "video": "half kneeling ankle dorsiflexion stretch",
+  "zonas": [
+   "tobillo",
+   "movilidad"
+  ],
+  "como": "Semiarrodillado, llevá la rodilla de adelante hacia adelante sin levantar el talón.",
+  "sirve": "Tobillo móvil reparte mejor la carga y protege la rodilla."
+ },
+ {
+  "nombre": "Extensión torácica arrodillado con PVC",
+  "video": "kneeling thoracic extension pvc bench",
+  "zonas": [
+   "movilidad",
+   "hombro"
+  ],
+  "como": "Arrodillado, codos en un banco agarrando un palo, llevá el pecho hacia el piso.",
+  "sirve": "Para armar y rematar arriba de la cabeza sin forzar el hombro."
+ },
+ {
+  "nombre": "Shin box a extensión de cadera",
+  "video": "shin box to hip extension",
+  "zonas": [
+   "cadera"
+  ],
+  "como": "Sentado en 90/90, empujá la cadera hacia arriba y adelante hasta quedar arrodillado.",
+  "sirve": "Rotación de cadera con glúteo activo."
+ },
+ {
+  "nombre": "Bisagra de cadera con deslizamiento a 1 pierna",
+  "video": "single leg hip hinge slider",
+  "zonas": [
+   "cadera",
+   "posterior"
+  ],
+  "como": "Una pierna desliza hacia atrás mientras bajás el torso con la espalda recta.",
+  "sirve": "Bisagra y equilibrio en una pierna."
+ },
+ {
+  "nombre": "Sentadilla profunda con rotación torácica",
+  "video": "deep squat thoracic rotation",
+  "zonas": [
+   "movilidad",
+   "cadera"
+  ],
+  "como": "En sentadilla profunda, abrí un brazo al techo girando el tronco. Alterná.",
+  "sirve": "Cadera, tobillo y espalda a la vez."
+ },
+ {
+  "nombre": "Hip airplane asistido",
+  "video": "supported hip airplane",
+  "zonas": [
+   "cadera"
+  ],
+  "como": "Parado en una pierna agarrado de algo, girá la pelvis abriendo y cerrando sobre esa cadera.",
+  "sirve": "Cadera estable para caer en una pierna."
+ },
+ {
+  "nombre": "DNS side sit to bear",
+  "video": "dns side sit to bear",
+  "zonas": [
+   "core",
+   "movilidad"
+  ],
+  "como": "Desde sentado de costado, pasá a cuatro apoyos con las rodillas apenas despegadas del piso.",
+  "sirve": "Control del core al cambiar de posición."
+ },
+ {
+  "nombre": "Waterball lift semiarrodillado",
+  "video": "half kneeling water ball lift",
+  "zonas": [
+   "core"
+  ],
+  "como": "Semiarrodillado, llevá la pelota de agua en diagonal de la cadera hacia arriba sin que el tronco se mueva.",
+  "sirve": "Core antirrotación."
+ },
+ {
+  "nombre": "Open book de costado",
+  "video": "side lying open book",
+  "zonas": [
+   "movilidad"
+  ],
+  "como": "De costado con las rodillas flexionadas, abrí el brazo de arriba girando el pecho al techo.",
+  "sirve": "Rotación de espalda para el brazo de remate."
+ },
+ {
+  "nombre": "Estiramiento de cadera boca arriba",
+  "video": "supine figure 4 stretch",
+  "zonas": [
+   "cadera"
+  ],
+  "como": "Boca arriba, cruzá un tobillo sobre la otra rodilla y llevá las piernas al pecho.",
+  "sirve": "Glúteo y cadera sueltos."
+ },
+ {
+  "nombre": "Aductor en cuadrupedia con rotación torácica",
+  "video": "quadruped adductor rock thoracic rotation",
+  "zonas": [
+   "cadera",
+   "movilidad"
+  ],
+  "como": "En cuatro apoyos con una pierna estirada al costado, llevá la cola atrás y girá el tronco.",
+  "sirve": "Desplazamientos laterales más libres."
+ },
+ {
+  "nombre": "Shin box con roll y get up",
+  "video": "shin box get up",
+  "zonas": [
+   "cadera"
+  ],
+  "como": "Desde 90/90 cambiá de lado rodando las piernas y levantate, sin manos si podés.",
+  "sirve": "Movilidad y control de cadera."
+ },
+ {
+  "nombre": "Estocada con rotación",
+  "video": "lunge with rotation",
+  "zonas": [
+   "piernas",
+   "movilidad"
+  ],
+  "como": "Estocada adelante y girá el tronco hacia la pierna de adelante.",
+  "sirve": "Calienta piernas y tronco juntos."
+ },
+ {
+  "nombre": "CARS de cadera",
+  "video": "hip cars",
+  "zonas": [
+   "cadera"
+  ],
+  "como": "Círculos lentos y lo más grandes posible con la rodilla, sin mover la pelvis.",
+  "sirve": "Rango de cadera controlado."
+ },
+ {
+  "nombre": "Knee hug a estocada con codo al empeine",
+  "video": "knee hug to lunge elbow to instep",
+  "zonas": [
+   "movilidad"
+  ],
+  "como": "Abrazá una rodilla, da un paso a estocada y llevá el codo al empeine.",
+  "sirve": "Calentamiento dinámico de cadera e isquios."
+ },
+ {
+  "nombre": "Bird dog con alcance",
+  "video": "bird dog",
+  "zonas": [
+   "core"
+  ],
+  "como": "En cuatro apoyos, estirá brazo y pierna opuestos sin mover la cadera. Alterná.",
+  "sirve": "Zona lumbar estable."
+ },
+ {
+  "nombre": "Estiramiento lateral lumbar",
+  "video": "standing lateral trunk stretch",
+  "zonas": [
+   "movilidad"
+  ],
+  "como": "Inclinate de costado estirando todo el lateral del tronco.",
+  "sirve": "Afloja la zona lumbar antes de cargar."
+ },
+ {
+  "nombre": "Rotación torácica semiarrodillado con KB",
+  "video": "half kneeling thoracic rotation kettlebell",
+  "zonas": [
+   "movilidad"
+  ],
+  "como": "Semiarrodillado con la pesa al pecho, girá el tronco hacia la pierna de adelante.",
+  "sirve": "Rotación de espalda con carga liviana."
+ },
+ {
+  "nombre": "Rotaciones de cadera de pie",
+  "video": "standing hip rotations supported",
+  "zonas": [
+   "cadera"
+  ],
+  "como": "Agarrado de algo, levantá la rodilla y abrí la cadera hacia afuera en círculo.",
+  "sirve": "Cadera móvil en posición de juego."
+ },
+ {
+  "nombre": "Spiderman",
+  "video": "spiderman stretch",
+  "zonas": [
+   "cadera",
+   "movilidad"
+  ],
+  "como": "Desde plancha, llevá el pie al lado de la mano y bajá la cadera.",
+  "sirve": "Flexores de cadera y aductores."
+ },
+ {
+  "nombre": "Miniband en 3 direcciones",
+  "video": "mini band 3 way hip",
+  "zonas": [
+   "cadera"
+  ],
+  "como": "Con la banda en los tobillos, llevá la pierna adelante, al costado y atrás sin mover el tronco.",
+  "sirve": "Glúteo medio: rodilla alineada al caer."
+ },
+ {
+  "nombre": "Peso muerto rumano a 1 pierna con barra",
+  "video": "single leg romanian deadlift barbell",
+  "zonas": [
+   "posterior"
+  ],
+  "como": "En una pierna, bajá el torso llevando la otra pierna atrás, con la cadera derecha.",
+  "sirve": "Isquios, glúteo y equilibrio."
+ },
+ {
+  "nombre": "Deadbug",
+  "video": "dead bug exercise",
+  "zonas": [
+   "core"
+  ],
+  "como": "Boca arriba, bajá brazo y pierna opuestos sin despegar la lumbar del piso.",
+  "sirve": "Core profundo."
+ },
+ {
+  "nombre": "Gateo de oso",
+  "video": "bear crawl",
+  "zonas": [
+   "core",
+   "hombro"
+  ],
+  "como": "Gateá con las rodillas a 2 cm del piso y la espalda quieta.",
+  "sirve": "Core y hombros juntos."
+ },
+ {
+  "nombre": "Estocada lateral",
+  "video": "lateral lunge",
+  "zonas": [
+   "piernas",
+   "cadera"
+  ],
+  "como": "Paso al costado, cola atrás, una pierna flexionada y la otra estirada.",
+  "sirve": "Fuerza para defender de costado."
+ },
+ {
+  "nombre": "Estocada atrás + world's greatest stretch",
+  "video": "worlds greatest stretch",
+  "zonas": [
+   "movilidad"
+  ],
+  "como": "Estocada atrás, mano al piso, codo al empeine y abrí el brazo al techo.",
+  "sirve": "Calentamiento completo en un movimiento."
+ },
+ {
+  "nombre": "Gato-camello",
+  "video": "cat camel",
+  "zonas": [
+   "movilidad"
+  ],
+  "como": "En cuatro apoyos, arqueá y redondeá la espalda despacio.",
+  "sirve": "Moviliza la columna antes de cargar."
+ },
+ {
+  "nombre": "Sentadilla con miniband",
+  "video": "mini band squat",
+  "zonas": [
+   "piernas"
+  ],
+  "como": "Sentadilla con la banda arriba de las rodillas, empujándola hacia afuera.",
+  "sirve": "Evita que las rodillas se vayan hacia adentro."
+ },
+ {
+  "nombre": "Sentadilla goblet",
+  "video": "goblet squat",
+  "zonas": [
+   "piernas"
+  ],
+  "como": "Mancuerna al pecho, sentadilla profunda con el pecho arriba.",
+  "sirve": "Patrón de sentadilla y calentamiento de piernas."
+ },
+ {
+  "nombre": "Rotación interna de cadera",
+  "video": "hip internal rotation exercise",
+  "zonas": [
+   "cadera"
+  ],
+  "como": "En 90/90 o acostado, girá la cadera hacia adentro con control.",
+  "sirve": "La rotación interna suele faltar y sobrecarga la rodilla."
+ },
+ {
+  "nombre": "Shin box rotación interna/externa",
+  "video": "90 90 hip switch",
+  "zonas": [
+   "cadera"
+  ],
+  "como": "Sentado en 90/90, pasá las rodillas de un lado al otro.",
+  "sirve": "Rotación de cadera activa."
+ },
+ {
+  "nombre": "YTWLI en el piso",
+  "video": "prone ytwl",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Boca abajo, formá Y, T, W, L e I con los brazos despegando del piso, con pesitos.",
+  "sirve": "Omóplato y manguito: hombro sano para rematar y sacar."
+ },
+ {
+  "nombre": "Flexiones escapulares",
+  "video": "scapular push up",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "En plancha con los brazos rectos, juntá y separá los omóplatos.",
+  "sirve": "Activa el serrato."
+ },
+ {
+  "nombre": "Overhead carry a 1 brazo con KB invertida",
+  "video": "bottoms up kettlebell overhead carry",
+  "zonas": [
+   "hombro",
+   "core"
+  ],
+  "como": "Caminá con la pesa invertida arriba de la cabeza, brazo firme y costillas abajo.",
+  "sirve": "Hombro estable arriba de la cabeza."
+ },
+ {
+  "nombre": "Wall march de serrato con miniband",
+  "video": "mini band serratus wall march",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Antebrazos en la pared con la banda, subí un brazo y después el otro empujando la pared.",
+  "sirve": "Serrato y control del omóplato."
+ },
+ {
+  "nombre": "Dominada escapular",
+  "video": "scapular pull up",
+  "zonas": [
+   "hombro",
+   "traccion"
+  ],
+  "como": "Colgado de la barra, bajá y subí los hombros sin doblar los codos.",
+  "sirve": "Activa la espalda que estabiliza el hombro."
+ },
+ {
+  "nombre": "Press de serrato con mancuerna boca arriba",
+  "video": "supine serratus punch dumbbell",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Boca arriba con la mancuerna arriba, empujá al techo despegando el omóplato del banco.",
+  "sirve": "Omóplato estable al rematar."
+ },
+ {
+  "nombre": "Band pull apart unilateral",
+  "video": "single arm band pull apart",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Banda al frente, abrí un brazo hacia atrás juntando el omóplato.",
+  "sirve": "Hombro de atrás fuerte para equilibrar tanto empuje."
+ },
+ {
+  "nombre": "Ws en el piso",
+  "video": "prone w raise",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Boca abajo con los brazos en W, despegá codos y manos del piso y sostené.",
+  "sirve": "Rotadores externos del hombro."
+ },
+ {
+  "nombre": "Wall slide de serrato",
+  "video": "serratus wall slide",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Antebrazos en la pared, deslizá hacia arriba empujando la pared.",
+  "sirve": "Subir el brazo con buena mecánica."
+ },
+ {
+  "nombre": "CARS de hombro",
+  "video": "shoulder cars",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Círculos lentos y máximos con el brazo, el resto del cuerpo quieto.",
+  "sirve": "Rango de hombro controlado."
+ },
+ {
+  "nombre": "Rotación externa de hombro de costado a 45°",
+  "video": "side lying shoulder external rotation",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "De costado, codo pegado con una toalla, girá el antebrazo hacia arriba con una mancuerna liviana.",
+  "sirve": "Manguito rotador: frena el brazo después del remate."
+ },
+ {
+  "nombre": "Rotación interna de hombro en polea",
+  "video": "cable shoulder internal rotation",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Codo pegado al cuerpo, girá el antebrazo hacia adentro contra la polea.",
+  "sirve": "Rotación interna del remate, controlada."
+ },
+ {
+  "nombre": "Ángeles boca abajo",
+  "video": "prone snow angels",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Boca abajo con los brazos despegados, llevalos de la cadera a la cabeza y vuelta.",
+  "sirve": "Omóplato y hombro de atrás."
+ },
+ {
+  "nombre": "Elevación en T boca abajo",
+  "video": "prone t raise",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Boca abajo, abrí los brazos en T con los pulgares arriba.",
+  "sirve": "Espalda alta fuerte."
+ },
+ {
+  "nombre": "Decoaptación de hombro con KB",
+  "video": "shoulder distraction kettlebell",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Inclinado con apoyo, dejá colgar una pesa pesada aflojando el hombro y después estabilizá.",
+  "sirve": "Descomprime y activa el hombro."
+ },
+ {
+  "nombre": "Retracción escapular",
+  "video": "scapular retraction exercise",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Inclinado con apoyo, juntá el omóplato hacia atrás sin doblar el codo.",
+  "sirve": "Omóplato estable."
+ },
+ {
+  "nombre": "Rotaciones de hombro en pared",
+  "video": "wall shoulder rotation",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "De costado a la pared con el codo apoyado, girá el brazo arriba y abajo.",
+  "sirve": "Rotación de hombro activa."
+ },
+ {
+  "nombre": "Fuerza de dedos y muñeca",
+  "video": "finger wrist strengthening volleyball setter",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Apretá una pelota de goma y hacé flexión y extensión de muñeca con una mancuerna liviana.",
+  "sirve": "Manos firmes para armar y menos esguinces de dedos."
+ },
+ {
+  "nombre": "Pallof press",
+  "video": "pallof press",
+  "zonas": [
+   "core"
+  ],
+  "como": "De costado a la polea o banda, empujá las manos al frente sin dejar que el tronco gire.",
+  "sirve": "Pasa la fuerza de las piernas al brazo."
+ },
+ {
+  "nombre": "Rueda abdominal",
+  "video": "ab wheel rollout",
+  "zonas": [
+   "core"
+  ],
+  "como": "De rodillas, rodá hacia adelante sin hundir la lumbar y volvé.",
+  "sirve": "Core fuerte para rematar y saltar."
+ },
+ {
+  "nombre": "Stir the pot en pelota",
+  "video": "stir the pot stability ball",
+  "zonas": [
+   "core"
+  ],
+  "como": "Plancha con los antebrazos en la pelota, hacé círculos chiquitos.",
+  "sirve": "Estabilidad del core."
+ },
+ {
+  "nombre": "Rotación torácica semiarrodillado (core)",
+  "video": "half kneeling thoracic rotation",
+  "zonas": [
+   "core",
+   "movilidad"
+  ],
+  "como": "Semiarrodillado, girá el tronco con control desde el abdomen.",
+  "sirve": "Rotación del remate."
+ },
+ {
+  "nombre": "Pullover a crunch con disco",
+  "video": "plate pullover crunch",
+  "zonas": [
+   "core"
+  ],
+  "como": "Boca arriba, llevá el disco detrás de la cabeza y volvé hacia las rodillas con abdominal.",
+  "sirve": "Une dorsal y abdomen como en el remate."
+ },
+ {
+  "nombre": "Floor scorpion",
+  "video": "prone scorpion stretch",
+  "zonas": [
+   "cadera",
+   "movilidad"
+  ],
+  "como": "Boca abajo, llevá un pie hacia la mano contraria girando la cadera.",
+  "sirve": "Cadera y columna sueltas."
+ },
+ {
+  "nombre": "Halo con KB de rodillas",
+  "video": "tall kneeling kettlebell halo",
+  "zonas": [
+   "hombro",
+   "core"
+  ],
+  "como": "De rodillas, girá la pesa alrededor de la cabeza con el tronco firme.",
+  "sirve": "Hombro y core."
+ },
+ {
+  "nombre": "Plancha a T",
+  "video": "plank to t rotation",
+  "zonas": [
+   "core",
+   "hombro"
+  ],
+  "como": "Desde plancha, abrí un brazo al techo pasando a plancha lateral.",
+  "sirve": "Core y hombro."
+ },
+ {
+  "nombre": "Copenhagen plank",
+  "video": "copenhagen plank",
+  "zonas": [
+   "cadera",
+   "core"
+  ],
+  "como": "Plancha lateral con la pierna de arriba apoyada en un banco.",
+  "sirve": "Aductores fuertes, menos lesiones de ingle."
+ },
+ {
+  "nombre": "Hang power clean",
+  "video": "hang power clean",
+  "zonas": [
+   "potencia"
+  ],
+  "como": "Barra a mitad de muslo, extendé cadera y rodillas explosivo y recibí en media sentadilla.",
+  "sirve": "Explosión de cadera como en el salto."
+ },
+ {
+  "nombre": "Power clean a 1 pierna",
+  "video": "single leg dumbbell power clean",
+  "zonas": [
+   "potencia"
+  ],
+  "como": "Cargada explosiva parado en una pierna, con peso liviano.",
+  "sirve": "Potencia de una pierna, como el despegue."
+ },
+ {
+  "nombre": "Clean high pull con trap bar",
+  "video": "trap bar high pull",
+  "zonas": [
+   "potencia"
+  ],
+  "como": "Con la trap bar, extendé explosivo tirando hacia arriba, sin recibir.",
+  "sirve": "Potencia de piernas con poca técnica."
+ },
+ {
+  "nombre": "Clean high pull desde el piso",
+  "video": "clean high pull",
+  "zonas": [
+   "potencia"
+  ],
+  "como": "Desde el piso, tirón explosivo de la barra hasta el pecho.",
+  "sirve": "Velocidad de cadera."
+ },
+ {
+  "nombre": "Landmine split jerk",
+  "video": "landmine split jerk",
+  "zonas": [
+   "potencia",
+   "empuje"
+  ],
+  "como": "Barra de landmine al hombro, impulso de piernas y empujá cayendo en tijera.",
+  "sirve": "Fuerza de piernas que llega al brazo, como en el remate."
+ },
+ {
+  "nombre": "Salto SJ cargado con barra",
+  "video": "barbell squat jump",
+  "zonas": [
+   "salto",
+   "potencia"
+  ],
+  "como": "Barra liviana en la espalda, bajá a 90°, pausa y saltá explosivo. Caé suave.",
+  "sirve": "Más potencia de despegue."
+ },
+ {
+  "nombre": "Saltos sentado desde banco con mancuernas",
+  "video": "seated box jump dumbbells",
+  "zonas": [
+   "salto"
+  ],
+  "como": "Sentado en un cajón con mancuernas, saltá explosivo desde sentado.",
+  "sirve": "Potencia sin rebote."
+ },
+ {
+  "nombre": "Slam con pelota medicinal",
+  "video": "medicine ball slam",
+  "zonas": [
+   "potencia"
+  ],
+  "como": "Llevá la pelota arriba y estrellala contra el piso con todo.",
+  "sirve": "Potencia del gesto de remate."
+ },
+ {
+  "nombre": "Lanzamiento de pelota medicinal sobre la cabeza",
+  "video": "overhead medicine ball throw",
+  "zonas": [
+   "potencia"
+  ],
+  "como": "Desde arriba de la cabeza, lanzá la pelota a la pared con un paso adelante.",
+  "sirve": "Velocidad de brazo para sacar y rematar."
+ },
+ {
+  "nombre": "Lanzamiento rotacional de pelota medicinal",
+  "video": "rotational medicine ball throw",
+  "zonas": [
+   "potencia",
+   "core"
+  ],
+  "como": "De costado a la pared, girá desde la cadera y lanzá.",
+  "sirve": "Potencia de tronco."
+ },
+ {
+  "nombre": "Sentadilla trasera",
+  "video": "back squat",
+  "zonas": [
+   "piernas"
+  ],
+  "como": "Barra en la espalda, bajá controlado al menos a paralelo con las rodillas siguiendo las puntas.",
+  "sirve": "Fuerza base del salto."
+ },
+ {
+  "nombre": "Press banca",
+  "video": "bench press",
+  "zonas": [
+   "empuje"
+  ],
+  "como": "Omóplatos juntos, bajá la barra al pecho controlado y empujá explosivo.",
+  "sirve": "Fuerza de empuje del tren superior."
+ },
+ {
+  "nombre": "Peso muerto rumano",
+  "video": "romanian deadlift",
+  "zonas": [
+   "posterior"
+  ],
+  "como": "Rodillas apenas flexionadas, bajá la barra pegada a las piernas llevando la cola atrás.",
+  "sirve": "Isquios y glúteos: potencia y cuidado de rodilla."
+ },
+ {
+  "nombre": "Step up lateral con barra",
+  "video": "lateral step up barbell",
+  "zonas": [
+   "piernas"
+  ],
+  "como": "Barra en la espalda, cajón al costado, subí empujando con la pierna de arriba.",
+  "sirve": "Fuerza de una pierna y lateral."
+ },
+ {
+  "nombre": "Remo Pendlay",
+  "video": "pendlay row",
+  "zonas": [
+   "traccion"
+  ],
+  "como": "Torso paralelo al piso, tirá la barra del piso al abdomen explosivo con la espalda recta.",
+  "sirve": "Espalda fuerte que equilibra el empuje y cuida el hombro."
+ },
+ {
+  "nombre": "Press landmine a 1 brazo semiarrodillado",
+  "video": "half kneeling landmine press",
+  "zonas": [
+   "empuje",
+   "hombro"
+  ],
+  "como": "Semiarrodillado, empujá la barra de landmine arriba con un brazo, costillas abajo.",
+  "sirve": "Empuje hacia arriba amigable con el hombro."
+ },
+ {
+  "nombre": "Hip thrust",
+  "video": "barbell hip thrust",
+  "zonas": [
+   "posterior"
+  ],
+  "como": "Espalda en un banco y barra en la cadera, subí apretando glúteos.",
+  "sirve": "Glúteo fuerte = más extensión en el salto."
+ },
+ {
+  "nombre": "Peso muerto con trap bar",
+  "video": "trap bar deadlift",
+  "zonas": [
+   "piernas",
+   "posterior"
+  ],
+  "como": "Dentro de la trap bar, empujá el piso y extendé cadera y rodillas juntas.",
+  "sirve": "Fuerza total con menos carga en la espalda."
+ },
+ {
+  "nombre": "Press Z",
+  "video": "z press",
+  "zonas": [
+   "empuje",
+   "hombro"
+  ],
+  "como": "Sentado en el piso sin respaldo, press de hombros.",
+  "sirve": "Empuje con core estricto."
+ },
+ {
+  "nombre": "Pullover a extensión con mancuerna",
+  "video": "dumbbell pullover to extension",
+  "zonas": [
+   "traccion",
+   "empuje"
+  ],
+  "como": "Pullover con mancuerna y al volver estirá los codos.",
+  "sirve": "Dorsal y tríceps del remate."
+ },
+ {
+  "nombre": "Flexiones en banco",
+  "video": "incline push up",
+  "zonas": [
+   "empuje"
+  ],
+  "como": "Flexiones con las manos apoyadas en un banco.",
+  "sirve": "Empuje con hombro estable."
+ },
+ {
+  "nombre": "Dominadas con pies apoyados",
+  "video": "feet assisted pull up",
+  "zonas": [
+   "traccion"
+  ],
+  "como": "Dominada con los pies en el piso o en un cajón para ayudarte.",
+  "sirve": "Tracción regulable."
+ },
+ {
+  "nombre": "Dominadas",
+  "video": "pull up",
+  "zonas": [
+   "traccion"
+  ],
+  "como": "Colgado, subí hasta pasar el mentón y bajá controlado.",
+  "sirve": "Dorsal para el remate."
+ },
+ {
+  "nombre": "Remo con mancuernas pecho apoyado",
+  "video": "chest supported dumbbell row",
+  "zonas": [
+   "traccion"
+  ],
+  "como": "Pecho apoyado en un banco inclinado, remá con mancuernas.",
+  "sirve": "Espalda sin cargar la lumbar."
+ },
+ {
+  "nombre": "Peso muerto rumano a 1 pierna con mancuerna",
+  "video": "single leg rdl contralateral dumbbell",
+  "zonas": [
+   "posterior"
+  ],
+  "como": "En una pierna, con la mancuerna en la mano contraria.",
+  "sirve": "Isquios y estabilidad."
+ },
+ {
+  "nombre": "Sentadilla búlgara",
+  "video": "bulgarian split squat",
+  "zonas": [
+   "piernas"
+  ],
+  "como": "Pie de atrás en un banco, bajá con la rodilla de adelante siguiendo la punta.",
+  "sirve": "Fuerza de una pierna para despegar."
+ },
+ {
+  "nombre": "Salto al cajón a 1 pierna",
+  "video": "single leg box jump",
+  "zonas": [
+   "salto"
+  ],
+  "como": "Saltá en una pierna arriba del cajón, caé suave y bajá caminando.",
+  "sirve": "Despegue de una pierna sin el impacto de la caída."
+ },
+ {
+  "nombre": "Drop jump a box jump",
+  "video": "drop jump to box jump",
+  "zonas": [
+   "salto"
+  ],
+  "como": "Dejate caer de un cajón bajo y rebotá rápido arriba de otro cajón.",
+  "sirve": "Usar el rebote para saltar más."
+ },
+ {
+  "nombre": "Drop jump batida 2 tiempos",
+  "video": "drop jump approach jump",
+  "zonas": [
+   "salto"
+  ],
+  "como": "Caída desde cajón y batida en 2 tiempos como en el ataque, salto máximo.",
+  "sirve": "Lleva la reactividad al gesto de ataque."
+ },
+ {
+  "nombre": "Box jump con contramovimiento cargado",
+  "video": "eccentric loaded box jump dumbbell release",
+  "zonas": [
+   "salto"
+  ],
+  "como": "Con mancuernas, bajá rápido, soltalas y saltá al cajón.",
+  "sirve": "Contramovimiento más potente."
+ },
+ {
+  "nombre": "Pogo hops a 1 pierna",
+  "video": "single leg pogo hops",
+  "zonas": [
+   "salto",
+   "tobillo"
+  ],
+  "como": "Saltitos rápidos en una pierna, tobillo duro y poco contacto con el piso.",
+  "sirve": "Tobillo reactivo."
+ },
+ {
+  "nombre": "Pogo jumps",
+  "video": "pogo jumps",
+  "zonas": [
+   "salto",
+   "tobillo"
+  ],
+  "como": "Saltitos rápidos con las dos piernas.",
+  "sirve": "Reactividad de tobillo."
+ },
+ {
+  "nombre": "Pogo hops en estocada",
+  "video": "split pogo hops",
+  "zonas": [
+   "salto"
+  ],
+  "como": "Saltitos rápidos en posición de estocada.",
+  "sirve": "Reactividad en posición asimétrica."
+ },
+ {
+  "nombre": "Squatty hops",
+  "video": "squat hops",
+  "zonas": [
+   "salto"
+  ],
+  "como": "Saltitos cortos en media sentadilla.",
+  "sirve": "Piernas que aguantan en posición baja."
+ },
+ {
+  "nombre": "Squat jumps continuos",
+  "video": "continuous squat jumps",
+  "zonas": [
+   "salto"
+  ],
+  "como": "Saltos de sentadilla seguidos: caer y rebotar.",
+  "sirve": "Potencia repetida."
+ },
+ {
+  "nombre": "Flexiones pliométricas",
+  "video": "plyometric push up",
+  "zonas": [
+   "empuje"
+  ],
+  "como": "Flexiones explosivas despegando las manos.",
+  "sirve": "Potencia de empuje."
+ },
+ {
+  "nombre": "Salto con carrera de ataque",
+  "video": "volleyball approach jump",
+  "zonas": [
+   "salto"
+  ],
+  "como": "Carrera de ataque completa y salto máximo tocando lo más alto posible.",
+  "sirve": "Es el gesto real: ahí medís tu alcance."
+ },
+ {
+  "nombre": "Salto horizontal",
+  "video": "broad jump",
+  "zonas": [
+   "salto"
+  ],
+  "como": "Salto en largo con las dos piernas y caída firme.",
+  "sirve": "Potencia y aterrizaje."
+ },
+ {
+  "nombre": "Aterrizajes",
+  "video": "snap down landing drill",
+  "zonas": [
+   "salto",
+   "rodilla"
+  ],
+  "como": "Desde puntas, caé rápido en posición atlética y quedate firme 2 segundos.",
+  "sirve": "Aprender a caer protege las rodillas."
+ },
+ {
+  "nombre": "Intervalos tipo rally",
+  "video": "volleyball conditioning intervals",
+  "zonas": [
+   "acondicionamiento"
+  ],
+  "como": "5 a 10 segundos explosivos (saltos o desplazamientos) y 15 a 20 de pausa, de 8 a 12 veces.",
+  "sirve": "Repetir esfuerzos como en un partido largo."
+ },
+ {
+  "nombre": "Desplazamientos 9-3-6-9",
+  "video": "volleyball 9 3 6 9 sprint drill",
+  "zonas": [
+   "acondicionamiento"
+  ],
+  "como": "Ida y vuelta a las líneas de 3, 6 y 9 metros a máxima velocidad.",
+  "sirve": "Velocidad en las distancias del vóley."
+ }
+]

@@ -51,11 +51,40 @@ const PATHS = {
       <path d="M12 8.5v6M9 11.5h6" />
     </>
   ),
-  rutina: (
+  rutina: <path d="M4 6h16M4 12h16M4 18h10" />,
+  buscar: (
     <>
-      <path d="M4 6h16M4 12h16M4 18h10" />
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="M20 20l-4.2-4.2" />
     </>
   ),
+  cerrar: <path d="M6 6l12 12M18 6L6 18" />,
+  alerta: (
+    <>
+      <path d="M12 3.5l9.5 16.5h-19z" />
+      <path d="M12 10v4.5M12 17.5v.01" />
+    </>
+  ),
+  check: <path d="M5 12.5l4.5 4.5L19 7.5" />,
+  video: (
+    <>
+      <rect x="3" y="5.5" width="18" height="13" rx="3.5" />
+      <path d="M10.5 9.5v5l4.5-2.5z" />
+    </>
+  ),
+  camara: (
+    <>
+      <path d="M4 8.5h3l1.5-2.5h7L17 8.5h3v10.5H4z" />
+      <circle cx="12" cy="13.5" r="3.2" />
+    </>
+  ),
+  pegar: (
+    <>
+      <rect x="6" y="4" width="12" height="17" rx="2.5" />
+      <path d="M9.5 4V2.8h5V4M9.5 11h5M9.5 15h5" />
+    </>
+  ),
+  editar: <path d="M5 19l1-4L15.5 5.5a2.1 2.1 0 013 3L9 18zM14 7l3 3" />,
 } as const
 
 export type IconName = keyof typeof PATHS

@@ -1,0 +1,469 @@
+{
+ "nombre": "Rutina base del PF (cargas de antes de parar)",
+ "semana": 0,
+ "notas": "No arranques con estas cargas: importá la semana de re-entrada del PF.",
+ "dias": [
+  {
+   "id": "d1",
+   "nombre": "Día 1",
+   "foco": "Potencia 1 · Sentadilla · Banca",
+   "bloques": [
+    {
+     "nombre": "Rodilla",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Sóleo + rodilla isométrico",
+       "reps": "30 seg"
+      },
+      {
+       "nombre": "Isométrico de isquios",
+       "reps": "30 seg"
+      },
+      {
+       "nombre": "Elevación de sóleo isométrica",
+       "reps": "30 seg arriba",
+       "carga": "50 kg"
+      },
+      {
+       "nombre": "Nórdicos con banda",
+       "reps": "10"
+      }
+     ]
+    },
+    {
+     "nombre": "Calentamiento",
+     "tipo": "movilidad",
+     "vueltas": 1,
+     "ejercicios": [
+      {
+       "nombre": "Extensión torácica arrodillado con PVC",
+       "reps": "10"
+      },
+      {
+       "nombre": "Shin box a extensión de cadera",
+       "reps": "8 por lado"
+      },
+      {
+       "nombre": "Estiramiento de dorsiflexión semiarrodillado",
+       "reps": "12 por lado"
+      },
+      {
+       "nombre": "Bisagra de cadera con deslizamiento a 1 pierna",
+       "reps": "10 por lado"
+      },
+      {
+       "nombre": "Sentadilla profunda con rotación torácica",
+       "reps": "6"
+      },
+      {
+       "nombre": "Hip airplane asistido",
+       "reps": "5"
+      },
+      {
+       "nombre": "DNS side sit to bear",
+       "reps": "5 por lado"
+      },
+      {
+       "nombre": "Waterball lift semiarrodillado",
+       "reps": "8",
+       "carga": "5 kg"
+      }
+     ]
+    },
+    {
+     "nombre": "Activación",
+     "tipo": "fuerza",
+     "vueltas": 2,
+     "ejercicios": [
+      {
+       "nombre": "YTWLI en el piso",
+       "reps": "10",
+       "carga": "2 kg"
+      },
+      {
+       "nombre": "Flexiones escapulares",
+       "reps": "20 seg"
+      },
+      {
+       "nombre": "Overhead carry a 1 brazo con KB invertida",
+       "reps": "20 pasos por brazo",
+       "carga": "8 kg"
+      },
+      {
+       "nombre": "Sentadilla isométrica con talones elevados",
+       "reps": "30 seg",
+       "carga": "20-30 kg",
+       "nota": "Siempre talones elevados"
+      }
+     ]
+    },
+    {
+     "nombre": "Potencia 1",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Hang power clean",
+       "reps": "3",
+       "carga": "40-50 kg"
+      },
+      {
+       "nombre": "Pallof press",
+       "reps": "15 por lado"
+      },
+      {
+       "nombre": "Rotación interna de cadera",
+       "reps": "8"
+      }
+     ]
+    },
+    {
+     "nombre": "Bloque 1",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Sentadilla trasera",
+       "reps": "4",
+       "carga": "80 kg",
+       "nota": "Cluster 2+2"
+      },
+      {
+       "nombre": "CARS de hombro",
+       "reps": "10"
+      },
+      {
+       "nombre": "Rotación externa de hombro de costado a 45°",
+       "reps": "15",
+       "carga": "3 kg"
+      }
+     ]
+    },
+    {
+     "nombre": "Bloque 2",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Press banca",
+       "reps": "3",
+       "carga": "65 kg"
+      },
+      {
+       "nombre": "Saltos sentado desde banco con mancuernas",
+       "reps": "4",
+       "carga": "2 × 7,5 kg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "d2",
+   "nombre": "Día 2",
+   "foco": "Potencia 2 · Step up · Pendlay · Saltos a 1 pierna",
+   "bloques": [
+    {
+     "nombre": "Rodilla",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Sóleo + rodilla isométrico",
+       "reps": "30 seg"
+      },
+      {
+       "nombre": "Isométrico de isquios",
+       "reps": "30 seg"
+      },
+      {
+       "nombre": "Elevación de sóleo isométrica",
+       "reps": "30 seg arriba",
+       "carga": "50 kg"
+      },
+      {
+       "nombre": "Nórdicos con banda",
+       "reps": "10"
+      }
+     ]
+    },
+    {
+     "nombre": "Calentamiento",
+     "tipo": "movilidad",
+     "vueltas": 1,
+     "ejercicios": [
+      {
+       "nombre": "Open book de costado",
+       "reps": "8"
+      },
+      {
+       "nombre": "Estiramiento de cadera boca arriba",
+       "reps": "15 por lado"
+      },
+      {
+       "nombre": "Aductor en cuadrupedia con rotación torácica",
+       "reps": "5 por lado"
+      },
+      {
+       "nombre": "Shin box con roll y get up",
+       "reps": "10"
+      },
+      {
+       "nombre": "Estocada con rotación",
+       "reps": "5 por lado"
+      },
+      {
+       "nombre": "CARS de cadera",
+       "reps": "15"
+      },
+      {
+       "nombre": "Knee hug a estocada con codo al empeine",
+       "reps": "3 × 10 m"
+      },
+      {
+       "nombre": "Bird dog con alcance",
+       "reps": "20 por lado"
+      }
+     ]
+    },
+    {
+     "nombre": "Activación",
+     "tipo": "fuerza",
+     "vueltas": 2,
+     "ejercicios": [
+      {
+       "nombre": "Wall march de serrato con miniband",
+       "reps": "10"
+      },
+      {
+       "nombre": "Dominada escapular",
+       "reps": "12"
+      },
+      {
+       "nombre": "Press de serrato con mancuerna boca arriba",
+       "reps": "15",
+       "carga": "15 kg"
+      },
+      {
+       "nombre": "Rueda abdominal",
+       "reps": "12"
+      }
+     ]
+    },
+    {
+     "nombre": "Potencia 2",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Power clean a 1 pierna",
+       "reps": "3",
+       "carga": "20-25 kg"
+      },
+      {
+       "nombre": "Stir the pot en pelota",
+       "reps": "10"
+      },
+      {
+       "nombre": "Rotación torácica semiarrodillado (core)",
+       "reps": "8",
+       "nota": "Sin banda"
+      }
+     ]
+    },
+    {
+     "nombre": "Bloque Fuerza",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Step up lateral con barra",
+       "reps": "4",
+       "carga": "40 kg"
+      },
+      {
+       "nombre": "Remo Pendlay",
+       "reps": "4",
+       "carga": "70 kg",
+       "nota": "Cuidá la espalda"
+      }
+     ]
+    },
+    {
+     "nombre": "Bloque 2",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Salto al cajón a 1 pierna",
+       "reps": "3 por lado"
+      },
+      {
+       "nombre": "Press landmine a 1 brazo semiarrodillado",
+       "reps": "6 por lado",
+       "carga": "40 kg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "d3",
+   "nombre": "Día 3",
+   "foco": "Potencia 3 · Peso muerto rumano · Jerk y saltos",
+   "bloques": [
+    {
+     "nombre": "Rodilla",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Sóleo + rodilla isométrico",
+       "reps": "30 seg"
+      },
+      {
+       "nombre": "Isométrico de isquios",
+       "reps": "30 seg"
+      },
+      {
+       "nombre": "Elevación de sóleo isométrica",
+       "reps": "30 seg arriba",
+       "carga": "50 kg"
+      },
+      {
+       "nombre": "Nórdicos con banda",
+       "reps": "10"
+      }
+     ]
+    },
+    {
+     "nombre": "Calentamiento",
+     "tipo": "movilidad",
+     "vueltas": 1,
+     "ejercicios": [
+      {
+       "nombre": "Estiramiento lateral lumbar",
+       "reps": "8 por lado"
+      },
+      {
+       "nombre": "CARS de cadera",
+       "reps": "10"
+      },
+      {
+       "nombre": "Rotación torácica semiarrodillado con KB",
+       "reps": "8 por lado"
+      },
+      {
+       "nombre": "Rotaciones de cadera de pie",
+       "reps": "10 por lado"
+      },
+      {
+       "nombre": "Spiderman",
+       "reps": "5 por lado"
+      },
+      {
+       "nombre": "Miniband en 3 direcciones",
+       "reps": "15 por lado"
+      },
+      {
+       "nombre": "Peso muerto rumano a 1 pierna con barra",
+       "reps": "10 por lado"
+      },
+      {
+       "nombre": "Deadbug",
+       "reps": "20"
+      }
+     ]
+    },
+    {
+     "nombre": "Activación",
+     "tipo": "fuerza",
+     "vueltas": 2,
+     "ejercicios": [
+      {
+       "nombre": "Band pull apart unilateral",
+       "reps": "10"
+      },
+      {
+       "nombre": "Ws en el piso",
+       "reps": "2 × 20 seg"
+      },
+      {
+       "nombre": "Wall slide de serrato",
+       "reps": "8"
+      },
+      {
+       "nombre": "Sentadilla goblet",
+       "reps": "12",
+       "carga": "20 kg"
+      }
+     ]
+    },
+    {
+     "nombre": "Potencia 3",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Clean high pull con trap bar",
+       "reps": "3",
+       "carga": "50 kg"
+      },
+      {
+       "nombre": "Pullover a crunch con disco",
+       "reps": "15"
+      },
+      {
+       "nombre": "Shin box rotación interna/externa",
+       "reps": "8 por lado"
+      }
+     ]
+    },
+    {
+     "nombre": "Bloque 1",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Peso muerto rumano",
+       "reps": "5",
+       "carga": "70 kg"
+      },
+      {
+       "nombre": "Decoaptación de hombro con KB",
+       "reps": "4",
+       "nota": "KB pesada"
+      },
+      {
+       "nombre": "Floor scorpion",
+       "reps": "5 por lado"
+      }
+     ]
+    },
+    {
+     "nombre": "Bloque 2",
+     "tipo": "fuerza",
+     "vueltas": 3,
+     "ejercicios": [
+      {
+       "nombre": "Landmine split jerk",
+       "reps": "3",
+       "carga": "30 kg"
+      },
+      {
+       "nombre": "Salto SJ cargado con barra",
+       "reps": "3",
+       "carga": "30 kg"
+      },
+      {
+       "nombre": "Retracción escapular",
+       "reps": "10"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

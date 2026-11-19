@@ -12,8 +12,11 @@
   "dependencies": {
     "@fontsource/barlow": "^5.2.5",
     "@fontsource/barlow-condensed": "^5.2.5",
+    "dexie": "^4.4.7",
+    "dexie-react-hooks": "^1.1.7",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
@@ -21,6 +24,7 @@
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
     "@vitejs/plugin-react": "^4.5.0",
+    "fake-indexeddb": "^6.2.8",
     "jsdom": "^26.1.0",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",

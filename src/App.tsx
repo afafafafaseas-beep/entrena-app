@@ -1,38 +1,42 @@
 import { useEffect, useState } from 'react'
 import { TabBar } from './components/TabBar'
-import { Ejercicios, Entrenar, Hoy, Mas, Progreso } from './screens/Screens'
-import { tabFromHash, type TabId } from './tabs'
-
-const SCREENS: Record<TabId, () => React.ReactNode> = {
-  hoy: Hoy,
-  entrenar: Entrenar,
-  ejercicios: Ejercicios,
-  progreso: Progreso,
-  mas: Mas,
-}
+import { asegurarRutinaBase, pedirPersistencia } from './db'
+import { Ejercicios } from './screens/Ejercicios'
+import { Hoy } from './screens/Hoy'
+import { Mas } from './screens/Mas'
+import { Entrenar, Progreso } from './screens/Otras'
+import { parseRuta, rutaA, type Ruta, type TabId } from './tabs'
 
 export default function App() {
-  const [tab, setTab] = useState<TabId>(() => tabFromHash(window.location.hash))
+  const [ruta, setRuta] = useState<Ruta>(() => parseRuta(window.location.hash))
 
   useEffect(() => {
-    const onHash = () => setTab(tabFromHash(window.location.hash))
+    asegurarRutinaBase()
+    pedirPersistencia()
+    const onHash = () => setRuta(parseRuta(window.location.hash))
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
 
-  const change = (id: TabId) => {
-    setTab(id)
-    history.replaceState(null, '', `#/${id}`)
+  const cambiarTab = (id: TabId) => {
+    // Tocar la pestaña en la que ya estás vuelve al principio de esa pestaña.
+    const nueva = rutaA(id)
+    history.replaceState(null, '', nueva)
+    setRuta(parseRuta(nueva))
     window.scrollTo(0, 0)
   }
 
-  const Screen = SCREENS[tab]
+  const { tab, sub } = ruta
   return (
     <div className="app">
-      <main className="screen">
-        <Screen />
+      <main className="screen" key={tab + sub.join('/')}>
+        {tab === 'hoy' && <Hoy />}
+        {tab === 'entrenar' && <Entrenar />}
+        {tab === 'ejercicios' && <Ejercicios sub={sub} />}
+        {tab === 'progreso' && <Progreso />}
+        {tab === 'mas' && <Mas sub={sub} />}
       </main>
-      <TabBar active={tab} onChange={change} />
+      <TabBar active={tab} onChange={cambiarTab} />
     </div>
   )
 }
