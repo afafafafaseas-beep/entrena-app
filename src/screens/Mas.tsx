@@ -82,6 +82,16 @@ function Menu() {
   )
 }
 
+// FileReader anda también en iPhones viejos (File.text() no siempre).
+function leerTexto(archivo: File): Promise<string> {
+  return new Promise((ok, mal) => {
+    const lector = new FileReader()
+    lector.onload = () => ok(String(lector.result ?? ''))
+    lector.onerror = () => mal(lector.error)
+    lector.readAsText(archivo)
+  })
+}
+
 function CargarRutina() {
   const [texto, setTexto] = useState('')
   const [revision, setRevision] = useState<Revision | null>(null)
@@ -101,6 +111,18 @@ function CargarRutina() {
       }
     } catch {
       // Si el iPhone no deja, que lo pegue a mano.
+    }
+  }
+
+  const desdeArchivo = async (archivo: File | undefined) => {
+    if (!archivo) return
+    try {
+      const t = await leerTexto(archivo)
+      setCargada(null)
+      setTexto(t)
+      setRevision(revisarRutina(t)) // lo revisa de una
+    } catch {
+      setRevision({ ok: false, error: 'No pude abrir ese archivo. Probá de nuevo o copiá el texto y pegalo.' })
     }
   }
 
@@ -135,8 +157,24 @@ function CargarRutina() {
       <Back label="Más" siNo={rutaA('mas')} />
       <Head title="Cargar rutina" />
       <p className="lead">
-        Copiá el mensaje del PF y pegalo acá. Puede ser el mensaje entero: la app busca sola la rutina.
+        Elegí el archivo que te pasó el PF, o copiá su mensaje y pegalo. Puede ser el mensaje entero: la app busca sola
+        la rutina.
       </p>
+
+      <label className="btn btn--soft">
+        <Icon name="importar" size={20} />
+        Elegir archivo
+        <input
+          type="file"
+          className="oculto"
+          accept=".json,.txt,.md,application/json,text/plain,text/markdown"
+          aria-label="Elegir archivo"
+          onChange={(e) => {
+            desdeArchivo(e.target.files?.[0])
+            e.target.value = '' // para poder elegir el mismo archivo otra vez
+          }}
+        />
+      </label>
 
       <button type="button" className="btn btn--soft" onClick={pegar}>
         <Icon name="pegar" size={20} />

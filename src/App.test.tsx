@@ -116,4 +116,20 @@ describe('App', () => {
     expect(await screen.findByText('Rutina cargada')).toBeInTheDocument()
     expect((await rutinaActiva())?.rutina.nombre).toBe('S1')
   })
+
+  it('cargar rutina desde un archivo: la revisa sola', async () => {
+    window.location.hash = '#/mas/cargar'
+    render(<App />)
+    const rutina = {
+      nombre: 'Desde archivo',
+      semana: 2,
+      dias: [{ id: 'd1', nombre: 'Día 1', bloques: [{ nombre: 'B', tipo: 'fuerza', vueltas: 2, ejercicios: [{ nombre: 'Dominadas', reps: '5' }] }] }],
+    }
+    const archivo = new File([JSON.stringify(rutina)], 'semana-2.json', { type: 'application/json' })
+    fireEvent.change(screen.getByLabelText('Elegir archivo'), { target: { files: [archivo] } })
+    expect(await screen.findByRole('status')).toHaveTextContent('Semana 2: 1 día, 1 ejercicio')
+    fireEvent.click(screen.getByRole('button', { name: /Cargar esta rutina/ }))
+    expect(await screen.findByText('Rutina cargada')).toBeInTheDocument()
+    expect((await rutinaActiva())?.rutina.nombre).toBe('Desde archivo')
+  })
 })

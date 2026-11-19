@@ -424,6 +424,18 @@ a.btn {
   margin-bottom: 16px;
 }
 
+.btn--soft + .btn--soft {
+  margin-top: -6px;
+}
+
+.oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .btn--soft:active {
   background: var(--surface-2);
 }

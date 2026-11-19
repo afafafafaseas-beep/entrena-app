@@ -76,7 +76,7 @@ Nada más. Si se te ocurre algo extra, proponelo, pero no lo hagas sin que Santi
 - Historial de sesiones, que se abren para ver el detalle, con opción de borrar.
 
 **Más**
-- **Cargar rutina del PF:** un cuadro para pegar el JSON (que funcione aunque peguen el mensaje entero del PF: buscar desde la primera `{` hasta la última `}`). Botón "Revisar" que muestra "Semana 1: 3 días, 54 ejercicios" o el error en criollo ("Al bloque Potencia 1 del Día 2 le falta decir cuántas vueltas"). Después, "Cargar esta rutina".
+- **Cargar rutina del PF:** un botón "Elegir archivo" (el PF a veces la pasa como archivo descargable: se lee y se revisa solo) y un cuadro para pegar el JSON (que funcione aunque peguen el mensaje entero del PF: buscar desde la primera `{` hasta la última `}`). Botón "Revisar" que muestra "Semana 1: 3 días, 54 ejercicios" o el error en criollo ("Al bloque Potencia 1 del Día 2 le falta decir cuántas vueltas"). Después, "Cargar esta rutina".
 - **Resumen para el PF** de los últimos 7, 14 o 28 días, con botón "Copiar" (formato en la sección 7).
 - **Rutina actual:** verla y tocar un ejercicio para cambiar series, reps, peso o nota.
 - **Rutinas anteriores:** poder volver a una.
