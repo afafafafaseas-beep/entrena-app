@@ -84,7 +84,13 @@ const PATHS = {
       <path d="M9.5 4V2.8h5V4M9.5 11h5M9.5 15h5" />
     </>
   ),
-  editar: <path d="M5 19l1-4L15.5 5.5a2.1 2.1 0 013 3L9 18zM14 7l3 3" />,
+  reloj: (
+    <>
+      <circle cx="12" cy="13" r="8" />
+      <path d="M12 9v4l2.5 2.5M9.5 2.5h5" />
+    </>
+  ),
+  editar:<path d="M5 19l1-4L15.5 5.5a2.1 2.1 0 013 3L9 18zM14 7l3 3" />,
 } as const
 
 export type IconName = keyof typeof PATHS

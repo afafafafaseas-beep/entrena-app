@@ -4,7 +4,10 @@ import { asegurarRutinaBase, pedirPersistencia } from './db'
 import { Ejercicios } from './screens/Ejercicios'
 import { Hoy } from './screens/Hoy'
 import { Mas } from './screens/Mas'
-import { Entrenar, Progreso } from './screens/Otras'
+import { Entrenar } from './screens/Entrenar'
+import { Progreso } from './screens/Otras'
+import { useEnCurso } from './hooks'
+import { pantallaPrendida } from './lib/avisos'
 import { parseRuta, rutaA, type Ruta, type TabId } from './tabs'
 
 export default function App() {
@@ -17,6 +20,12 @@ export default function App() {
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
+
+  // Mientras hay un entreno abierto, la pantalla no se apaga sola.
+  const entrenando = !!useEnCurso()
+  useEffect(() => {
+    pantallaPrendida(entrenando)
+  }, [entrenando])
 
   const cambiarTab = (id: TabId) => {
     // Tocar la pestaña en la que ya estás vuelve al principio de esa pestaña.

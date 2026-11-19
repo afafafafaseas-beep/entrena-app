@@ -1,7 +1,9 @@
 import { Icon } from '../components/Icon'
 import { Head } from '../components/ui'
-import { useRutina } from '../hooks'
+import { useEnCurso, useRutina, useSesiones } from '../hooks'
+import { colorRodilla, fechaISO, proximoDia, sesionesDeLaSemana } from '../lib/sesion'
 import { navegar, rutaA } from '../tabs'
+import { empezarSesion } from './acciones'
 
 const DIAS = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
 
@@ -12,15 +14,23 @@ export function semanaActual(hoy = new Date()) {
   return DIAS.map((letra, i) => {
     const d = new Date(lunes)
     d.setDate(lunes.getDate() + i)
-    return { letra, num: d.getDate(), esHoy: d.toDateString() === hoy.toDateString() }
+    return { letra, num: d.getDate(), esHoy: d.toDateString() === hoy.toDateString(), iso: fechaISO(d.getTime()) }
   })
 }
 
+const NOMBRE_COLOR = { verde: 'Bien', amarillo: 'Atento', rojo: 'Molesta' }
+
 export function Hoy() {
   const activa = useRutina()
+  const sesiones = useSesiones()
+  const enCurso = useEnCurso()
   const fecha = new Date().toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long' })
-  // Etapa 3: el próximo día sale de la última sesión. Por ahora no hay sesiones, así que es el primero.
-  const proximo = activa?.rutina.dias[0]
+
+  const lista = sesiones ?? []
+  const proximo = activa ? proximoDia(activa.rutina, lista) : undefined
+  const semana = sesionesDeLaSemana(lista)
+  const diasConGym = new Set(lista.map((s) => s.fecha))
+  const ultimaRodilla = [...lista].reverse().find((s) => s.rodilla !== undefined)?.rodilla
 
   return (
     <>
@@ -28,7 +38,10 @@ export function Hoy() {
 
       <div className="week" aria-label="Esta semana">
         {semanaActual().map((d, i) => (
-          <div key={i} className={d.esHoy ? 'week__day week__day--hoy' : 'week__day'}>
+          <div
+            key={i}
+            className={`week__day${d.esHoy ? ' week__day--hoy' : ''}${diasConGym.has(d.iso) ? ' week__day--gym' : ''}`}
+          >
             <span>{d.letra}</span>
             <span className="week__num">{d.num}</span>
           </div>
@@ -49,28 +62,56 @@ export function Hoy() {
         </button>
       )}
 
-      <section className="hero">
-        <p className="hero__label">Te toca</p>
-        <p className="hero__title">{proximo ? proximo.nombre : 'Tu rutina'}</p>
-        <p className="hero__text">{proximo?.foco ?? 'Cargando…'}</p>
-        <button type="button" className="btn btn--primary" disabled>
-          <Icon name="play" size={20} filled />
-          Empezar · llega en la etapa 3
-        </button>
-      </section>
+      {enCurso ? (
+        <section className="hero">
+          <p className="hero__label">Sesión sin terminar</p>
+          <p className="hero__title">{enCurso.sesion.diaNombre}</p>
+          <p className="hero__text">
+            La empezaste a las{' '}
+            {new Date(enCurso.sesion.inicio).toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}.
+          </p>
+          <button type="button" className="btn btn--primary" onClick={() => navegar(rutaA('entrenar'))}>
+            <Icon name="play" size={20} filled />
+            Seguir sesión
+          </button>
+        </section>
+      ) : (
+        <section className="hero">
+          <p className="hero__label">Te toca</p>
+          <p className="hero__title">{proximo ? proximo.nombre : 'Tu rutina'}</p>
+          <p className="hero__text">{proximo?.foco ?? 'Cargando…'}</p>
+          <button
+            type="button"
+            className="btn btn--primary"
+            disabled={!activa || !proximo || enCurso === undefined}
+            onClick={() => activa && proximo && empezarSesion(activa.rutina, proximo)}
+          >
+            <Icon name="play" size={20} filled />
+            Empezar
+          </button>
+        </section>
+      )}
 
       <div className="stats">
         <div className="stat">
           <p className="stat__label">Esta semana</p>
           <p className="stat__value">
-            0<small>de 3</small>
+            {semana.length}
+            <small>de 3</small>
           </p>
         </div>
         <div className="stat">
-          <p className="stat__label">Rodilla</p>
-          <p className="stat__value">
-            –<small>/ 10</small>
-          </p>
+          <p className="stat__label">Rodilla la última vez</p>
+          {ultimaRodilla === undefined ? (
+            <p className="stat__value">
+              –<small>/ 10</small>
+            </p>
+          ) : (
+            <p className={`stat__value rod-txt--${colorRodilla(ultimaRodilla)}`}>
+              {ultimaRodilla}
+              <small>{NOMBRE_COLOR[colorRodilla(ultimaRodilla)]}</small>
+            </p>
+          )}
         </div>
       </div>
     </>

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import App from './App'
 import { parseRuta, rutaA, tabFromHash } from './tabs'
 import { semanaActual } from './screens/Hoy'
@@ -115,6 +115,40 @@ describe('App', () => {
     fireEvent.click(screen.getByRole('button', { name: /Cargar esta rutina/ }))
     expect(await screen.findByText('Rutina cargada')).toBeInTheDocument()
     expect((await rutinaActiva())?.rutina.nombre).toBe('S1')
+  })
+
+  it('entrenar: empieza, ✓ copia lo sugerido, no se pierde al cerrar y se guarda', async () => {
+    window.confirm = () => true
+    const primera = render(<App />)
+    const empezar = await screen.findByRole('button', { name: 'Empezar' })
+    await waitFor(() => expect(empezar).toBeEnabled())
+    fireEvent.click(empezar)
+    expect(await screen.findByRole('heading', { level: 1, name: 'Día 1' })).toBeInTheDocument()
+
+    // ✓ con todo vacío copia lo de la rutina (Sentadilla trasera: 4 reps, 80 kg)
+    fireEvent.click(screen.getByRole('button', { name: 'Tildar serie 1 de Sentadilla trasera' }))
+    expect(screen.getByLabelText('Kilos serie 1 de Sentadilla trasera')).toHaveValue('80')
+    expect(screen.getByLabelText('Reps serie 1 de Sentadilla trasera')).toHaveValue('4')
+    fireEvent.change(screen.getByLabelText('Kilos serie 2 de Sentadilla trasera'), { target: { value: '82,5' } })
+
+    // Se cierra la app y se vuelve a abrir: la sesión sigue ahí
+    primera.unmount()
+    window.location.hash = '#/hoy'
+    render(<App />)
+    fireEvent.click(await screen.findByRole('button', { name: 'Seguir sesión' }))
+    expect(await screen.findByLabelText('Kilos serie 2 de Sentadilla trasera')).toHaveValue('82,5')
+    expect(screen.getByRole('button', { name: 'Destildar serie 1 de Sentadilla trasera' })).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: '2' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Guardar sesión' }))
+    expect(await screen.findByText('Día 2')).toBeInTheDocument()
+
+    const [s] = await db.sesiones.toArray()
+    expect(s.rodilla).toBe(2)
+    const sent = s.ejercicios.find((e) => e.nombre === 'Sentadilla trasera')!
+    expect(sent.series[0]).toEqual({ kg: 80, reps: 4, ok: true })
+    expect(sent.series[1].kg).toBe(82.5)
+    expect(await db.estado.get('sesionEnCurso')).toBeUndefined()
   })
 
   it('cargar rutina desde un archivo: la revisa sola', async () => {

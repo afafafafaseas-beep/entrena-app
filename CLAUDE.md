@@ -60,7 +60,9 @@ Nada más. Si se te ocurre algo extra, proponelo, pero no lo hagas sin que Santi
 - Debajo de cada ejercicio: "Última vez (20/11): 50×4 · 55×4 · 55×4".
 - Tocar el nombre de un ejercicio abre su ficha.
 - RPE de cada ejercicio con botones del 6 al 10 (qué tan duro fue: 10 = no podía más). Debajo de la pantalla, una línea que explique el RPE.
-- Botón flotante "Descanso": 60, 90, 120 o 180 segundos. Muestra la cuenta regresiva grande, botón "+30 seg" y "Listo". Al terminar suena y vibra.
+- Botón flotante "Descanso": 60, 90, 120 o 180 segundos. Muestra la cuenta regresiva grande, botón "+30 seg" y "Listo". Al terminar suena y vibra (ojo: en iPhone las apps web no pueden vibrar, así que ahí solo suena y la barra se pone naranja; si el iPhone está en silencio o bloqueado puede no sonar).
+- Mientras hay una sesión abierta, la pantalla no se apaga sola (Wake Lock). Santi dijo que sí el 19/11.
+- La sesión en curso se guarda en la tabla `estado` (clave `sesionEnCurso`) a cada toque; el descanso en `estado.descanso`.
 - Al final: rodilla al terminar (0 a 10, con colores: verde 0-3, amarillo 4-5, rojo 6-10), qué tan dura fue la sesión (RPE 5 a 10), notas, "Guardar sesión" y "Descartar".
 
 **Ejercicios**

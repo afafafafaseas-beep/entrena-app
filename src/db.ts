@@ -1,5 +1,6 @@
 import Dexie, { type EntityTable } from 'dexie'
 import type { Rutina } from './lib/rutina'
+import type { EnCurso } from './lib/sesion'
 import { RutinaSchema } from './lib/rutina'
 import { normalizar } from './lib/texto'
 import rutinaBaseJson from './data/rutina-base.json'
@@ -99,6 +100,31 @@ export async function cargarRutina(rutina: Rutina): Promise<number> {
 
 export async function guardarExtra(nombre: string, como: string, sirve: string) {
   await db.extras.put({ clave: normalizar(nombre), nombre: nombre.trim(), como: como.trim(), sirve: sirve.trim() })
+}
+
+// ---- Sesión en curso: se guarda a cada toque en la tabla "estado" (no hace falta migrar) ----
+
+export async function leerEnCurso(): Promise<EnCurso | undefined> {
+  const e = await db.estado.get('sesionEnCurso')
+  return (e?.valor as EnCurso | undefined) ?? undefined
+}
+
+export async function guardarEnCurso(c: EnCurso) {
+  await db.estado.put({ clave: 'sesionEnCurso', valor: c })
+}
+
+export async function descartarEnCurso() {
+  await db.estado.delete('sesionEnCurso')
+  await db.estado.delete('descanso')
+}
+
+/** Guarda la sesión terminada y borra la que estaba en curso, todo junto. */
+export async function guardarSesion(s: Sesion) {
+  await db.transaction('rw', db.sesiones, db.estado, async () => {
+    await db.sesiones.put(s)
+    await db.estado.delete('sesionEnCurso')
+    await db.estado.delete('descanso')
+  })
 }
 
 /** Le pide al iPhone que no borre los datos de la app. */
