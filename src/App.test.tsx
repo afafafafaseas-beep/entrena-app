@@ -2,6 +2,7 @@ import { describe, expect, it, beforeEach } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 import App from './App'
 import { tabFromHash } from './tabs'
+import { semanaActual } from './screens/Screens'
 
 describe('tabFromHash', () => {
   it('lee la pestaña de la dirección', () => {
@@ -11,6 +12,19 @@ describe('tabFromHash', () => {
   it('si no hay o no existe, vuelve a Hoy', () => {
     expect(tabFromHash('')).toBe('hoy')
     expect(tabFromHash('#/cualquiera')).toBe('hoy')
+  })
+})
+
+describe('semanaActual', () => {
+  it('arranca el lunes y marca hoy', () => {
+    const semana = semanaActual(new Date(2026, 10, 19)) // jueves 19/11/2026
+    expect(semana.map((d) => d.num)).toEqual([16, 17, 18, 19, 20, 21, 22])
+    expect(semana.findIndex((d) => d.esHoy)).toBe(3)
+  })
+  it('un domingo queda al final de la semana', () => {
+    const semana = semanaActual(new Date(2026, 10, 22))
+    expect(semana[0].num).toBe(16)
+    expect(semana[6].esHoy).toBe(true)
   })
 })
 

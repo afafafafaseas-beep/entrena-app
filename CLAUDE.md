@@ -270,7 +270,8 @@ Es la última rutina del PF anterior, con los pesos de ANTES de que Santi dejara
 
 ## 10. Diseño
 
-- Fondo oscuro (en el gym hay mucha luz y la pantalla es chica) con buen contraste. Colores de cancha: azul muy oscuro de fondo y amarillo pelota para lo importante. Verde, amarillo y rojo solo para la rodilla.
+- Fondo oscuro con buen contraste, estilo apps de entrenamiento buenas (Hevy, Nike Training Club): negro neutro (`#0c0c0d`), tarjetas apenas más claras sin bordes y con esquinas redondeadas, y **un solo color de acento, naranja (`#ff6a3d`)**, usado con cuidado (botón principal, pestaña activa, día de hoy). Nada de azul ni de degradés: Santi dijo que el azul con amarillo "se veía muy IA". Verde, amarillo y rojo solo para la rodilla. Los colores están como variables en `src/styles.css`.
+- Títulos grandes en minúscula normal (no todo en mayúsculas). Barra de abajo translúcida. Lo que todavía no funciona se ve apagado y dice "Pronto", no parece tocable.
 - Títulos con una letra condensada y deportiva (por ejemplo Barlow Condensed) y el resto con una letra fácil de leer (Barlow).
 - Números grandes en las series. Íconos simples en SVG, sin emojis.
 

@@ -1,5 +1,5 @@
 import { TABS, type TabId } from '../tabs'
-import { TabIcon } from './Icon'
+import { Icon } from './Icon'
 
 export function TabBar({ active, onChange }: { active: TabId; onChange: (id: TabId) => void }) {
   return (
@@ -12,7 +12,7 @@ export function TabBar({ active, onChange }: { active: TabId; onChange: (id: Tab
           aria-current={t.id === active ? 'page' : undefined}
           onClick={() => onChange(t.id)}
         >
-          <TabIcon id={t.id} />
+          <Icon name={t.id} size={25} />
           <span>{t.label}</span>
         </button>
       ))}
