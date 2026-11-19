@@ -127,16 +127,16 @@ describe('App', () => {
 
     // ✓ con todo vacío copia lo de la rutina (Sentadilla trasera: 4 reps, 80 kg)
     fireEvent.click(screen.getByRole('button', { name: 'Tildar serie 1 de Sentadilla trasera' }))
-    expect(screen.getByLabelText('Kilos serie 1 de Sentadilla trasera')).toHaveValue('80')
+    expect(screen.getByLabelText('Kg serie 1 de Sentadilla trasera')).toHaveValue('80')
     expect(screen.getByLabelText('Reps serie 1 de Sentadilla trasera')).toHaveValue('4')
-    fireEvent.change(screen.getByLabelText('Kilos serie 2 de Sentadilla trasera'), { target: { value: '82,5' } })
+    fireEvent.change(screen.getByLabelText('Kg serie 2 de Sentadilla trasera'), { target: { value: '82,5' } })
 
     // Se cierra la app y se vuelve a abrir: la sesión sigue ahí
     primera.unmount()
     window.location.hash = '#/hoy'
     render(<App />)
     fireEvent.click(await screen.findByRole('button', { name: 'Seguir sesión' }))
-    expect(await screen.findByLabelText('Kilos serie 2 de Sentadilla trasera')).toHaveValue('82,5')
+    expect(await screen.findByLabelText('Kg serie 2 de Sentadilla trasera')).toHaveValue('82,5')
     expect(screen.getByRole('button', { name: 'Destildar serie 1 de Sentadilla trasera' })).toBeInTheDocument()
 
     fireEvent.click(screen.getByRole('button', { name: '2' }))

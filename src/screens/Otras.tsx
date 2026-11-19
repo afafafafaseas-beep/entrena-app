@@ -6,9 +6,9 @@ export function Progreso() {
       <Head title="Progreso" />
       <Empty
         icon="progreso"
-        title="Todavía sin gráficos"
-        text="Acá vas a ver cómo suben tus kilos, cómo va la rodilla y todas tus sesiones."
-        etapa={4}
+        title="Tu progreso, acá"
+        text="Gráficos de tus kilos y de la rodilla, y el historial de cada sesión que guardes."
+        pronto
       />
     </>
   )

@@ -98,11 +98,9 @@ h1 {
 }
 
 .section-title {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-3);
+  color: var(--text-2);
   margin: 28px 4px 10px;
 }
 
@@ -150,44 +148,42 @@ h1 {
   background: var(--surface);
   border-radius: var(--radio);
   padding: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  right: -40px;
-  top: -40px;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  border: 22px solid var(--accent-soft);
 }
 
 .hero__label {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 6px;
+  margin-bottom: 2px;
 }
 
 .hero__title {
   font-family: var(--titulo);
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 6px;
-  position: relative;
+  line-height: 1.05;
+  margin-bottom: 4px;
 }
 
 .hero__text {
   color: var(--text-2);
+  margin-bottom: 14px;
+}
+
+.hero__bloques {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   margin-bottom: 18px;
-  max-width: 30ch;
-  position: relative;
+}
+
+.hero__bloques span {
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .btn {
@@ -654,12 +650,10 @@ a.btn {
 
 .bloque-texto__title {
   font-family: var(--cuerpo);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 4px;
 }
 
 .foto-pronto {
@@ -993,10 +987,8 @@ textarea:focus {
 
 .serie--head {
   margin-bottom: 4px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--text-3);
 }
 
@@ -1233,10 +1225,8 @@ textarea:focus {
 }
 
 .timer__label {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--text-2);
 }
 
@@ -1324,6 +1314,95 @@ textarea:focus {
   display: grid;
   place-items: center;
   cursor: pointer;
+}
+
+/* Detalles de Entrenar */
+.progreso-barra {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--surface-2);
+  margin-top: 14px;
+  overflow: hidden;
+}
+
+.progreso-barra span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.25s ease-out;
+}
+
+.nota-pf {
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  color: var(--text-2);
+  font-size: 15px;
+}
+
+.nota-pf__label {
+  display: block;
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.ejf__dosis {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.ejf__pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 2px 0 12px;
+}
+
+.ejf__pie .ultima {
+  margin: 0 2px;
+}
+
+.chip-descanso {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.serie__txt {
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+.mov__nota {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-3);
+}
+
+.alias {
+  font-size: 15px;
+  color: var(--text-3);
+  margin: 8px 4px 0;
+}
+
+.alias strong {
+  color: var(--text-2);
 }
 
 /* Barra de abajo */

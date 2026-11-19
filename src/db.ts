@@ -42,7 +42,7 @@ export interface Sesion {
     bloque: string
     tipo: 'movilidad' | 'fuerza'
     hecho: boolean
-    series: { kg?: number; reps?: number; ok: boolean }[]
+    series: { kg?: number; reps?: number; cm?: number; ok: boolean }[] // reps = segundos si el ejercicio es por tiempo
     rpe?: number
   }[]
   rodilla?: number

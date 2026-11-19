@@ -1,10 +1,15 @@
 import { describe, expect, it } from 'vitest'
 import type { Sesion } from '../db'
 import { RUTINA_BASE } from '../db'
+import { RutinaSchema } from './rutina'
+import pfSemana1 from '../data/pf-semana1.json'
 import {
   colorRodilla,
   kgDeCarga,
+  medidaDe,
   nuevaSesion,
+  segundosDescanso,
+  textoDosis,
   proximoDia,
   repsDeTexto,
   reloj,
@@ -99,6 +104,51 @@ describe('última vez y sugerencias', () => {
     expect(kgDeCarga('KB pesada')).toBeUndefined()
     expect(repsDeTexto('30 seg')).toBe(30)
     expect(repsDeTexto('2 × 20 seg')).toBeUndefined()
+  })
+})
+
+describe('qué se anota en cada ejercicio de la rutina del PF', () => {
+  const r = RutinaSchema.parse(pfSemana1)
+  const ej = (n: string) => r.dias.flatMap((d) => d.bloques.flatMap((b) => b.ejercicios)).find((e) => e.nombre === n)!
+
+  it('kilos y reps cuando hay carga en kg', () => {
+    expect(medidaDe(ej('Press banca'))).toEqual({ kg: true, segunda: 'reps' })
+    expect(sugerencia(0, undefined, ej('Press banca'))).toEqual({ kg: 42.5, reps: 6 })
+  })
+  it('solo segundos en los isométricos sin peso, y kilos + segundos si tienen peso', () => {
+    expect(medidaDe(ej('Soleo + rodilla isométrico'))).toEqual({ kg: false, segunda: 'seg' })
+    expect(medidaDe(ej('Soleus raises sosteniendo arriba'))).toEqual({ kg: true, segunda: 'seg' })
+    expect(medidaDe(ej('Equilibrio a 1 pierna sobre colchoneta'))).toEqual({ kg: false, segunda: 'seg' })
+  })
+  it('solo reps cuando es con banda, sin peso o sin carga', () => {
+    expect(medidaDe(ej('Nordic curls con banda'))).toEqual({ kg: false, segunda: 'reps' })
+    expect(medidaDe(ej('Saltos sentado desde banco al cajón'))).toEqual({ kg: false, segunda: 'reps' })
+    expect(medidaDe(ej('Pallof press'))).toEqual({ kg: false, segunda: 'reps' })
+    expect(sugerencia(0, undefined, ej('Pallof press'))).toEqual({ kg: undefined, reps: 12 })
+  })
+  it('centímetros en los tests, sin sugerir nada', () => {
+    expect(medidaDe(ej('CMJ'))).toEqual({ kg: false, segunda: 'cm' })
+    expect(medidaDe(ej('Alcance de bloqueo'))).toEqual({ kg: false, segunda: 'cm' })
+    expect(sugerencia(0, undefined, ej('CMJ'))).toEqual({})
+    // "Cajón ~30 cm" en la nota no lo convierte en test
+    expect(medidaDe(ej('Step up lateral con barra'))).toEqual({ kg: true, segunda: 'reps' })
+  })
+  it('solo tildar en los intervalos de bici', () => {
+    expect(medidaDe(ej('Bici fija'))).toEqual({ kg: false, segunda: null })
+  })
+  it('dosis y descansos', () => {
+    expect(textoDosis(3, '6')).toBe('3 × 6')
+    expect(textoDosis(2, '2 × 20 seg')).toBe('2 series de 2 × 20 seg')
+    expect(segundosDescanso('2 min')).toBe(120)
+    expect(segundosDescanso('1 min 30')).toBe(90)
+    expect(segundosDescanso('1 min')).toBe(60)
+    expect(segundosDescanso('90 seg')).toBe(90)
+    expect(segundosDescanso('')).toBeUndefined()
+  })
+  it('la última vez muestra las unidades correctas', () => {
+    const m = { kg: false, segunda: 'seg' as const }
+    expect(textoUltimaVez({ inicio: T0, series: [{ reps: 45 }, { reps: 40 }] }, m)).toBe('Última vez (17/11): 45" · 40"')
+    expect(textoUltimaVez({ inicio: T0, series: [{ cm: 312 }] })).toBe('Última vez (17/11): 312 cm')
   })
 })
 

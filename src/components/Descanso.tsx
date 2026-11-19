@@ -6,6 +6,12 @@ import { Icon } from './Icon'
 
 const OPCIONES = [60, 90, 120, 180]
 
+/** Arranca el descanso desde otro lado (el botón de descanso de cada ejercicio). */
+export function pedirDescanso(segundos: number) {
+  prepararSonido()
+  window.dispatchEvent(new CustomEvent('entrena:descanso', { detail: segundos }))
+}
+
 /** Botón flotante de descanso. Guarda cuándo termina, así sigue bien aunque se cierre la app. */
 export function Descanso() {
   const [fin, setFin] = useState<number | null>(null)
@@ -50,6 +56,14 @@ export function Descanso() {
     programarPitido(seg)
     void db.estado.put({ clave: 'descanso', valor: { fin: f } })
   }
+
+  const arrancarRef = useRef(arrancar)
+  arrancarRef.current = arrancar
+  useEffect(() => {
+    const on = (ev: Event) => arrancarRef.current((ev as CustomEvent<number>).detail)
+    window.addEventListener('entrena:descanso', on)
+    return () => window.removeEventListener('entrena:descanso', on)
+  }, [])
 
   const sumar = () => {
     if (fin === null) return

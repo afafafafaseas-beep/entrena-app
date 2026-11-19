@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { Descanso } from '../components/Descanso'
+import { Descanso, pedirDescanso } from '../components/Descanso'
 import { Icon } from '../components/Icon'
 import { Empty, Head } from '../components/ui'
 import { descartarEnCurso, guardarEnCurso, guardarSesion, type Sesion } from '../db'
@@ -7,19 +7,25 @@ import { useEnCurso, useRutina, useSesiones } from '../hooks'
 import { seriesDe, type Bloque, type Prescripto } from '../lib/rutina'
 import {
   colorRodilla,
+  medidaDe,
   proximoDia,
   reloj,
+  segundosDescanso,
   sugerencia,
   terminarSesion,
+  textoDosis,
   textoUltimaVez,
   ultimaVez,
   type EnCurso,
+  type Medida,
   type UltimaVez,
+  type Valores,
 } from '../lib/sesion'
 import { navegar, rutaA } from '../tabs'
 import { empezarSesion } from './acciones'
 
 type EjSesion = Sesion['ejercicios'][number]
+type Campo = keyof Valores
 
 // Para volver al mismo lugar después de mirar una ficha.
 const memoria = { scroll: 0, sesionId: '' }
@@ -36,7 +42,11 @@ export function Entrenar() {
     return (
       <>
         <Head title="Entrenar" />
-        <Empty icon="entrenar" title="Nada en curso" text={dia ? `Te toca el ${dia.nombre}${dia.foco ? `: ${dia.foco}` : ''}.` : ''} />
+        <Empty
+          icon="entrenar"
+          title="Nada en curso"
+          text={dia ? `Te toca el ${dia.nombre}${dia.foco ? `: ${dia.foco}` : ''}.` : ''}
+        />
         {activa && dia && (
           <button type="button" className="btn btn--primary mt" onClick={() => empezarSesion(activa.rutina, dia)}>
             <Icon name="play" size={20} filled />
@@ -107,7 +117,19 @@ function SesionEnCurso({ inicial, sesiones }: { inicial: EnCurso; sesiones: Sesi
             </span>
           )}
         </div>
+        {totalSeries > 0 && (
+          <div className="progreso-barra" aria-hidden="true">
+            <span style={{ width: `${(hechas / totalSeries) * 100}%` }} />
+          </div>
+        )}
       </header>
+
+      {c.notas && (
+        <div className="nota-pf">
+          <span className="nota-pf__label">Nota del PF</span>
+          {c.notas}
+        </div>
+      )}
 
       {c.dia.bloques.map((b, bi) => (
         <section key={bi} className="bloque">
@@ -145,8 +167,8 @@ function SesionEnCurso({ inicial, sesiones }: { inicial: EnCurso; sesiones: Sesi
       ))}
 
       <p className="rpe-explica">
-        <strong>RPE</strong> = qué tan duro fue. 10: no podías hacer ni una más · 9: te quedaba 1 · 8: te quedaban 2 · 7: te
-        quedaban 3 · 6: fácil.
+        <strong>RPE</strong> es qué tan duro fue: 10 = no podías hacer ni una más, 9 = te quedaba 1, 8 = te quedaban 2,
+        7 = te quedaban 3, 6 = fácil.
       </p>
 
       <Terminar c={c} actualizar={actualizar} />
@@ -170,8 +192,9 @@ function EjMovilidad({ p, e, onFicha, onToggle }: { p: Prescripto; e: EjSesion; 
       </button>
       <button type="button" className="mov__name" onClick={onFicha}>
         {p.nombre}
+        {p.nota && <span className="mov__nota">{p.nota}</span>}
       </button>
-      <span className="mov__reps">{p.reps}</span>
+      <span className="mov__reps">{p.series ? textoDosis(p.series, p.reps) : p.reps}</span>
     </div>
   )
 }
@@ -180,6 +203,16 @@ const fmt = (n?: number) => (n === undefined ? '' : String(n).replace('.', ','))
 const leerNum = (t: string): number | undefined => {
   const v = Number(t.replace(',', '.'))
   return t.trim() === '' || isNaN(v) ? undefined : v
+}
+
+const ETIQUETA: Record<Campo, string> = { kg: 'Kg', reps: 'Reps', cm: 'Cm' }
+
+function camposDe(m: Medida): Campo[] {
+  const c: Campo[] = []
+  if (m.kg) c.push('kg')
+  if (m.segunda === 'cm') c.push('cm')
+  else if (m.segunda) c.push('reps')
+  return c
 }
 
 function EjFuerza({
@@ -197,10 +230,13 @@ function EjFuerza({
   onFicha: () => void
   onCambio: (fn: (e: EjSesion) => void) => void
 }) {
-  const pres = [`${seriesDe(p, b)} × ${p.reps}`, p.carga, p.rpe && `RPE ${p.rpe}`, p.descanso && `descanso ${p.descanso}`]
-    .filter(Boolean)
-    .join(' · ')
+  const medida = medidaDe(p, ultima)
+  const campos = camposDe(medida)
+  const etiqueta = (c: Campo) => (c === 'reps' && medida.segunda === 'seg' ? 'Seg' : ETIQUETA[c])
+  const descanso = segundosDescanso(p.descanso)
+  const detalles = [p.carga, p.rpe && `RPE ${p.rpe}`].filter(Boolean)
   const completo = e.series.length > 0 && e.series.every((x) => x.ok)
+  const columnas = `34px ${campos.map(() => '1fr').join(' ') || '1fr'} 52px`
 
   return (
     <div className="ejf">
@@ -208,136 +244,134 @@ function EjFuerza({
         <button type="button" className="ejf__name" onClick={onFicha}>
           {p.nombre}
         </button>
-        {completo && (
+        {completo ? (
           <span className="ejf__ok" aria-label="Completo">
             <Icon name="check" size={18} />
           </span>
+        ) : (
+          descanso && (
+            <button
+              type="button"
+              className="chip-descanso"
+              onClick={() => pedirDescanso(descanso)}
+              aria-label={`Arrancar descanso de ${reloj(descanso * 1000)}`}
+            >
+              <Icon name="reloj" size={16} />
+              {reloj(descanso * 1000)}
+            </button>
+          )
         )}
       </div>
-      <p className="ejf__pres">{pres}</p>
+      <p className="ejf__pres">
+        <span className="ejf__dosis">{textoDosis(seriesDe(p, b), p.reps)}</span>
+        {detalles.map((d, i) => (
+          <span key={i}> · {d}</span>
+        ))}
+      </p>
       {p.nota && <p className="ejf__nota">{p.nota}</p>}
 
       <div className="series">
-        <div className="serie serie--head" aria-hidden="true">
+        <div className="serie serie--head" style={{ gridTemplateColumns: columnas }} aria-hidden="true">
           <span>Serie</span>
-          <span>Kg</span>
-          <span>{/seg/i.test(p.reps) ? 'Seg' : 'Reps'}</span>
+          {campos.length ? campos.map((c) => <span key={c}>{etiqueta(c)}</span>) : <span />}
           <span />
         </div>
         {e.series.map((x, i) => {
           const sug = sugerencia(i, ultima, p)
           return (
-            <SerieFila
-              key={i}
-              n={i + 1}
-              nombre={p.nombre}
-              kg={x.kg}
-              reps={x.reps}
-              ok={x.ok}
-              sugKg={sug.kg}
-              sugReps={sug.reps}
-              onKg={(v) => onCambio((ej) => void (ej.series[i].kg = v))}
-              onReps={(v) => onCambio((ej) => void (ej.series[i].reps = v))}
-              onOk={() =>
-                onCambio((ej) => {
-                  const se = ej.series[i]
-                  if (!se.ok) {
-                    // Si toca ✓ con los campos vacíos, se copian los valores de fondo.
-                    se.kg ??= sug.kg
-                    se.reps ??= sug.reps
-                  }
-                  se.ok = !se.ok
-                })
-              }
-            />
+            <div key={i} className={x.ok ? 'serie serie--ok' : 'serie'} style={{ gridTemplateColumns: columnas }}>
+              <span className="serie__n">{i + 1}</span>
+              {campos.length ? (
+                campos.map((c) => (
+                  <NumInput
+                    key={c}
+                    valor={x[c]}
+                    sugerido={sug[c]}
+                    decimal={c !== 'reps'}
+                    placeholder={etiqueta(c).toLowerCase()}
+                    label={`${etiqueta(c)} serie ${i + 1} de ${p.nombre}`}
+                    onCambio={(v) => onCambio((ej) => void (ej.series[i][c] = v))}
+                  />
+                ))
+              ) : (
+                <span className="serie__txt">{p.reps}</span>
+              )}
+              <button
+                type="button"
+                className="tick"
+                aria-pressed={x.ok}
+                aria-label={`${x.ok ? 'Destildar' : 'Tildar'} serie ${i + 1} de ${p.nombre}`}
+                onClick={() =>
+                  onCambio((ej) => {
+                    const se = ej.series[i]
+                    if (!se.ok) {
+                      // Si toca ✓ con los campos vacíos, se copian los valores de fondo.
+                      for (const c of campos) se[c] ??= sug[c]
+                    }
+                    se.ok = !se.ok
+                  })
+                }
+              >
+                <Icon name="check" size={22} />
+              </button>
+            </div>
           )
         })}
       </div>
 
-      <p className="ultima">{ultima ? textoUltimaVez(ultima) : 'Primera vez que lo anotás'}</p>
+      <p className="ultima">{ultima ? textoUltimaVez(ultima, medida) : 'Primera vez que lo anotás'}</p>
 
-      <div className="rpe" role="group" aria-label={`RPE de ${p.nombre}`}>
-        <span className="rpe__label">RPE</span>
-        {[6, 7, 8, 9, 10].map((n) => (
-          <button
-            key={n}
-            type="button"
-            className={e.rpe === n ? 'rpe__btn rpe__btn--on' : 'rpe__btn'}
-            aria-pressed={e.rpe === n}
-            onClick={() => onCambio((ej) => void (ej.rpe = ej.rpe === n ? undefined : n))}
-          >
-            {n}
-          </button>
-        ))}
-      </div>
+      {medida.segunda !== 'cm' && (
+        <div className="rpe" role="group" aria-label={`RPE de ${p.nombre}`}>
+          <span className="rpe__label">RPE</span>
+          {[6, 7, 8, 9, 10].map((n) => (
+            <button
+              key={n}
+              type="button"
+              className={e.rpe === n ? 'rpe__btn rpe__btn--on' : 'rpe__btn'}
+              aria-pressed={e.rpe === n}
+              onClick={() => onCambio((ej) => void (ej.rpe = ej.rpe === n ? undefined : n))}
+            >
+              {n}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
 
-function SerieFila(props: {
-  n: number
-  nombre: string
-  kg?: number
-  reps?: number
-  ok: boolean
-  sugKg?: number
-  sugReps?: number
-  onKg: (v?: number) => void
-  onReps: (v?: number) => void
-  onOk: () => void
+function NumInput(props: {
+  valor?: number
+  sugerido?: number
+  decimal: boolean
+  placeholder: string
+  label: string
+  onCambio: (v?: number) => void
 }) {
-  const { n, nombre, kg, reps, ok, sugKg, sugReps } = props
+  const { valor, sugerido, decimal } = props
   // Texto tal cual lo escribe (así puede poner "7," antes del 5).
-  const [kgTxt, setKgTxt] = useState(fmt(kg))
-  const [repsTxt, setRepsTxt] = useState(fmt(reps))
+  const [txt, setTxt] = useState(fmt(valor))
   // Si el valor cambia desde afuera (✓ copió la sugerencia), se actualiza el texto.
   useEffect(() => {
-    if (leerNum(kgTxt) !== kg) setKgTxt(fmt(kg))
-  }, [kg])
-  useEffect(() => {
-    if (leerNum(repsTxt) !== reps) setRepsTxt(fmt(reps))
-  }, [reps])
+    if (leerNum(txt) !== valor) setTxt(fmt(valor))
+  }, [valor])
 
   return (
-    <div className={ok ? 'serie serie--ok' : 'serie'}>
-      <span className="serie__n">{n}</span>
-      <input
-        className="serie__in"
-        inputMode="decimal"
-        enterKeyHint="next"
-        placeholder={fmt(sugKg) || 'kg'}
-        value={kgTxt}
-        aria-label={`Kilos serie ${n} de ${nombre}`}
-        onChange={(ev) => {
-          const t = ev.target.value.replace(/[^\d.,]/g, '')
-          setKgTxt(t)
-          props.onKg(leerNum(t))
-        }}
-      />
-      <input
-        className="serie__in"
-        inputMode="numeric"
-        pattern="[0-9]*"
-        enterKeyHint="done"
-        placeholder={fmt(sugReps) || 'reps'}
-        value={repsTxt}
-        aria-label={`Reps serie ${n} de ${nombre}`}
-        onChange={(ev) => {
-          const t = ev.target.value.replace(/\D/g, '')
-          setRepsTxt(t)
-          props.onReps(leerNum(t))
-        }}
-      />
-      <button
-        type="button"
-        className="tick"
-        aria-pressed={ok}
-        aria-label={`${ok ? 'Destildar' : 'Tildar'} serie ${n} de ${nombre}`}
-        onClick={props.onOk}
-      >
-        <Icon name="check" size={22} />
-      </button>
-    </div>
+    <input
+      className="serie__in"
+      inputMode={decimal ? 'decimal' : 'numeric'}
+      pattern={decimal ? undefined : '[0-9]*'}
+      enterKeyHint="done"
+      placeholder={fmt(sugerido) || props.placeholder}
+      value={txt}
+      aria-label={props.label}
+      onChange={(ev) => {
+        const t = decimal ? ev.target.value.replace(/[^\d.,]/g, '') : ev.target.value.replace(/\D/g, '')
+        setTxt(t)
+        props.onCambio(leerNum(t))
+      }}
+    />
   )
 }
 
@@ -379,6 +413,7 @@ function Terminar({ c, actualizar }: { c: EnCurso; actualizar: (fn: (c: EnCurso)
       </div>
 
       <p className="terminar__label">¿Qué tan dura fue la sesión?</p>
+      <p className="terminar__hint">5 = tranqui · 10 = no daba más</p>
       <div className="rpe rpe--sesion" role="group" aria-label="RPE de la sesión">
         {[5, 6, 7, 8, 9, 10].map((n) => (
           <button

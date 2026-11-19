@@ -240,6 +240,10 @@ Usá esta lista tal cual para las fichas. Zonas posibles: rodilla, tobillo, cade
 | Intervalos tipo rally | volleyball conditioning intervals | acondicionamiento | 5 a 10 segundos explosivos (saltos o desplazamientos) y 15 a 20 de pausa, de 8 a 12 veces. | Repetir esfuerzos como en un partido largo. |
 | Desplazamientos 9-3-6-9 | volleyball 9 3 6 9 sprint drill | acondicionamiento | Ida y vuelta a las líneas de 3, 6 y 9 metros a máxima velocidad. | Velocidad en las distancias del vóley. |
 
+**Ejercicios y nombres que agregó el PF.** La rutina real del PF ("Semana 1 · Re-entrada", copia en `src/data/pf-semana1.json`) trajo ejercicios nuevos y otros nombres para ejercicios de esta lista ("Nordic curls con banda", "Iso hold isquios", "Peso muerto rumano con barra"…). Los nuevos y los otros nombres están en `src/data/catalogo-extra.json`. La app encuentra la ficha por nombre exacto, por otro nombre conocido o por el nombre de la lista más algo al final. Un test verifica que todos los ejercicios de esa rutina tengan ficha: si llega una rutina nueva con nombres raros, agregalos ahí.
+
+**Qué se anota en cada serie** (se decide solo con lo que dice la rutina): kilos si la carga dice kg; reps, o segundos si las reps dicen "seg"; centímetros si la nota dice "anotar ... cm" (tests de salto); solo tildar si son intervalos ("8 seg fuerte / 40 seg suave"). Si el ejercicio trae descanso ("2 min", "1 min 30"), tiene un botón para arrancarlo directo.
+
 ## 9. Rutina que viene cargada
 
 Es la última rutina del PF anterior, con los pesos de ANTES de que Santi dejara el gym. Se carga sola si no hay otra. Mientras sea esta, mostrar el aviso de la pantalla Hoy.

@@ -21,7 +21,7 @@ export function Back({ label, siNo }: { label: string; siNo: string }) {
   )
 }
 
-export function Empty({ icon, title, text, etapa }: { icon: IconName; title: string; text: string; etapa?: number }) {
+export function Empty({ icon, title, text, pronto }: { icon: IconName; title: string; text: string; pronto?: boolean }) {
   return (
     <div className="empty">
       <div className="empty__icon">
@@ -29,7 +29,7 @@ export function Empty({ icon, title, text, etapa }: { icon: IconName; title: str
       </div>
       <p className="empty__title">{title}</p>
       <p className="empty__text">{text}</p>
-      {etapa && <span className="pill">Llega en la etapa {etapa}</span>}
+      {pronto && <span className="pill">Próximamente</span>}
     </div>
   )
 }

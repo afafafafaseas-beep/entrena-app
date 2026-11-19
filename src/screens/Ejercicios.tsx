@@ -3,7 +3,7 @@ import { Icon } from '../components/Icon'
 import { Back, Head } from '../components/ui'
 import { guardarExtra } from '../db'
 import { useFichas } from '../hooks'
-import { buscarFicha, diasPorEjercicio, filtrar, nombreZona, ZONAS, type Ficha } from '../lib/ejercicios'
+import { buscarFicha, diasPorEjercicio, filtrar, nombresEnRutina, nombreZona, ZONAS, type Ficha } from '../lib/ejercicios'
 import { normalizar, urlVideo } from '../lib/texto'
 import { navegar, rutaA } from '../tabs'
 
@@ -18,7 +18,7 @@ function ListaEjercicios() {
   const { fichas, rutina } = useFichas()
   const [texto, setTexto] = useState(memoria.texto)
   const [filtro, setFiltro] = useState<string | null>(memoria.filtro)
-  const dias = useMemo(() => diasPorEjercicio(rutina?.rutina), [rutina])
+  const dias = useMemo(() => diasPorEjercicio(rutina?.rutina, fichas), [rutina, fichas])
 
   useEffect(() => {
     memoria.texto = texto
@@ -113,7 +113,8 @@ function ListaEjercicios() {
 function FichaEjercicio({ nombre }: { nombre: string }) {
   const { fichas, rutina, cargando } = useFichas()
   const ficha = buscarFicha(fichas, nombre)
-  const dias = diasPorEjercicio(rutina?.rutina).get(normalizar(nombre))
+  const dias = ficha ? diasPorEjercicio(rutina?.rutina, fichas).get(normalizar(ficha.nombre)) : undefined
+  const otrosNombres = ficha ? nombresEnRutina(rutina?.rutina, ficha, fichas) : []
   const [editando, setEditando] = useState(false)
 
   useLayoutEffect(() => {
@@ -163,6 +164,11 @@ function FichaEjercicio({ nombre }: { nombre: string }) {
           <span>No está en tu rutina actual</span>
         )}
       </div>
+      {otrosNombres.length > 0 && (
+        <p className="alias">
+          En la rutina del PF figura como <strong>{otrosNombres.join(' / ')}</strong>.
+        </p>
+      )}
 
       {sinTexto || editando ? (
         <FormExplicacion
@@ -191,17 +197,6 @@ function FichaEjercicio({ nombre }: { nombre: string }) {
           )}
         </>
       )}
-
-      <div className="foto-pronto">
-        <span className="row__icon">
-          <Icon name="camara" size={20} />
-        </span>
-        <span>
-          Tu foto del ejercicio
-          <br />
-          <span className="row__sub">Llega en la etapa 4</span>
-        </span>
-      </div>
     </>
   )
 }

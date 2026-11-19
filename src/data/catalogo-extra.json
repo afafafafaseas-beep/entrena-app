@@ -1,0 +1,84 @@
+{
+ "_nota": "Ejercicios que trajo la rutina del PF y no estaban en la lista del CLAUDE.md, más los otros nombres con que el PF llama a los de la lista.",
+ "ejercicios": [
+  {
+   "nombre": "Sentadilla trasera al cajón",
+   "video": "box squat",
+   "zonas": ["piernas", "rodilla"],
+   "como": "Barra en la espalda y un cajón detrás a la altura que diga el PF. Bajá controlado llevando la cola atrás hasta rozar el cajón, sin sentarte del todo, y subí.",
+   "sirve": "Fuerza de piernas con la profundidad siempre igual: cuida la rodilla mientras volvés a cargar."
+  },
+  {
+   "nombre": "Saltos sentado desde banco al cajón",
+   "video": "seated box jump",
+   "zonas": ["salto"],
+   "como": "Sentado en un banco frente a un cajón, sin balancearte, saltá explosivo desde sentado y caé suave arriba del cajón. Bajá caminando.",
+   "sirve": "Potencia de despegue sin rebote y sin el impacto de caer al piso."
+  },
+  {
+   "nombre": "Salto al cajón con 2 piernas",
+   "video": "box jump",
+   "zonas": ["salto"],
+   "como": "Parado frente al cajón, bajá rápido llevando los brazos atrás, saltá y caé suave arriba con las dos piernas a la vez. Bajá caminando.",
+   "sirve": "Potencia de salto sin el impacto de la caída al piso."
+  },
+  {
+   "nombre": "Hang clean high pull",
+   "video": "hang clean high pull",
+   "zonas": ["potencia"],
+   "como": "Barra a mitad de muslo. Extendé cadera y rodillas explosivo y tirá la barra hasta el pecho con los codos altos, sin recibirla.",
+   "sirve": "La explosión de cadera del salto, sin la técnica de recibir la barra."
+  },
+  {
+   "nombre": "Equilibrio a 1 pierna sobre colchoneta",
+   "video": "single leg balance foam pad",
+   "zonas": ["tobillo", "rodilla"],
+   "como": "Parado en una pierna sobre una colchoneta blanda, rodilla apenas flexionada y cadera derecha. Sostené sin apoyar el otro pie.",
+   "sirve": "Tobillo y rodilla más estables para caer en una pierna."
+  },
+  {
+   "nombre": "Bici fija",
+   "video": "stationary bike sprint intervals",
+   "zonas": ["acondicionamiento"],
+   "como": "Pedaleá a fondo el tiempo fuerte y después suave el tiempo de pausa. Repetí las vueltas que diga la rutina.",
+   "sirve": "Repetir esfuerzos cortos como en un rally, sin impacto en las rodillas."
+  },
+  {
+   "nombre": "CMJ",
+   "video": "countermovement jump hands on hips",
+   "zonas": ["salto"],
+   "como": "Salto vertical con las manos en la cintura: bajá rápido y saltá lo más alto que puedas. Caé suave en el mismo lugar.",
+   "sirve": "Mide tu potencia de salto sin la ayuda de los brazos. Anotá los centímetros."
+  },
+  {
+   "nombre": "Alcance de bloqueo",
+   "video": "volleyball block jump reach",
+   "zonas": ["salto"],
+   "como": "Parado como en la red, saltá con las dos piernas como para bloquear y tocá lo más alto posible con las dos manos.",
+   "sirve": "Mide hasta dónde llegás en el bloqueo. Anotá los centímetros."
+  },
+  {
+   "nombre": "Pinza de dedos con discos",
+   "video": "plate pinch grip",
+   "zonas": ["hombro"],
+   "como": "Agarrá dos discos lisos juntos solo con las yemas de los dedos, brazo al costado del cuerpo, y sostené el tiempo indicado.",
+   "sirve": "Dedos firmes para armar y menos esguinces de dedos."
+  }
+ ],
+ "alias": {
+  "Iso hold isquios": "Isométrico de isquios",
+  "Iso hold de isquios": "Isométrico de isquios",
+  "Soleus raises sosteniendo arriba": "Elevación de sóleo isométrica",
+  "Soleus raise isométrico": "Elevación de sóleo isométrica",
+  "Nordic curls con banda": "Nórdicos con banda",
+  "Nordic curl con banda": "Nórdicos con banda",
+  "Hip hinge con deslizamiento a 1 pierna": "Bisagra de cadera con deslizamiento a 1 pierna",
+  "Rotación torácica semiarrodillado sin banda": "Rotación torácica semiarrodillado (core)",
+  "Rotación torácica semiarrodillado": "Rotación torácica semiarrodillado (core)",
+  "Shin box rotación int/ext de cadera": "Shin box rotación interna/externa",
+  "Shin box rotación int/ext": "Shin box rotación interna/externa",
+  "Alcance con carrera de ataque": "Salto con carrera de ataque",
+  "Box squat": "Sentadilla trasera al cajón",
+  "Box jump": "Salto al cajón con 2 piernas"
+ }
+}

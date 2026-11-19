@@ -80,6 +80,13 @@ export function Hoy() {
           <p className="hero__label">Te toca</p>
           <p className="hero__title">{proximo ? proximo.nombre : 'Tu rutina'}</p>
           <p className="hero__text">{proximo?.foco ?? 'Cargando…'}</p>
+          {proximo && (
+            <div className="hero__bloques" aria-label="Bloques del día">
+              {proximo.bloques.map((b, i) => (
+                <span key={i}>{b.nombre}</span>
+              ))}
+            </div>
+          )}
           <button
             type="button"
             className="btn btn--primary"

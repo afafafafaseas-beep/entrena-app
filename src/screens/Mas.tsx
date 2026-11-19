@@ -4,6 +4,7 @@ import { Back, Head, Row } from '../components/ui'
 import { cargarRutina } from '../db'
 import { useRutina } from '../hooks'
 import { revisarRutina, seriesDe, type Revision } from '../lib/rutina'
+import { textoDosis } from '../lib/sesion'
 import { navegar, rutaA } from '../tabs'
 
 export function Mas({ sub }: { sub: string[] }) {
@@ -72,7 +73,7 @@ function Menu() {
         )}
       </div>
 
-      <p className="section-title">Llega en la etapa 4</p>
+      <p className="section-title">Próximamente</p>
       <div className="list">
         <Row icon="resumen" title="Resumen para el PF" sub="Tu semana lista para copiar" />
         <Row icon="editar" title="Editar la rutina" sub="Cambiar series, reps o pesos" />
@@ -294,7 +295,11 @@ function RutinaActual() {
                     {e.nota && <span className="ej__nota">{e.nota}</span>}
                   </span>
                   <span className="ej__dose">
-                    {b.tipo === 'fuerza' ? `${seriesDe(e, b)} × ${e.reps}` : e.reps}
+                    {b.tipo === 'fuerza'
+                      ? textoDosis(seriesDe(e, b), e.reps)
+                      : e.series
+                        ? textoDosis(e.series, e.reps)
+                        : e.reps}
                     {e.carga && <span className="ej__carga">{e.carga}</span>}
                   </span>
                 </button>
