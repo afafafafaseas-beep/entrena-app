@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { TabBar } from './components/TabBar'
-import { asegurarRutinaBase, pedirPersistencia } from './db'
+import { VentanaEntrar } from './components/Nube'
+import { iniciarDatos, pedirPersistencia } from './db'
 import { Ejercicios } from './screens/Ejercicios'
 import { Hoy } from './screens/Hoy'
 import { Mas } from './screens/Mas'
@@ -14,7 +15,7 @@ export default function App() {
   const [ruta, setRuta] = useState<Ruta>(() => parseRuta(window.location.hash))
 
   useEffect(() => {
-    asegurarRutinaBase()
+    iniciarDatos().catch(() => {})
     pedirPersistencia()
     const onHash = () => setRuta(parseRuta(window.location.hash))
     window.addEventListener('hashchange', onHash)
@@ -46,6 +47,7 @@ export default function App() {
         {tab === 'mas' && <Mas sub={sub} />}
       </main>
       <TabBar active={tab} onChange={cambiarTab} />
+      <VentanaEntrar />
     </div>
   )
 }

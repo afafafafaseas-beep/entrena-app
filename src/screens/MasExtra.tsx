@@ -4,7 +4,7 @@ import { FotoEjercicio } from '../components/Foto'
 import { Icon } from '../components/Icon'
 import { Back, Head } from '../components/ui'
 import { db, type RutinaGuardada } from '../db'
-import { useDiario, useFichas, useRutina, useSesiones, useVoley } from '../hooks'
+import { useDiario, useDiasGym, useFichas, useRutina, useSesiones, useVoley } from '../hooks'
 import { buscarFicha } from '../lib/ejercicios'
 import { resumenPF } from '../lib/resumen'
 import { extraerJson, RutinaSchema, seriesDe, type Rutina } from '../lib/rutina'
@@ -29,9 +29,10 @@ export function ResumenPF() {
   const voley = useVoley()
   const diario = useDiario()
   const activa = useRutina()
+  const diasGym = useDiasGym()
 
   if (!sesiones || !voley || !diario) return <Back label="Más" siNo={rutaA('mas')} />
-  const texto = resumenPF({ dias, rutinaNombre: activa?.rutina.nombre, sesiones, voley, diario })
+  const texto = resumenPF({ dias, rutinaNombre: activa?.rutina.nombre, sesiones, voley, diario, diasGym })
 
   const compartir = async () => {
     try {
@@ -273,10 +274,27 @@ export function Rutinas() {
 
 const TABLAS = ['rutinas', 'estado', 'extras', 'sesiones', 'diario', 'voley'] as const
 
+/** Backups viejos (versión 2) tenían las rutinas con número; ahora el id es texto. Saca las marcas de la nube. */
+function prepararFilas(t: (typeof TABLAS)[number], filas: unknown[], datos: Record<string, unknown>) {
+  const limpias = filas.map((f) => {
+    const { realmId: _r, owner: _o, $ts: _t, ...resto } = f as Record<string, unknown>
+    return resto
+  })
+  if (t === 'rutinas')
+    return limpias.map((r) => (typeof r.id === 'number' ? { ...r, id: r.base ? 'rut-base' : `rut-${r.cargada}` } : r))
+  if (t === 'estado')
+    return limpias.map((e) => {
+      if (e.clave !== 'rutinaActiva' || typeof e.valor !== 'number') return e
+      const vieja = (datos.rutinas as Record<string, unknown>[] | undefined)?.find((r) => r.id === e.valor)
+      return { ...e, valor: vieja ? (vieja.base ? 'rut-base' : `rut-${vieja.cargada}`) : undefined }
+    })
+  return limpias
+}
+
 async function armarBackup() {
   const datos: Record<string, unknown[]> = {}
   for (const t of TABLAS) datos[t] = await db.table(t).toArray()
-  return JSON.stringify({ app: 'entrena', version: 2, fecha: new Date().toISOString(), ...datos })
+  return JSON.stringify({ app: 'entrena', version: 3, fecha: new Date().toISOString(), ...datos })
 }
 
 function leerArchivo(archivo: File): Promise<string> {
@@ -333,7 +351,7 @@ export function Backup() {
       for (const t of TABLAS) {
         await db.table(t).clear()
         const filas = datos[t]
-        if (Array.isArray(filas) && filas.length) await db.table(t).bulkPut(filas)
+        if (Array.isArray(filas) && filas.length) await db.table(t).bulkPut(prepararFilas(t, filas, datos))
       }
     })
     setPegado('')

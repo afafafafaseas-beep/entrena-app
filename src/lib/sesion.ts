@@ -8,6 +8,7 @@ export interface EnCurso {
   sesion: Omit<Sesion, 'fin' | 'minutos'>
   dia: Dia
   notas?: string // notas de la rutina del PF
+  fechaPasada?: string // si está cargando un entreno de otro día ("2026-11-19")
 }
 
 export type Serie = Sesion['ejercicios'][number]['series'][number]
@@ -63,6 +64,51 @@ export function terminarSesion(c: EnCurso, ahora = Date.now()): Sesion {
     minutos: Math.max(1, Math.round((ahora - c.sesion.inicio) / 60000)),
     ejercicios: c.sesion.ejercicios.map((e) => (e.tipo === 'fuerza' ? { ...e, hecho: e.series.some((s) => s.ok) } : e)),
   }
+}
+
+/** Pasa una sesión terminada a otro día (para cargar un entreno que no anotó). Mantiene la hora. */
+export function moverAFecha(s: Sesion, fecha: string, minutos?: number): Sesion {
+  if (fecha === s.fecha && minutos === undefined) return s
+  const delta = new Date(fecha + 'T00:00').getTime() - new Date(s.fecha + 'T00:00').getTime()
+  const inicio = s.inicio + delta
+  const min = minutos ?? s.minutos
+  return { ...s, fecha, inicio, fin: inicio + min * 60000, minutos: min }
+}
+
+// ---- Días de gym ----
+
+/** Lunes, miércoles y viernes (0 = domingo … 6 = sábado). */
+export const DIAS_GYM_DEFAULT = [1, 3, 5]
+export const NOMBRES_DIA = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado']
+
+/** Días de gym que pasaron sin entrenar: desde el primer entreno hasta ayer. */
+export function diasQueFaltaste(sesiones: Sesion[], diasGym: number[], hoy = new Date()): string[] {
+  if (!sesiones.length || !diasGym.length) return []
+  const fechas = new Set(sesiones.map((s) => s.fecha))
+  const primera = sesiones.reduce((m, s) => (s.fecha < m ? s.fecha : m), sesiones[0].fecha)
+  const hoyISO = fechaISO(hoy.getTime())
+  const out: string[] = []
+  const d = new Date(primera + 'T12:00')
+  for (let i = 0; i < 400; i++) {
+    const iso = fechaISO(d.getTime())
+    if (iso >= hoyISO) break
+    if (diasGym.includes(d.getDay()) && !fechas.has(iso)) out.push(iso)
+    d.setDate(d.getDate() + 1)
+  }
+  return out
+}
+
+/** Próximo día de gym: hoy si toca y todavía no entrenó; si no, el siguiente. */
+export function proximaFechaGym(diasGym: number[], entrenoHoy: boolean, hoy = new Date()): Date | undefined {
+  if (!diasGym.length) return undefined
+  const d = new Date(hoy)
+  d.setHours(12, 0, 0, 0)
+  if (entrenoHoy || !diasGym.includes(d.getDay())) d.setDate(d.getDate() + 1)
+  for (let i = 0; i < 7; i++) {
+    if (diasGym.includes(d.getDay())) return d
+    d.setDate(d.getDate() + 1)
+  }
+  return undefined
 }
 
 /** El día que sigue al último que hizo (1 → 2 → 3 → 1). Sin sesiones, el primero. */

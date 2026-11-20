@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, leerEnCurso, rutinaActiva } from './db'
 import { armarLista } from './lib/ejercicios'
+import { DIAS_GYM_DEFAULT } from './lib/sesion'
 
 /** La rutina activa. `undefined` mientras carga. */
 export function useRutina() {
@@ -11,6 +12,12 @@ export function useRutina() {
 /** Sesiones guardadas, de la más vieja a la más nueva. `undefined` mientras carga. */
 export function useSesiones() {
   return useLiveQuery(() => db.sesiones.orderBy('inicio').toArray())
+}
+
+/** Qué días de la semana va al gym (0 = domingo). Por defecto lunes, miércoles y viernes. */
+export function useDiasGym(): number[] {
+  const e = useLiveQuery(() => db.estado.get('diasGym'))
+  return Array.isArray(e?.valor) ? (e.valor as number[]) : DIAS_GYM_DEFAULT
 }
 
 /** La sesión en curso (null si no hay). `undefined` mientras carga. */

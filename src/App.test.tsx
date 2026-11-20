@@ -157,7 +157,7 @@ describe('App', () => {
     const sent = s.ejercicios.find((e) => e.nombre === 'Sentadilla trasera')!
     expect(sent.series[0]).toEqual({ kg: 80, reps: 4, ok: true })
     expect(sent.series[1].kg).toBe(82.5)
-    expect(await db.estado.get('sesionEnCurso')).toBeUndefined()
+    expect(await db.local.get('sesionEnCurso')).toBeUndefined()
   })
 
   it('cargar rutina desde un archivo: la revisa sola', async () => {

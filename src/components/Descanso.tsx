@@ -21,7 +21,7 @@ export function Descanso() {
 
   // Si había un descanso andando cuando se cerró la app, lo retoma.
   useEffect(() => {
-    db.estado.get('descanso').then((e) => {
+    db.local.get('descanso').then((e) => {
       const f = (e?.valor as { fin?: number } | undefined)?.fin
       if (typeof f === 'number') {
         avisado.current = f <= Date.now()
@@ -54,7 +54,7 @@ export function Descanso() {
     setAhora(Date.now())
     setEligiendo(false)
     programarPitido(seg)
-    void db.estado.put({ clave: 'descanso', valor: { fin: f } })
+    void db.local.put({ clave: 'descanso', valor: { fin: f } })
   }
 
   const arrancarRef = useRef(arrancar)
@@ -72,13 +72,13 @@ export function Descanso() {
     avisado.current = false
     setFin(f)
     programarPitido((f - Date.now()) / 1000)
-    void db.estado.put({ clave: 'descanso', valor: { fin: f } })
+    void db.local.put({ clave: 'descanso', valor: { fin: f } })
   }
 
   const listo = () => {
     cancelarPitido()
     setFin(null)
-    void db.estado.delete('descanso')
+    void db.local.delete('descanso')
   }
 
   if (fin !== null) {

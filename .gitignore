@@ -3,3 +3,7 @@ dist
 dev-dist
 *.local
 .DS_Store
+
+# Dexie Cloud: la .key es secreta, nunca al repo
+dexie-cloud.key
+dexie-cloud.json

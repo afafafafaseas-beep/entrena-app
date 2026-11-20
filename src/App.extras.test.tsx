@@ -54,7 +54,7 @@ describe('pantallas nuevas', () => {
     b.series[0] = { kg: 42.5, reps: 6, ok: true }
     await guardarSesion(terminarSesion(vieja, Date.now() - 3 * 864e5 + 3600e3))
     // Ahora toca Día 2; empezamos el Día 1 a mano
-    await db.estado.put({ clave: 'sesionEnCurso', valor: nuevaSesion(r, r.dias[0]) })
+    await db.local.put({ clave: 'sesionEnCurso', valor: nuevaSesion(r, r.dias[0]) })
 
     window.location.hash = '#/entrenar'
     render(<App />)

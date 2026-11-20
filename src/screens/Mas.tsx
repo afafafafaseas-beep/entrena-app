@@ -1,8 +1,10 @@
 import { useLayoutEffect, useState } from 'react'
 import { Icon } from '../components/Icon'
 import { Back, Head, Row } from '../components/ui'
-import { cargarRutina } from '../db'
-import { useRutina } from '../hooks'
+import { cargarRutina, db, nubeActiva } from '../db'
+import { entrar, textoEstado, useNube } from '../components/Nube'
+import { useDiasGym, useRutina } from '../hooks'
+import { NOMBRES_DIA } from '../lib/sesion'
 import { revisarRutina, type Revision } from '../lib/rutina'
 import { buscarActualizacion, forzarActualizacion, textoVersion, type Resultado } from '../lib/actualizar'
 import { Backup, ResumenPF, RutinaActual, Rutinas } from './MasExtra'
@@ -42,7 +44,10 @@ function Menu() {
           sub={activa ? activa.rutina.nombre : 'Cargando…'}
           onClick={() => navegar(rutaA('mas', 'rutina'))}
         />
+        <DiasGym />
       </div>
+
+      <Cuenta />
 
       <p className="section-title">Tu app</p>
       <div className="list">
@@ -87,6 +92,102 @@ function Menu() {
       <p className="section-title">Tus datos</p>
       <div className="list">
         <Row icon="backup" title="Backup" sub="Guardar o restaurar tus datos" onClick={() => navegar(rutaA('mas', 'backup'))} />
+      </div>
+    </>
+  )
+}
+
+const LETRAS = [
+  { d: 1, l: 'L' },
+  { d: 2, l: 'Ma' },
+  { d: 3, l: 'Mi' },
+  { d: 4, l: 'J' },
+  { d: 5, l: 'V' },
+  { d: 6, l: 'S' },
+  { d: 0, l: 'D' },
+]
+
+/** Qué días de la semana va al gym: con eso la app sabe qué toca hoy y marca los que no fue. */
+function DiasGym() {
+  const dias = useDiasGym()
+  const [abierto, setAbierto] = useState(false)
+  const nombres = LETRAS.filter((x) => dias.includes(x.d)).map((x) => NOMBRES_DIA[x.d])
+  const cambiar = (d: number) => {
+    const nuevos = dias.includes(d) ? dias.filter((x) => x !== d) : [...dias, d].sort()
+    void db.estado.put({ clave: 'diasGym', valor: nuevos })
+  }
+  return (
+    <>
+      <Row
+        icon="hoy"
+        title="Días de gym"
+        sub={nombres.length ? nombres.join(', ') : 'Ninguno elegido'}
+        open={abierto}
+        onClick={() => setAbierto(!abierto)}
+      />
+      {abierto && (
+        <div className="row-body">
+          <div className="dias-gym" role="group" aria-label="Días de gym">
+            {LETRAS.map((x) => (
+              <button
+                key={x.d}
+                type="button"
+                className={dias.includes(x.d) ? 'chip chip--on' : 'chip'}
+                aria-pressed={dias.includes(x.d)}
+                aria-label={NOMBRES_DIA[x.d]}
+                onClick={() => cambiar(x.d)}
+              >
+                {x.l}
+              </button>
+            ))}
+          </div>
+          <p className="note">
+            Con esto la app sabe qué te toca cada día. Si pasa un día de gym sin entreno, queda marcado como que no fuiste.
+          </p>
+        </div>
+      )}
+    </>
+  )
+}
+
+/** Cuenta online: entrar con el mail, ver si está todo subido, salir. */
+function Cuenta() {
+  const { usuario, estado } = useNube()
+  const [abierto, setAbierto] = useState(false)
+  if (!nubeActiva) return null
+  const adentro = !!usuario?.isLoggedIn
+  return (
+    <>
+      <p className="section-title">Tu cuenta</p>
+      <div className="list">
+        <Row
+          icon={adentro ? 'check' : 'backup'}
+          accent
+          title={adentro ? 'Guardado online' : 'Guardar todo online'}
+          sub={textoEstado(usuario, estado)}
+          open={adentro ? abierto : undefined}
+          onClick={() => (adentro ? setAbierto(!abierto) : entrar())}
+        />
+        {adentro && abierto && (
+          <div className="row-body">
+            <p className="note">
+              Todo lo que anotás se guarda en el celular y se sube solo cuando hay internet. Si cambiás de celular o se
+              borra la app, entrás con el mismo mail y vuelve todo.
+            </p>
+            <button type="button" className="btn btn--soft" onClick={() => void db.cloud.sync().catch(() => {})}>
+              Subir ahora
+            </button>
+            <button
+              type="button"
+              className="btn btn--ghost"
+              onClick={() => {
+                if (window.confirm('¿Salir de tu cuenta en este celular? Tus datos quedan guardados online.')) void db.cloud.logout()
+              }}
+            >
+              Salir de la cuenta
+            </button>
+          </div>
+        )}
       </div>
     </>
   )

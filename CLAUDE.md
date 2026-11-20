@@ -27,7 +27,12 @@ Nada más. Si se te ocurre algo extra, proponelo, pero no lo hagas sin que Santi
 - **Se usa en el gym con una mano.** Pensada para iPhone (390 px de ancho). Botones grandes (mínimo 44 px). Los campos de kilos y reps abren el teclado numérico.
 - **Funciona sin internet** y se puede agregar a la pantalla de inicio del iPhone (PWA).
 - **Nunca se pierden datos.** Todo se guarda en el celular apenas se toca. Si cierra la app en medio de una sesión, al volver la sesión sigue ahí. Hay un botón para copiar todos los datos (backup) y otro para restaurarlos.
-- **Sin login, sin servidor, sin claves.** El repositorio es público: nada de datos privados en el código.
+- **Sin servidor propio y sin claves en el código.** El repositorio es público: nada de datos privados en el código.
+  - **Cambio del 20/11 (lo pidió Santi):** los datos se guardan también online con **Dexie Cloud** (gratis hasta 3 usuarios, 100 MB) para no perder nada si se borra la app o cambia de celular, y para no depender de la PC. Se entra **una vez** con el mail y un código que llega por mail (sin contraseña). La app anda igual sin entrar y sin internet: guarda en el celular y sube cuando puede.
+  - La dirección de la base (`src/nube.ts`) puede estar en el repo. La clave `dexie-cloud.key` y `dexie-cloud.json` **nunca** van al repo (están en .gitignore, quedan solo en la PC de Santi).
+  - La base local ahora se llama `entrena-nube`. La vieja (`entrena`) se copia una sola vez al abrir y no se borra. Las rutinas tienen id de texto (`rut-...`; la base es siempre `rut-base`).
+  - Tablas que **no** se suben: `local` (sesión en curso, descanso: cambian a cada toque) y `fotos` (pesan).
+  - Los usuarios nuevos de Dexie Cloud son "de prueba" 30 días activos: hay que pasar a Santi a usuario de producción (gratis, entran 3) desde el Dexie Cloud Manager.
 - **Todo en español rioplatense** ("tocá", "anotá", "te toca").
 - **Fotos:** se guardan en el celular, achicadas a 1080 px de ancho como máximo para que no ocupen mucho.
 - **Videos:** el botón abre una búsqueda de YouTube con el texto de la columna "Búsqueda de video" de la sección 8, más la palabra "exercise".
@@ -293,6 +298,8 @@ Salieron de investigar Hevy, Strong, TrainHeroic, apps de tendinopatía y de sal
 - **Ejercicios:** filtro por Día 1/2/3 con los bloques en orden.
 - **Etapa 4 hecha también:** Progreso (gráfico por ejercicio y de tests de salto, récords con 1RM estimado, rodilla gym/mañana/vóley, sesiones por semana, historial con detalle y borrar), fotos propias en la ficha, resumen para el PF (incluye vóley, rodilla a la mañana y cómo llegó), editar la rutina, volver a rutinas anteriores y backup (archivo o copiar; las fotos no entran).
 - **Base de datos v2:** solo agrega las tablas `diario` y `voley` (hay un test que verifica que pasar de v1 a v2 no pierde nada).
+
+- **Días de gym (20/11):** Santi va lunes, miércoles y viernes (se cambia en Más > Días de gym). Hoy dice "Hoy te toca" / "Hoy descansás · Te toca el lunes". Un día de gym que pasó sin entreno (desde el primer entreno) queda con ✕ en la semana y sale en el resumen para el PF. Tocando un día pasado sin entreno se carga ese entreno con esa fecha; al terminar se puede cambiar el día y los minutos.
 
 ## 11. Etapas
 

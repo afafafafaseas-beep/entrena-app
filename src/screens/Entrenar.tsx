@@ -11,6 +11,8 @@ import { mejorMarca } from '../lib/progreso'
 import { seriesDe, type Bloque, type Prescripto } from '../lib/rutina'
 import {
   colorRodilla,
+  fechaISO,
+  moverAFecha,
   medidaDe,
   proximoDia,
   reloj,
@@ -578,11 +580,16 @@ function Discos({ inicial, onCerrar }: { inicial: number; onCerrar: () => void }
 function Terminar({ c, actualizar }: { c: EnCurso; actualizar: (fn: (c: EnCurso) => void) => void }) {
   const s = c.sesion
   const [guardando, setGuardando] = useState(false)
+  const hoy = fechaISO(Date.now())
+  const [fecha, setFecha] = useState(c.fechaPasada ?? s.fecha)
+  const [minutos, setMinutos] = useState(60)
+  const otroDia = fecha !== s.fecha
 
   const guardar = async () => {
     if (s.rodilla === undefined && !window.confirm('No anotaste cómo terminó la rodilla. ¿Guardar igual?')) return
     setGuardando(true)
-    await guardarSesion(terminarSesion(c))
+    const terminada = terminarSesion(c)
+    await guardarSesion(otroDia ? moverAFecha(terminada, fecha, minutos) : terminada)
     navegar(rutaA('hoy'))
   }
 
@@ -595,6 +602,31 @@ function Terminar({ c, actualizar }: { c: EnCurso; actualizar: (fn: (c: EnCurso)
   return (
     <section className="terminar">
       <h2 className="terminar__title">Terminar</h2>
+
+      <label className="field">
+        <span className="terminar__label">¿Qué día lo hiciste?</span>
+        <input
+          className="nube-input"
+          type="date"
+          value={fecha}
+          max={hoy}
+          onChange={(ev) => ev.target.value && setFecha(ev.target.value)}
+        />
+      </label>
+      {otroDia && (
+        <label className="field">
+          <span className="terminar__label">¿Cuántos minutos duró?</span>
+          <input
+            className="nube-input"
+            type="number"
+            inputMode="numeric"
+            min={5}
+            max={240}
+            value={minutos}
+            onChange={(ev) => setMinutos(Math.max(5, Math.min(240, Number(ev.target.value) || 60)))}
+          />
+        </label>
+      )}
 
       <p className="terminar__label">¿Cómo terminó la rodilla?</p>
       <p className="terminar__hint">0 = nada de dolor · 10 = mucho dolor</p>

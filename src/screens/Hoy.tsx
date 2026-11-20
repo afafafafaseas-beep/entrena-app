@@ -3,10 +3,22 @@ import { FotoEjercicio } from '../components/Foto'
 import { Icon } from '../components/Icon'
 import { Back, Head } from '../components/ui'
 import { db, type Diario, type Voley } from '../db'
-import { useDiario, useEnCurso, useFichas, useSesiones, useVoley } from '../hooks'
+import { useDiario, useDiasGym, useEnCurso, useFichas, useSesiones, useVoley } from '../hooks'
 import { buscarFicha } from '../lib/ejercicios'
 import { fotosDe } from '../lib/fotos'
-import { colorRodilla, fechaCorta, fechaISO, inicioSemana, proximoDia, sesionesDeLaSemana } from '../lib/sesion'
+import {
+  colorRodilla,
+  diasQueFaltaste,
+  fechaCorta,
+  fechaISO,
+  inicioSemana,
+  NOMBRES_DIA,
+  proximaFechaGym,
+  proximoDia,
+  sesionesDeLaSemana,
+} from '../lib/sesion'
+import { entrar, useNube } from '../components/Nube'
+import { nubeActiva } from '../db'
 import { navegar, rutaA, volver } from '../tabs'
 import { empezarSesion } from './acciones'
 import { EscalaRodilla } from './Entrenar'
@@ -46,6 +58,25 @@ function Inicio() {
   const diasConGym = new Set(lista.map((s) => s.fecha))
   const diasConVoley = new Set((voley ?? []).map((v) => v.fecha))
   const ultimaRodilla = [...lista].reverse().find((s) => s.rodilla !== undefined)?.rodilla
+  const diasGym = useDiasGym()
+  const { usuario } = useNube()
+  const hoyISO = fechaISO(Date.now())
+  const entrenoHoy = diasConGym.has(hoyISO)
+  const tocaHoy = diasGym.includes(new Date().getDay())
+  const faltas = new Set(diasQueFaltaste(lista, diasGym))
+  const proxFecha = proximaFechaGym(diasGym, entrenoHoy)
+  const cuando = proxFecha
+    ? proxFecha.toDateString() === new Date().toDateString()
+      ? 'hoy'
+      : `el ${NOMBRES_DIA[proxFecha.getDay()]}`
+    : ''
+
+  /** Tocar un día que ya pasó y no tiene entreno: cargarlo. */
+  const cargarDia = (iso: string, nombre: string) => {
+    if (!activa || !proximo || enCurso) return
+    if (!window.confirm(`¿Entrenaste el ${nombre} y no lo anotaste? Cargá ahora lo que hiciste (${proximo.nombre}).`)) return
+    void empezarSesion(activa.rutina, proximo, iso)
+  }
 
   // Fotos de los ejercicios principales del día (los que tienen foto)
   const fotosDia = useMemo(() => {
@@ -63,20 +94,57 @@ function Inicio() {
     <>
       <Head eyebrow={fecha} title="Hoy" />
 
+      {nubeActiva && usuario && !usuario.isLoggedIn && (
+        <button type="button" className="aviso aviso--nube" onClick={entrar}>
+          <span className="aviso__icon">
+            <Icon name="backup" size={20} />
+          </span>
+          <span className="aviso__text">
+            <strong>Guardá todo online</strong>
+            <br />
+            Entrá con tu mail una sola vez y no perdés nada nunca más.
+          </span>
+          <Icon name="chevron" size={18} />
+        </button>
+      )}
+
       <div className="week" aria-label="Esta semana">
-        {semanaActual().map((d, i) => (
-          <div
-            key={i}
-            className={`week__day${d.esHoy ? ' week__day--hoy' : ''}${diasConGym.has(d.iso) ? ' week__day--gym' : ''}`}
-          >
-            <span>{d.letra}</span>
-            <span className="week__num">{d.num}</span>
-            <span className="week__dot" aria-hidden="true">
-              {diasConVoley.has(d.iso) ? '•' : ''}
-            </span>
-          </div>
-        ))}
+        {semanaActual().map((d, i) => {
+          const gym = diasConGym.has(d.iso)
+          const falta = faltas.has(d.iso)
+          const pasado = d.iso < hoyISO
+          const plan = diasGym.includes((i + 1) % 7)
+          const clase = `week__day${d.esHoy ? ' week__day--hoy' : ''}${gym ? ' week__day--gym' : ''}${falta ? ' week__day--falta' : ''}${plan && !gym && !pasado ? ' week__day--plan' : ''}`
+          const nombre = `${NOMBRES_DIA[(i + 1) % 7]} ${d.num}`
+          const contenido = (
+            <>
+              <span>{d.letra}</span>
+              <span className="week__num">{d.num}</span>
+              <span className="week__dot" aria-hidden="true">
+                {falta ? '✕' : diasConVoley.has(d.iso) ? '•' : ''}
+              </span>
+            </>
+          )
+          return pasado && !gym ? (
+            <button
+              key={i}
+              type="button"
+              className={clase}
+              onClick={() => cargarDia(d.iso, nombre)}
+              aria-label={`${nombre}: ${falta ? 'no fuiste' : 'sin entreno'}. Tocá para cargarlo`}
+            >
+              {contenido}
+            </button>
+          ) : (
+            <div key={i} className={clase} aria-label={`${nombre}${gym ? ': entrenaste' : plan ? ': día de gym' : ''}`}>
+              {contenido}
+            </div>
+          )
+        })}
       </div>
+      {faltas.size > 0 && [...faltas].some((f) => f >= fechaISO(inicioSemana())) && (
+        <p className="week__nota">✕ = día de gym que no fuiste. ¿Fuiste y no lo anotaste? Tocá ese día.</p>
+      )}
 
       {activa?.base && (
         <button type="button" className="aviso" onClick={() => navegar(rutaA('mas', 'cargar'))}>
@@ -109,9 +177,14 @@ function Inicio() {
         </section>
       ) : (
         <section className="hero">
-          <p className="hero__label">Te toca</p>
+          <p className="hero__label">
+            {entrenoHoy ? 'Hoy ya entrenaste ✓ · Lo próximo' : tocaHoy ? 'Hoy te toca' : `Hoy descansás · Te toca ${cuando}`}
+          </p>
           <p className="hero__title">{proximo ? proximo.nombre : 'Tu rutina'}</p>
-          <p className="hero__text">{proximo?.foco ?? 'Cargando…'}</p>
+          <p className="hero__text">
+            {proximo?.foco ?? 'Cargando…'}
+            {entrenoHoy && cuando ? ` · ${cuando[0].toUpperCase()}${cuando.slice(1)}` : ''}
+          </p>
           {fotosDia.length > 0 && (
             <div className="hero__fotos" aria-hidden="true">
               {fotosDia.map((f) => (
@@ -133,7 +206,7 @@ function Inicio() {
             onClick={() => activa && proximo && empezarSesion(activa.rutina, proximo)}
           >
             <Icon name="play" size={20} filled />
-            Empezar
+            {tocaHoy && !entrenoHoy ? 'Empezar' : 'Entrenar igual hoy'}
           </button>
         </section>
       )}
@@ -143,7 +216,7 @@ function Inicio() {
           <p className="stat__label">Gym</p>
           <p className="stat__value">
             {semana.length}
-            <small>de 3</small>
+            <small>de {diasGym.length}</small>
           </p>
         </div>
         <div className="stat">

@@ -1,6 +1,6 @@
 import type { Diario, Sesion, Voley } from '../db'
 import { evolucion, type Campo } from './progreso'
-import { fechaCorta, fechaISO } from './sesion'
+import { diasQueFaltaste, fechaCorta, fechaISO } from './sesion'
 import { normalizar } from './texto'
 
 const DIA = 24 * 3600 * 1000
@@ -31,11 +31,12 @@ export interface DatosResumen {
   sesiones: Sesion[]
   voley: Voley[]
   diario: Diario[]
+  diasGym?: number[] // para contar los días que no fue
   hoy?: Date
 }
 
 /** El texto para copiar y pegarle al PF (formato de la sección 7 del CLAUDE.md, más rodilla a la mañana y vóley). */
-export function resumenPF({ dias, rutinaNombre, sesiones, voley, diario, hoy = new Date() }: DatosResumen): string {
+export function resumenPF({ dias, rutinaNombre, sesiones, voley, diario, diasGym, hoy = new Date() }: DatosResumen): string {
   const fin = new Date(hoy)
   fin.setHours(23, 59, 59, 999)
   const hasta = fin.getTime() + 1
@@ -60,6 +61,12 @@ export function resumenPF({ dias, rutinaNombre, sesiones, voley, diario, hoy = n
 
   l.push('', `GYM (${ses.length === 1 ? '1 sesión' : `${ses.length} sesiones`})`)
   if (!ses.length) l.push('- No fui al gym en este período.')
+  if (diasGym?.length) {
+    const desdeISO = fechaISO(desde)
+    const faltas = diasQueFaltaste(sesiones, diasGym, hoy).filter((f) => f >= desdeISO)
+    if (faltas.length)
+      l.push(`- Días de gym que no fui: ${faltas.map((f) => `${diaSemana(new Date(f + 'T12:00').getTime())} ${fechaCorta(new Date(f + 'T12:00').getTime())}`).join(', ')}`)
+  }
   for (const s of ses) {
     const cab = [`${diaSemana(s.inicio)} ${fechaCorta(s.inicio)}`, s.diaNombre, `${s.minutos} min`]
     if (s.rpeSesion !== undefined) cab.push(`RPE ${s.rpeSesion}`)
