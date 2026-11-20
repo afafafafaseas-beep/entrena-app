@@ -7,3 +7,4 @@ dev-dist
 # Dexie Cloud: la .key es secreta, nunca al repo
 dexie-cloud.key
 dexie-cloud.json
+*.tsbuildinfo
