@@ -4,6 +4,7 @@ import { normalizar, urlVideo } from './texto'
 import { RUTINA_BASE } from '../db'
 import { RutinaSchema, type Rutina } from './rutina'
 import pfSemana1 from '../data/pf-semana1.json'
+import fotosJson from '../data/fotos.json'
 
 describe('texto', () => {
   it('compara sin mayúsculas ni tildes', () => {
@@ -15,6 +16,17 @@ describe('texto', () => {
 })
 
 describe('lista de ejercicios', () => {
+  it('tiene ejercicios de gym general (brazos, pecho) y cada foto existe', () => {
+    const brazos = filtrar(CATALOGO, '', 'brazos').map((f) => f.nombre)
+    expect(brazos).toContain('Curl de bíceps con barra')
+    expect(brazos).toContain('Extensión de tríceps en polea')
+    expect(filtrar(CATALOGO, 'tricep', null).length).toBeGreaterThan(3)
+    const ids = new Set(Object.values(fotosJson.fotos as Record<string, string>))
+    const hay = new Set(Object.keys(import.meta.glob('/public/ejercicios/*.jpg')).map((r) => r.replace('/public/ejercicios/', '')))
+    for (const id of ids) for (const k of [0, 1]) expect(hay.has(`${id}-${k}.jpg`), `${id}-${k}`).toBe(true)
+    for (const n of Object.keys(fotosJson.fotos)) expect(buscarFicha(CATALOGO, n), n).toBeDefined()
+  })
+
   it('trae los ejercicios del CLAUDE.md con sus textos', () => {
     expect(CATALOGO.length).toBeGreaterThan(100)
     const f = buscarFicha(CATALOGO, 'sentadilla TRASERA')!
@@ -44,11 +56,9 @@ describe('lista de ejercicios', () => {
   })
 
   it('filtra por zona y por texto', () => {
-    expect(filtrar(CATALOGO, '', 'acondicionamiento').map((f) => f.nombre)).toEqual([
-      'Intervalos tipo rally',
-      'Desplazamientos 9-3-6-9',
-      'Bici fija',
-    ])
+    expect(filtrar(CATALOGO, '', 'acondicionamiento').map((f) => f.nombre).sort()).toEqual(
+      ['Bici fija', 'Desplazamientos 9-3-6-9', 'Intervalos tipo rally', 'Remo ergómetro', 'Saltar la soga'],
+    )
     expect(filtrar(CATALOGO, 'nordico', null).map((f) => f.nombre)).toEqual(['Nórdicos con banda'])
   })
 

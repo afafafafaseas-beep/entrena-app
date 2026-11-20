@@ -1009,5 +1009,639 @@
   ],
   "como": "Ida y vuelta a las líneas de 3, 6 y 9 metros a máxima velocidad.",
   "sirve": "Velocidad en las distancias del vóley."
+ },
+ {
+  "nombre": "Curl de bíceps con barra",
+  "video": "barbell curl",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Parado, barra con las palmas hacia adelante y los codos pegados al cuerpo. Subí la barra doblando solo los codos, sin balancear la espalda, y bajá despacio hasta estirar.",
+  "sirve": "Bíceps más fuertes y grandes."
+ },
+ {
+  "nombre": "Curl de bíceps con mancuernas",
+  "video": "dumbbell bicep curl",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Parado, una mancuerna en cada mano con las palmas hacia adelante. Subí doblando los codos sin despegarlos del cuerpo y bajá controlado.",
+  "sirve": "Bíceps, cada brazo por separado para emparejar fuerza."
+ },
+ {
+  "nombre": "Curl martillo",
+  "video": "hammer curl",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Mancuernas con las palmas mirándose, como agarrando un martillo. Subí doblando los codos sin girar las muñecas y bajá despacio.",
+  "sirve": "Bíceps y antebrazo: más fuerza de agarre."
+ },
+ {
+  "nombre": "Curl en banco Scott",
+  "video": "preacher curl",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Sentado en el banco Scott con la parte de atrás de los brazos apoyada en el almohadón. Subí la barra y bajá lento casi hasta estirar, sin rebotar abajo.",
+  "sirve": "Bíceps aislado: no se puede hacer trampa con el cuerpo."
+ },
+ {
+  "nombre": "Curl de bíceps en polea",
+  "video": "cable bicep curl",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Parado frente a la polea baja con la barra recta. Codos pegados al cuerpo, subí hasta el pecho y bajá controlado.",
+  "sirve": "Bíceps con tensión pareja en todo el recorrido."
+ },
+ {
+  "nombre": "Curl concentrado",
+  "video": "concentration curl",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Sentado, el codo apoyado en la parte de adentro del muslo. Subí la mancuerna hacia el hombro y bajá despacio. Después el otro brazo.",
+  "sirve": "Bíceps bien aislado, un brazo a la vez."
+ },
+ {
+  "nombre": "Curl inclinado con mancuernas",
+  "video": "incline dumbbell curl",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Sentado en un banco inclinado a unos 45°, brazos colgando. Subí las mancuernas sin mover los codos hacia adelante y bajá hasta estirar.",
+  "sirve": "Bíceps trabajado desde bien estirado."
+ },
+ {
+  "nombre": "Curl invertido con barra",
+  "video": "reverse barbell curl",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Como el curl con barra pero con las palmas hacia atrás. Subí con los codos quietos y bajá lento.",
+  "sirve": "Antebrazo y agarre."
+ },
+ {
+  "nombre": "Curl de muñeca con barra",
+  "video": "barbell wrist curl",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Arrodillado frente a un banco con los antebrazos apoyados y las manos afuera, palmas hacia arriba. Subí la barra doblando solo las muñecas.",
+  "sirve": "Muñecas y antebrazos fuertes: ayuda al armado y al agarre."
+ },
+ {
+  "nombre": "Extensión de tríceps en polea",
+  "video": "tricep pushdown",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Parado frente a la polea alta con la barra. Codos pegados al cuerpo, empujá hacia abajo hasta estirar los brazos y volvé hasta los 90°.",
+  "sirve": "Tríceps: es la mayor parte del brazo."
+ },
+ {
+  "nombre": "Extensión de tríceps en polea con soga",
+  "video": "tricep rope pushdown",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Igual que con barra pero con la soga. Abajo de todo separá las puntas de la soga hacia afuera.",
+  "sirve": "Tríceps completo, con más recorrido que la barra."
+ },
+ {
+  "nombre": "Extensión de tríceps sobre la cabeza en polea",
+  "video": "overhead cable tricep extension",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "De espaldas a la polea, la soga detrás de la cabeza y los codos apuntando adelante. Estirá los brazos hacia adelante y arriba, y volvé despacio.",
+  "sirve": "La parte larga del tríceps, que se trabaja con el brazo arriba."
+ },
+ {
+  "nombre": "Press francés",
+  "video": "ez bar skull crusher",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Acostado en el banco con la barra Z arriba del pecho. Doblá solo los codos llevando la barra hacia la frente y volvé a estirar. Los codos quedan quietos.",
+  "sirve": "Tríceps con carga pesada."
+ },
+ {
+  "nombre": "Extensión de tríceps con mancuerna sobre la cabeza",
+  "video": "dumbbell overhead tricep extension",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Parado o sentado, una mancuerna agarrada con las dos manos arriba de la cabeza. Bajala detrás de la nuca doblando los codos y volvé a subir.",
+  "sirve": "Tríceps, sobre todo la parte larga."
+ },
+ {
+  "nombre": "Patada de tríceps",
+  "video": "tricep kickback",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Inclinado con una mano y una rodilla en el banco, el codo pegado al cuerpo a 90°. Estirá el brazo hacia atrás y volvé.",
+  "sirve": "Tríceps aislado, un brazo a la vez."
+ },
+ {
+  "nombre": "Fondos en banco",
+  "video": "bench dips",
+  "zonas": [
+   "brazos"
+  ],
+  "como": "Manos en el borde de un banco detrás tuyo y piernas estiradas adelante. Bajá doblando los codos hasta unos 90° y subí empujando.",
+  "sirve": "Tríceps con tu propio peso."
+ },
+ {
+  "nombre": "Fondos en paralelas",
+  "video": "tricep dips parallel bars",
+  "zonas": [
+   "brazos",
+   "empuje"
+  ],
+  "como": "Agarrado de las paralelas con los brazos estirados y el cuerpo derecho. Bajá hasta que los codos queden a 90° y subí. Si no podés, usá la máquina asistida.",
+  "sirve": "Tríceps y pecho con tu peso."
+ },
+ {
+  "nombre": "Press banca agarre cerrado",
+  "video": "close grip bench press",
+  "zonas": [
+   "brazos",
+   "empuje"
+  ],
+  "como": "Como el press banca, con las manos al ancho de los hombros. Bajá la barra al pecho con los codos pegados al cuerpo y empujá.",
+  "sirve": "Tríceps pesado y pecho."
+ },
+ {
+  "nombre": "Press banca con mancuernas",
+  "video": "dumbbell bench press",
+  "zonas": [
+   "empuje"
+  ],
+  "como": "Acostado en el banco, una mancuerna en cada mano a los costados del pecho. Empujá hacia arriba hasta estirar y bajá controlado.",
+  "sirve": "Pecho, hombros y tríceps, con cada brazo trabajando por su cuenta."
+ },
+ {
+  "nombre": "Press inclinado con mancuernas",
+  "video": "incline dumbbell press",
+  "zonas": [
+   "empuje"
+  ],
+  "como": "Banco inclinado a unos 30°. Empujá las mancuernas desde la altura del pecho hacia arriba y bajá despacio.",
+  "sirve": "La parte de arriba del pecho y los hombros."
+ },
+ {
+  "nombre": "Press declinado con barra",
+  "video": "decline bench press",
+  "zonas": [
+   "empuje"
+  ],
+  "como": "En el banco declinado con los pies trabados. Bajá la barra a la parte baja del pecho y empujá.",
+  "sirve": "La parte de abajo del pecho."
+ },
+ {
+  "nombre": "Aperturas con mancuernas",
+  "video": "dumbbell fly",
+  "zonas": [
+   "empuje"
+  ],
+  "como": "Acostado, mancuernas arriba del pecho con los codos apenas doblados. Abrí los brazos hacia los costados hasta sentir el estiramiento y cerrá como abrazando.",
+  "sirve": "Pecho aislado."
+ },
+ {
+  "nombre": "Cruce de poleas",
+  "video": "cable crossover",
+  "zonas": [
+   "empuje"
+  ],
+  "como": "Parado en el medio de las dos poleas altas, un paso adelante. Traé las manos hacia abajo y al frente hasta juntarlas, con los codos apenas doblados, y volvé despacio.",
+  "sirve": "Pecho con tensión todo el recorrido."
+ },
+ {
+  "nombre": "Peck deck",
+  "video": "pec deck machine",
+  "zonas": [
+   "empuje"
+  ],
+  "como": "Sentado en la máquina con la espalda apoyada. Juntá los brazos adelante del pecho y abrí despacio.",
+  "sirve": "Pecho aislado y seguro."
+ },
+ {
+  "nombre": "Press de pecho en máquina",
+  "video": "chest press machine",
+  "zonas": [
+   "empuje"
+  ],
+  "como": "Sentado con la espalda apoyada y las manijas a la altura del pecho. Empujá hasta estirar y volvé sin que el peso choque.",
+  "sirve": "Pecho y tríceps sin necesitar a alguien que te asista."
+ },
+ {
+  "nombre": "Flexiones de brazos",
+  "video": "push up proper form",
+  "zonas": [
+   "empuje"
+  ],
+  "como": "Manos un poco más anchas que los hombros, cuerpo derecho de la cabeza a los talones. Bajá el pecho casi hasta el piso y subí.",
+  "sirve": "Pecho, hombros, tríceps y tronco, en cualquier lado."
+ },
+ {
+  "nombre": "Press militar con barra",
+  "video": "standing military press",
+  "zonas": [
+   "hombro",
+   "empuje"
+  ],
+  "como": "Parado, barra apoyada adelante de los hombros. Empujá hacia arriba de la cabeza hasta estirar, sin arquear la espalda baja, y bajá controlado.",
+  "sirve": "Hombros fuertes para levantar los brazos con carga."
+ },
+ {
+  "nombre": "Press de hombros con mancuernas",
+  "video": "dumbbell shoulder press",
+  "zonas": [
+   "hombro",
+   "empuje"
+  ],
+  "como": "Sentado con la espalda apoyada, mancuernas a la altura de las orejas. Empujá hacia arriba y bajá despacio.",
+  "sirve": "Hombros, cada brazo por su cuenta."
+ },
+ {
+  "nombre": "Press Arnold",
+  "video": "arnold press",
+  "zonas": [
+   "hombro",
+   "empuje"
+  ],
+  "como": "Sentado, mancuernas adelante de la cara con las palmas hacia vos. Mientras empujás hacia arriba girá las muñecas hasta que las palmas miren adelante. Volvé al revés.",
+  "sirve": "Todo el hombro en un solo movimiento."
+ },
+ {
+  "nombre": "Press de hombros en máquina",
+  "video": "shoulder press machine",
+  "zonas": [
+   "hombro",
+   "empuje"
+  ],
+  "como": "Sentado en la máquina con la espalda apoyada. Empujá las manijas hacia arriba y bajá controlado.",
+  "sirve": "Hombros con un recorrido guiado."
+ },
+ {
+  "nombre": "Elevaciones laterales",
+  "video": "dumbbell lateral raise",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Parado, mancuernas a los costados. Subí los brazos hacia los costados hasta la altura de los hombros, con los codos apenas doblados, y bajá lento.",
+  "sirve": "La parte del costado del hombro: hombros más anchos."
+ },
+ {
+  "nombre": "Elevaciones laterales en polea",
+  "video": "cable lateral raise",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Al costado de la polea baja, agarrá la manija con la mano de afuera. Subí el brazo hacia el costado hasta el hombro y bajá despacio.",
+  "sirve": "Costado del hombro con tensión pareja."
+ },
+ {
+  "nombre": "Elevaciones frontales",
+  "video": "front dumbbell raise",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Parado, mancuernas adelante de los muslos. Subí los brazos estirados hacia adelante hasta la altura de los hombros y bajá.",
+  "sirve": "La parte de adelante del hombro."
+ },
+ {
+  "nombre": "Pájaros",
+  "video": "rear delt raise",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Sentado en la punta del banco, inclinado con el pecho cerca de las piernas. Abrí los brazos hacia los costados apretando los omóplatos y bajá.",
+  "sirve": "La parte de atrás del hombro, que lo protege al rematar."
+ },
+ {
+  "nombre": "Face pull",
+  "video": "face pull",
+  "zonas": [
+   "hombro",
+   "traccion"
+  ],
+  "como": "Polea alta con la soga. Tirá hacia la cara separando las manos y llevando los codos alto y atrás. Volvé despacio.",
+  "sirve": "Parte de atrás del hombro y manguito rotador: muy bueno para hombros de vóley."
+ },
+ {
+  "nombre": "Remo al mentón",
+  "video": "upright row",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Parado, barra adelante de los muslos con agarre cerrado. Subí la barra pegada al cuerpo hasta el pecho, codos más altos que las manos, y bajá. Si molesta el hombro, no lo hagas.",
+  "sirve": "Hombros y trapecio."
+ },
+ {
+  "nombre": "Encogimientos de hombros",
+  "video": "barbell shrug",
+  "zonas": [
+   "hombro"
+  ],
+  "como": "Parado con la barra adelante y los brazos estirados. Subí los hombros hacia las orejas, sostené un segundo y bajá.",
+  "sirve": "Trapecio."
+ },
+ {
+  "nombre": "Jalón al pecho",
+  "video": "lat pulldown",
+  "zonas": [
+   "traccion"
+  ],
+  "como": "Sentado en la máquina con las piernas trabadas, agarre ancho. Bajá la barra hasta arriba del pecho llevando los codos hacia abajo y atrás, y subí despacio.",
+  "sirve": "Espalda ancha: es la base para llegar a las dominadas."
+ },
+ {
+  "nombre": "Jalón al pecho agarre cerrado",
+  "video": "close grip lat pulldown",
+  "zonas": [
+   "traccion"
+  ],
+  "como": "Igual que el jalón pero con las manos juntas. Bajá hasta el pecho sacando pecho y subí.",
+  "sirve": "Espalda y bíceps."
+ },
+ {
+  "nombre": "Remo en polea baja",
+  "video": "seated cable row",
+  "zonas": [
+   "traccion"
+  ],
+  "como": "Sentado con los pies apoyados y las rodillas apenas dobladas. Tirá la manija hacia la panza apretando los omóplatos, con la espalda derecha, y volvé despacio.",
+  "sirve": "La parte media de la espalda y la postura."
+ },
+ {
+  "nombre": "Remo con barra",
+  "video": "bent over barbell row",
+  "zonas": [
+   "traccion"
+  ],
+  "como": "Inclinado con la espalda derecha y las rodillas apenas dobladas. Tirá la barra hacia la panza y bajala controlada. Si te molesta la espalda baja, mejor el remo con pecho apoyado.",
+  "sirve": "Espalda gruesa y fuerte."
+ },
+ {
+  "nombre": "Remo con mancuerna a 1 brazo",
+  "video": "one arm dumbbell row",
+  "zonas": [
+   "traccion"
+  ],
+  "como": "Una mano y una rodilla apoyadas en el banco, la espalda derecha. Tirá la mancuerna hacia la cadera con el codo pegado y bajá estirando.",
+  "sirve": "Espalda, un lado a la vez, sin cargar la zona lumbar."
+ },
+ {
+  "nombre": "Remo en máquina",
+  "video": "machine row",
+  "zonas": [
+   "traccion"
+  ],
+  "como": "Sentado con el pecho apoyado en el almohadón. Tirá las manijas hacia atrás apretando los omóplatos y volvé.",
+  "sirve": "Espalda con la zona lumbar descansada."
+ },
+ {
+  "nombre": "Pullover en polea",
+  "video": "straight arm pulldown",
+  "zonas": [
+   "traccion"
+  ],
+  "como": "Parado frente a la polea alta, brazos casi estirados. Bajá la barra en arco hasta los muslos sin doblar los codos y volvé.",
+  "sirve": "Dorsales: la fuerza para bajar el brazo con potencia, como al rematar."
+ },
+ {
+  "nombre": "Dominadas supinas",
+  "video": "chin up",
+  "zonas": [
+   "traccion",
+   "brazos"
+  ],
+  "como": "Colgado de la barra con las palmas hacia vos. Subí hasta pasar el mentón por arriba de la barra y bajá hasta estirar los brazos.",
+  "sirve": "Espalda y bíceps con tu peso."
+ },
+ {
+  "nombre": "Peso muerto",
+  "video": "conventional deadlift form",
+  "zonas": [
+   "posterior",
+   "traccion"
+  ],
+  "como": "Barra pegada a las canillas, espalda derecha y pecho arriba. Levantá empujando el piso con las piernas hasta quedar parado y bajá con la barra pegada al cuerpo. Consultá al PF antes, por la espalda.",
+  "sirve": "Fuerza de todo el cuerpo: piernas, glúteos y espalda."
+ },
+ {
+  "nombre": "Hiperextensiones",
+  "video": "back extension",
+  "zonas": [
+   "posterior",
+   "core"
+  ],
+  "como": "En el banco de hiperextensiones con la cadera apoyada. Bajá el tronco doblándote en la cadera y subí hasta quedar en línea con las piernas, sin pasarte para atrás.",
+  "sirve": "Espalda baja, glúteos e isquios."
+ },
+ {
+  "nombre": "Prensa de piernas",
+  "video": "leg press",
+  "zonas": [
+   "piernas"
+  ],
+  "como": "Sentado con los pies al ancho de los hombros en la plataforma. Bajá doblando las rodillas sin que la cola se despegue del asiento y empujá sin trabar las rodillas arriba.",
+  "sirve": "Piernas fuertes sin cargar la espalda."
+ },
+ {
+  "nombre": "Extensión de cuádriceps",
+  "video": "leg extension machine",
+  "zonas": [
+   "piernas",
+   "rodilla"
+  ],
+  "como": "Sentado en la máquina con el rodillo arriba de los tobillos. Estirá las piernas, sostené un segundo y bajá lento. Con la rodilla sensible, usá el rango que no duela.",
+  "sirve": "Cuádriceps aislado. Sostenida quieta sirve como isométrico para el tendón."
+ },
+ {
+  "nombre": "Curl femoral acostado",
+  "video": "lying leg curl",
+  "zonas": [
+   "posterior"
+  ],
+  "como": "Boca abajo en la máquina, el rodillo arriba de los talones. Doblá las rodillas llevando los talones a la cola y bajá despacio.",
+  "sirve": "Isquiotibiales: protegen la rodilla en cada frenada."
+ },
+ {
+  "nombre": "Curl femoral sentado",
+  "video": "seated leg curl",
+  "zonas": [
+   "posterior"
+  ],
+  "como": "Sentado en la máquina con el rodillo detrás de los tobillos. Llevá los talones hacia abajo y atrás y volvé despacio.",
+  "sirve": "Isquiotibiales."
+ },
+ {
+  "nombre": "Sentadilla frontal",
+  "video": "front squat",
+  "zonas": [
+   "piernas"
+  ],
+  "como": "Barra apoyada adelante de los hombros con los codos altos. Bajá con el pecho arriba hasta donde controles y subí.",
+  "sirve": "Cuádriceps y tronco, con menos carga en la espalda que la trasera."
+ },
+ {
+  "nombre": "Sentadilla en máquina Smith",
+  "video": "smith machine squat",
+  "zonas": [
+   "piernas"
+  ],
+  "como": "Barra de la máquina apoyada en la espalda alta, los pies un poco adelante. Bajá y subí siguiendo el riel.",
+  "sirve": "Piernas con el recorrido guiado."
+ },
+ {
+  "nombre": "Sentadilla hack",
+  "video": "hack squat machine",
+  "zonas": [
+   "piernas"
+  ],
+  "como": "En la máquina hack con la espalda apoyada y los hombros bajo los almohadones. Bajá doblando las rodillas y empujá para subir.",
+  "sirve": "Cuádriceps con la espalda apoyada."
+ },
+ {
+  "nombre": "Estocadas caminando",
+  "video": "walking lunge",
+  "zonas": [
+   "piernas"
+  ],
+  "como": "Paso largo adelante, bajá hasta que la rodilla de atrás casi toque el piso, y avanzá con la otra pierna. Con mancuernas cuando te salga bien.",
+  "sirve": "Piernas y glúteos, una pierna a la vez, y equilibrio."
+ },
+ {
+  "nombre": "Estocadas con mancuernas",
+  "video": "dumbbell lunge",
+  "zonas": [
+   "piernas"
+  ],
+  "como": "Parado con una mancuerna en cada mano. Paso adelante, bajá hasta que las dos rodillas queden a 90° y volvé al lugar. Alterná.",
+  "sirve": "Piernas y glúteos."
+ },
+ {
+  "nombre": "Abductores en máquina",
+  "video": "hip abductor machine",
+  "zonas": [
+   "cadera"
+  ],
+  "como": "Sentado en la máquina con las piernas adentro de los almohadones. Abrí las piernas hacia afuera y cerrá despacio.",
+  "sirve": "Glúteo medio: estabiliza la rodilla al aterrizar."
+ },
+ {
+  "nombre": "Aductores en máquina",
+  "video": "hip adductor machine",
+  "zonas": [
+   "cadera"
+  ],
+  "como": "Sentado en la máquina con las piernas afuera de los almohadones. Cerrá las piernas y abrí despacio.",
+  "sirve": "La parte de adentro del muslo: protege la ingle en los desplazamientos."
+ },
+ {
+  "nombre": "Patada de glúteo en polea",
+  "video": "cable glute kickback",
+  "zonas": [
+   "posterior",
+   "cadera"
+  ],
+  "como": "La tobillera enganchada a la polea baja, agarrado de la máquina. Llevá la pierna estirada hacia atrás apretando el glúteo y volvé sin arquear la espalda.",
+  "sirve": "Glúteo aislado."
+ },
+ {
+  "nombre": "Puente de glúteos con barra",
+  "video": "barbell glute bridge",
+  "zonas": [
+   "posterior"
+  ],
+  "como": "Acostado en el piso con la barra sobre la cadera y los pies apoyados. Subí la cadera apretando los glúteos hasta quedar en línea y bajá.",
+  "sirve": "Glúteos fuertes para saltar y frenar."
+ },
+ {
+  "nombre": "Plancha",
+  "video": "plank exercise",
+  "zonas": [
+   "core"
+  ],
+  "como": "Apoyado en los antebrazos y las puntas de los pies, el cuerpo derecho de la cabeza a los talones. Apretá la panza y la cola y sostené sin que se hunda la cadera.",
+  "sirve": "Tronco firme sin mover la columna."
+ },
+ {
+  "nombre": "Plancha lateral",
+  "video": "side plank",
+  "zonas": [
+   "core"
+  ],
+  "como": "De costado, apoyado en el antebrazo con el codo debajo del hombro y las piernas estiradas. Subí la cadera hasta quedar derecho y sostené. Después del otro lado.",
+  "sirve": "Los costados del tronco, que cuidan la espalda baja."
+ },
+ {
+  "nombre": "Abdominales crunch",
+  "video": "crunch exercise",
+  "zonas": [
+   "core"
+  ],
+  "como": "Boca arriba con las rodillas dobladas. Despegá los hombros del piso llevando las costillas hacia la cadera y bajá despacio, sin tirar del cuello.",
+  "sirve": "Abdominales."
+ },
+ {
+  "nombre": "Crunch en polea",
+  "video": "cable crunch",
+  "zonas": [
+   "core"
+  ],
+  "como": "Arrodillado frente a la polea alta con la soga al costado de la cabeza. Enrollá el tronco hacia el piso llevando los codos a los muslos y volvé.",
+  "sirve": "Abdominales con carga."
+ },
+ {
+  "nombre": "Elevación de piernas colgado",
+  "video": "hanging leg raise",
+  "zonas": [
+   "core"
+  ],
+  "como": "Colgado de la barra, subí las piernas hasta la altura de la cadera sin balancearte y bajá despacio. Más fácil: con las rodillas dobladas.",
+  "sirve": "La parte baja del abdomen y el agarre."
+ },
+ {
+  "nombre": "Giros rusos",
+  "video": "russian twist",
+  "zonas": [
+   "core"
+  ],
+  "como": "Sentado con el tronco un poco para atrás y los pies apoyados o arriba. Girá el tronco de un lado al otro llevando las manos (o un disco) al costado de la cadera.",
+  "sirve": "Oblicuos: el giro del tronco al rematar."
+ },
+ {
+  "nombre": "Bicicleta abdominal",
+  "video": "bicycle crunch",
+  "zonas": [
+   "core"
+  ],
+  "como": "Boca arriba, manos detrás de la cabeza. Llevá el codo hacia la rodilla contraria mientras estirás la otra pierna, y alterná.",
+  "sirve": "Abdominales y oblicuos."
+ },
+ {
+  "nombre": "Remo ergómetro",
+  "video": "rowing machine technique",
+  "zonas": [
+   "acondicionamiento"
+  ],
+  "como": "Empujá primero con las piernas, después llevá el tronco apenas atrás y al final tirá con los brazos hacia la panza. Para volver, al revés: brazos, tronco y piernas.",
+  "sirve": "Cardio de todo el cuerpo sin impacto en las rodillas."
+ },
+ {
+  "nombre": "Saltar la soga",
+  "video": "jump rope technique",
+  "zonas": [
+   "acondicionamiento",
+   "tobillo"
+  ],
+  "como": "Saltitos cortos en la punta de los pies, girando la soga con las muñecas y los codos cerca del cuerpo. Con la rodilla sensible, primero consultalo con el PF.",
+  "sirve": "Cardio, coordinación y tobillos reactivos."
  }
 ]
