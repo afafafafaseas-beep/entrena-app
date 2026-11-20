@@ -1590,21 +1590,6 @@ textarea:focus {
   cursor: pointer;
 }
 
-@keyframes resaltar {
-  0%,
-  60% {
-    box-shadow: 0 0 0 2px var(--accent);
-  }
-  100% {
-    box-shadow: 0 0 0 2px transparent;
-  }
-}
-
-.serie--sigue {
-  border-radius: 14px;
-  animation: resaltar 1.6s ease-out;
-}
-
 /* Aviso de récord */
 .toast {
   position: fixed;

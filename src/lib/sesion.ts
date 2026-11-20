@@ -233,3 +233,23 @@ export function reloj(ms: number): string {
   const p = (n: number) => String(n).padStart(2, '0')
   return h ? `${h}:${p(m)}:${p(s)}` : `${m}:${p(s)}`
 }
+
+/**
+ * Cuando sube el peso de una serie, lo copia a las series que vienen y todavía no tildó.
+ * Solo toca las que seguían igual que esta (vacías o copiadas antes), así no pisa lo que escribió a mano.
+ * Si después lo baja o lo borra, esas copias vuelven a mostrar lo sugerido.
+ */
+export function copiarPesoALasQueSiguen(
+  series: Serie[],
+  desde: number,
+  antes: number | undefined,
+  ahora: number | undefined,
+  sugeridoKg: (serie: number) => number | undefined,
+) {
+  for (let j = desde + 1; j < series.length; j++) {
+    const x = series[j]
+    if (x.ok || (x.kg !== undefined && x.kg !== antes)) continue
+    const sug = sugeridoKg(j)
+    x.kg = ahora !== undefined && (sug === undefined || ahora > sug) ? ahora : undefined
+  }
+}

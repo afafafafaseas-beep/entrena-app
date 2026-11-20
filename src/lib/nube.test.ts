@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import Dexie from 'dexie'
 import { db, iniciarDatos, migrarDeLaVieja, rutinaActiva, RUTINA_BASE, type Sesion } from '../db'
-import { diasQueFaltaste, moverAFecha, proximaFechaGym } from './sesion'
+import { copiarPesoALasQueSiguen, diasQueFaltaste, moverAFecha, proximaFechaGym, type Serie } from './sesion'
 
 const ses = (id: string, fecha: string): Sesion => ({
   id,
@@ -76,6 +76,27 @@ describe('días de gym', () => {
     expect(proximaFechaGym(LMV, false, vie)?.getDay()).toBe(5) // hoy
     expect(proximaFechaGym(LMV, true, vie)?.getDay()).toBe(1) // ya entrenó: el lunes
     expect(proximaFechaGym(LMV, false, new Date('2026-11-21T10:00'))?.getDate()).toBe(23) // sábado → lunes 23
+  })
+
+  it('si sube el peso se copia a las series que faltan, sin pisar lo escrito a mano', () => {
+    const sug = () => 80
+    const series: Serie[] = [{ ok: false }, { ok: false }, { ok: false, kg: 70 }, { ok: false }]
+    // Tipea "85" en la serie 1: "8" no sube nada, "85" sí
+    series[0].kg = 8
+    copiarPesoALasQueSiguen(series, 0, undefined, 8, sug)
+    expect(series.map((x) => x.kg)).toEqual([8, undefined, 70, undefined])
+    series[0].kg = 85
+    copiarPesoALasQueSiguen(series, 0, 8, 85, sug)
+    expect(series.map((x) => x.kg)).toEqual([85, 85, 70, 85])
+    // Se equivocó: lo borra y vuelve lo sugerido en las copias
+    series[0].kg = undefined
+    copiarPesoALasQueSiguen(series, 0, 85, undefined, sug)
+    expect(series.map((x) => x.kg)).toEqual([undefined, undefined, 70, undefined])
+    // Las tildadas no se tocan
+    const t: Serie[] = [{ ok: true, kg: 80 }, { ok: false }, { ok: true, kg: 80 }, { ok: false }]
+    t[1].kg = 90
+    copiarPesoALasQueSiguen(t, 1, undefined, 90, sug)
+    expect(t.map((x) => x.kg)).toEqual([80, 90, 80, 90])
   })
 
   it('un entreno cargado tarde queda en el día que fue', () => {

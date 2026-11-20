@@ -16,6 +16,7 @@ import {
   medidaDe,
   proximoDia,
   reloj,
+  copiarPesoALasQueSiguen,
   segundosDescanso,
   sugerencia,
   terminarSesion,
@@ -68,19 +69,6 @@ export function Entrenar() {
   return <SesionEnCurso key={enCurso.sesion.id} inicial={enCurso} sesiones={sesiones} />
 }
 
-/** Orden real de un circuito: A1, B1, C1, A2, B2, C2… (índice de ejercicio, índice de serie). */
-function ordenCircuito(c: EnCurso): [number, number][] {
-  const orden: [number, number][] = []
-  let idx = 0
-  for (const b of c.dia.bloques) {
-    const ids = b.ejercicios.map(() => idx++)
-    if (b.tipo !== 'fuerza') continue
-    const max = Math.max(0, ...ids.map((i) => c.sesion.ejercicios[i]?.series.length ?? 0))
-    for (let r = 0; r < max; r++) for (const i of ids) if ((c.sesion.ejercicios[i]?.series.length ?? 0) > r) orden.push([i, r])
-  }
-  return orden
-}
-
 function SesionEnCurso({ inicial, sesiones }: { inicial: EnCurso; sesiones: Sesion[] }) {
   const [c, setC] = useState(inicial)
   const ref = useRef(inicial)
@@ -119,7 +107,7 @@ function SesionEnCurso({ inicial, sesiones }: { inicial: EnCurso; sesiones: Sesi
     navegar(rutaA('ejercicios', nombre))
   }
 
-  /** Después de tildar una serie: descanso del PF, récord y llevarlo a la próxima serie del circuito. */
+  /** Después de tildar una serie: descanso del PF y aviso de récord. */
   const despuesDeTildar = (i: number, serie: number, p: Prescripto) => {
     const actual = ref.current
     const e = actual.sesion.ejercicios[i]
@@ -138,20 +126,7 @@ function SesionEnCurso({ inicial, sesiones }: { inicial: EnCurso; sesiones: Sesi
       }
       break
     }
-
-    const orden = ordenCircuito(actual)
-    const pos = orden.findIndex(([a, b]) => a === i && b === serie)
-    const siguiente = [...orden.slice(pos + 1), ...orden.slice(0, pos)].find(([a, b]) => !actual.sesion.ejercicios[a].series[b].ok)
-    if (siguiente) {
-      setTimeout(() => {
-        const el = document.getElementById(`serie-${siguiente[0]}-${siguiente[1]}`)
-        if (!el) return
-        el.scrollIntoView?.({ behavior: 'smooth', block: 'center' })
-        el.classList.remove('serie--sigue')
-        void el.offsetWidth
-        el.classList.add('serie--sigue')
-      }, 350)
-    }
+    // La pantalla no se mueve sola: Santi baja cuando quiere.
   }
 
   const s = c.sesion
@@ -407,7 +382,14 @@ function EjFuerza({
                     decimal={c !== 'reps'}
                     placeholder={etiqueta(c).toLowerCase()}
                     label={`${etiqueta(c)} serie ${s + 1} de ${p.nombre}`}
-                    onCambio={(v) => onCambio((ej) => void (ej.series[s][c] = v))}
+                    onCambio={(v) =>
+                      onCambio((ej) => {
+                        const antes = ej.series[s][c]
+                        ej.series[s][c] = v
+                        // Si sube el peso, se copia solo a las series que faltan.
+                        if (c === 'kg') copiarPesoALasQueSiguen(ej.series, s, antes, v, (j) => sugerencia(j, ultima, p).kg)
+                      })
+                    }
                   />
                 ))
               ) : (
