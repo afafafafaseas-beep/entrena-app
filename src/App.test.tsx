@@ -92,7 +92,7 @@ describe('App', () => {
     window.location.hash = rutaA('ejercicios', 'Press banca')
     render(<App />)
     expect(await screen.findByText(/Omóplatos juntos/)).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Ver video' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Ver video en YouTube' })).toHaveAttribute(
       'href',
       'https://www.youtube.com/results?search_query=bench%20press%20exercise',
     )

@@ -30,7 +30,8 @@ Nada más. Si se te ocurre algo extra, proponelo, pero no lo hagas sin que Santi
 - **Sin login, sin servidor, sin claves.** El repositorio es público: nada de datos privados en el código.
 - **Todo en español rioplatense** ("tocá", "anotá", "te toca").
 - **Fotos:** se guardan en el celular, achicadas a 1080 px de ancho como máximo para que no ocupen mucho.
-- **Videos:** el botón abre una búsqueda de YouTube con el texto de la columna "Búsqueda de video" de la sección 8, más la palabra "exercise". No descargues ni copies imágenes de internet.
+- **Videos:** el botón abre una búsqueda de YouTube con el texto de la columna "Búsqueda de video" de la sección 8, más la palabra "exercise".
+- **Fotos de los ejercicios** (cambio pedido por Santi el 20/11: "no sé de qué ejercicio se trata"): cada ejercicio muestra una foto de referencia animada (posición inicial ↔ final) de **free-exercise-db**, que es dominio público (Unlicense). Solo usar fuentes con licencia libre, nunca imágenes con derechos. El mapeo está en `src/data/fotos.json` y las fotos achicadas a 480 px en `public/ejercicios/`. Si un ejercicio no tiene foto libre, al lado aparece un botón de video. La foto que saca Santi reemplaza a la de referencia.
 
 ## 4. Cómo hacerla
 
@@ -276,10 +277,21 @@ Es la última rutina del PF anterior, con los pesos de ANTES de que Santi dejara
 
 ## 10. Diseño
 
-- Fondo oscuro con buen contraste, estilo apps de entrenamiento buenas (Hevy, Nike Training Club): negro neutro (`#0c0c0d`), tarjetas apenas más claras sin bordes y con esquinas redondeadas, y **un solo color de acento, naranja (`#ff6a3d`)**, usado con cuidado (botón principal, pestaña activa, día de hoy). Nada de azul ni de degradés: Santi dijo que el azul con amarillo "se veía muy IA". Verde, amarillo y rojo solo para la rodilla. Los colores están como variables en `src/styles.css`.
+- Fondo negro neutro (`#0a0a0b`), tarjetas apenas más claras sin bordes y con esquinas redondeadas, y **un solo color de acento: verde lima eléctrico (`#c8ff2e`)**, onda Nike Training / Whoop. Historia: el azul con amarillo "se veía muy IA" y el naranja "no da vibra de app de gym" (20/11). Nada de degradés. Verde, amarillo y rojo solo para la rodilla. Los colores están como variables en `src/styles.css`.
+- Títulos de pantalla en Barlow Condensed 800 cursiva y mayúsculas (deportivo). Fotos de los ejercicios en todos lados (Hoy, Entrenar, Ejercicios, Rutina).
 - Títulos grandes en minúscula normal (no todo en mayúsculas). Barra de abajo translúcida. Lo que todavía no funciona se ve apagado y dice "Pronto", no parece tocable.
 - Títulos con una letra condensada y deportiva (por ejemplo Barlow Condensed) y el resto con una letra fácil de leer (Barlow).
 - Números grandes en las series. Íconos simples en SVG, sin emojis.
+
+## 10 bis. Agregados del 20/11 (Santi dijo "mete todo")
+
+Salieron de investigar Hevy, Strong, TrainHeroic, apps de tendinopatía y de salto:
+- **Chequeo de la mañana** en Hoy (tabla `diario`, clave fecha): rodilla al levantarse 0-10, el test diario del PF (5 sentadillas a 1 pierna a silla, dolor 0-10), sueño, energía y dolor muscular 1-5. Regla de las 24 h: si la rodilla amanece ≥ 6, o 2 puntos peor que el promedio de las últimas mañanas, aparece un aviso para hablar con el PF.
+- **Anotar vóley** (tabla `voley`): entrenamiento, partido o de plaza; minutos, RPE, rodilla al terminar. Cuenta en Hoy, Progreso y el resumen.
+- **Entrenar:** el descanso del PF arranca solo al tildar una serie; después lleva a la próxima serie en el orden del circuito (A1, B1, C1, A2…); aviso de récord; calculadora de discos (barra 20/15/10); entrada en calor sugerida para cargas de 40 kg o más.
+- **Ejercicios:** filtro por Día 1/2/3 con los bloques en orden.
+- **Etapa 4 hecha también:** Progreso (gráfico por ejercicio y de tests de salto, récords con 1RM estimado, rodilla gym/mañana/vóley, sesiones por semana, historial con detalle y borrar), fotos propias en la ficha, resumen para el PF (incluye vóley, rodilla a la mañana y cómo llegó), editar la rutina, volver a rutinas anteriores y backup (archivo o copiar; las fotos no entran).
+- **Base de datos v2:** solo agrega las tablas `diario` y `voley` (hay un test que verifica que pasar de v1 a v2 no pierde nada).
 
 ## 11. Etapas
 

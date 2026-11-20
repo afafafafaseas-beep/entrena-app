@@ -90,7 +90,32 @@ const PATHS = {
       <path d="M12 9v4l2.5 2.5M9.5 2.5h5" />
     </>
   ),
-  editar:<path d="M5 19l1-4L15.5 5.5a2.1 2.1 0 013 3L9 18zM14 7l3 3" />,
+  trofeo: (
+    <>
+      <path d="M8 4h8v5a4 4 0 01-8 0z" />
+      <path d="M8 6H5a3 3 0 003 4M16 6h3a3 3 0 01-3 4M12 13v4M8.5 20h7M10 17h4v3h-4z" />
+    </>
+  ),
+  voley: (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 3.5c-1 4 0 8 3.5 10.5M5 7.5c3.5 1.5 6 4.5 7 9M20 9c-4-.5-7.5 1-10 4.5" />
+    </>
+  ),
+  sol: (
+    <>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" />
+    </>
+  ),
+  basura: <path d="M5 7h14M10 7V4.5h4V7M7 7l1 13h8l1-13" />,
+  copiar: (
+    <>
+      <rect x="8" y="8" width="12" height="12" rx="2.5" />
+      <path d="M16 8V5.5A1.5 1.5 0 0014.5 4h-9A1.5 1.5 0 004 5.5v9A1.5 1.5 0 005.5 16H8" />
+    </>
+  ),
+  editar: <path d="M5 19l1-4L15.5 5.5a2.1 2.1 0 013 3L9 18zM14 7l3 3" />,
 } as const
 
 export type IconName = keyof typeof PATHS

@@ -48,6 +48,8 @@ export function nuevaSesion(rutina: Rutina, dia: Dia, ahora = Date.now()): EnCur
           tipo: b.tipo,
           hecho: false,
           series: b.tipo === 'fuerza' ? Array.from({ length: seriesDe(e, b) }, () => ({ ok: false })) : [],
+          ...(b.tipo === 'fuerza' && medidaDe(e).segunda === 'seg' ? { unidad: 'seg' as const } : {}),
+          ...(b.tipo === 'fuerza' && medidaDe(e).segunda === 'cm' ? { unidad: 'cm' as const } : {}),
         })),
       ),
     },

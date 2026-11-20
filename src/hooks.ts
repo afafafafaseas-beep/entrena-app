@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, leerEnCurso, rutinaActiva } from './db'
 import { armarLista } from './lib/ejercicios'
@@ -17,9 +18,20 @@ export function useEnCurso() {
   return useLiveQuery(async () => (await leerEnCurso()) ?? null)
 }
 
+/** Chequeos de cada mañana, del más viejo al más nuevo. */
+export function useDiario() {
+  return useLiveQuery(() => db.diario.orderBy('fecha').toArray())
+}
+
+/** Vóley anotado, del más viejo al más nuevo. */
+export function useVoley() {
+  return useLiveQuery(() => db.voley.orderBy('inicio').toArray())
+}
+
 /** Todas las fichas: lista + agregadas + las de la rutina sin ficha. */
 export function useFichas() {
   const rutina = useRutina()
   const extras = useLiveQuery(() => db.extras.toArray())
-  return { fichas: armarLista(extras ?? [], rutina?.rutina), rutina, cargando: rutina === undefined || extras === undefined }
+  const fichas = useMemo(() => armarLista(extras ?? [], rutina?.rutina), [extras, rutina])
+  return { fichas, rutina, cargando: rutina === undefined || extras === undefined }
 }

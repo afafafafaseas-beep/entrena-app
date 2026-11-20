@@ -5,7 +5,7 @@ import { Ejercicios } from './screens/Ejercicios'
 import { Hoy } from './screens/Hoy'
 import { Mas } from './screens/Mas'
 import { Entrenar } from './screens/Entrenar'
-import { Progreso } from './screens/Otras'
+import { Progreso } from './screens/Progreso'
 import { useEnCurso } from './hooks'
 import { pantallaPrendida } from './lib/avisos'
 import { parseRuta, rutaA, type Ruta, type TabId } from './tabs'
@@ -39,10 +39,10 @@ export default function App() {
   return (
     <div className="app">
       <main className="screen" key={tab + sub.join('/')}>
-        {tab === 'hoy' && <Hoy />}
+        {tab === 'hoy' && <Hoy sub={sub} />}
         {tab === 'entrenar' && <Entrenar />}
         {tab === 'ejercicios' && <Ejercicios sub={sub} />}
-        {tab === 'progreso' && <Progreso />}
+        {tab === 'progreso' && <Progreso sub={sub} />}
         {tab === 'mas' && <Mas sub={sub} />}
       </main>
       <TabBar active={tab} onChange={cambiarTab} />

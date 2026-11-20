@@ -3,8 +3,8 @@ import { Icon } from '../components/Icon'
 import { Back, Head, Row } from '../components/ui'
 import { cargarRutina } from '../db'
 import { useRutina } from '../hooks'
-import { revisarRutina, seriesDe, type Revision } from '../lib/rutina'
-import { textoDosis } from '../lib/sesion'
+import { revisarRutina, type Revision } from '../lib/rutina'
+import { Backup, ResumenPF, RutinaActual, Rutinas } from './MasExtra'
 import { navegar, rutaA } from '../tabs'
 
 export function Mas({ sub }: { sub: string[] }) {
@@ -13,6 +13,9 @@ export function Mas({ sub }: { sub: string[] }) {
   }, [sub[0]])
   if (sub[0] === 'cargar') return <CargarRutina />
   if (sub[0] === 'rutina') return <RutinaActual />
+  if (sub[0] === 'resumen') return <ResumenPF />
+  if (sub[0] === 'rutinas') return <Rutinas />
+  if (sub[0] === 'backup') return <Backup />
   return <Menu />
 }
 
@@ -73,11 +76,15 @@ function Menu() {
         )}
       </div>
 
-      <p className="section-title">Próximamente</p>
+      <p className="section-title">Con tu PF</p>
       <div className="list">
-        <Row icon="resumen" title="Resumen para el PF" sub="Tu semana lista para copiar" />
-        <Row icon="editar" title="Editar la rutina" sub="Cambiar series, reps o pesos" />
-        <Row icon="backup" title="Backup" sub="Copiar o restaurar tus datos" />
+        <Row icon="resumen" accent title="Resumen para el PF" sub="Tu semana lista para copiar" onClick={() => navegar(rutaA('mas', 'resumen'))} />
+        <Row icon="rutina" title="Tus rutinas" sub="Volver a una anterior" onClick={() => navegar(rutaA('mas', 'rutinas'))} />
+      </div>
+
+      <p className="section-title">Tus datos</p>
+      <div className="list">
+        <Row icon="backup" title="Backup" sub="Guardar o restaurar tus datos" onClick={() => navegar(rutaA('mas', 'backup'))} />
       </div>
     </>
   )
@@ -243,71 +250,6 @@ function CargarRutina() {
           </button>
         </>
       )}
-    </>
-  )
-}
-
-function RutinaActual() {
-  const activa = useRutina()
-  if (!activa) return <Back label="Más" siNo={rutaA('mas')} />
-  const r = activa.rutina
-  const fecha = new Date(activa.cargada).toLocaleDateString('es-AR', { day: 'numeric', month: 'numeric' })
-
-  return (
-    <>
-      <Back label="Más" siNo={rutaA('mas')} />
-      <Head eyebrow={activa.base ? 'Viene con la app' : `Cargada el ${fecha}`} title={r.nombre} />
-
-      {r.notas && (
-        <div className={activa.base ? 'aviso aviso--static' : 'nota-rutina'}>
-          {activa.base && (
-            <span className="aviso__icon">
-              <Icon name="alerta" size={20} />
-            </span>
-          )}
-          <span>{r.notas}</span>
-        </div>
-      )}
-
-      {r.dias.map((d) => (
-        <section key={d.id}>
-          <p className="dia-title">
-            {d.nombre}
-            {d.foco && <span> · {d.foco}</span>}
-          </p>
-          {d.bloques.map((b, i) => (
-            <div key={i} className="bloque">
-              <div className="bloque__head">
-                <span className="bloque__name">{b.nombre}</span>
-                <span className="bloque__meta">
-                  {b.tipo === 'movilidad' ? 'Movilidad' : b.vueltas === 1 ? '1 vuelta' : `${b.vueltas} vueltas`}
-                </span>
-              </div>
-              {b.ejercicios.map((e, j) => (
-                <button
-                  key={j}
-                  type="button"
-                  className="ej"
-                  onClick={() => navegar(rutaA('ejercicios', e.nombre))}
-                >
-                  <span className="ej__name">
-                    {e.nombre}
-                    {e.nota && <span className="ej__nota">{e.nota}</span>}
-                  </span>
-                  <span className="ej__dose">
-                    {b.tipo === 'fuerza'
-                      ? textoDosis(seriesDe(e, b), e.reps)
-                      : e.series
-                        ? textoDosis(e.series, e.reps)
-                        : e.reps}
-                    {e.carga && <span className="ej__carga">{e.carga}</span>}
-                  </span>
-                </button>
-              ))}
-            </div>
-          ))}
-        </section>
-      ))}
     </>
   )
 }

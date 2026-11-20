@@ -44,6 +44,7 @@ export interface Sesion {
     hecho: boolean
     series: { kg?: number; reps?: number; cm?: number; ok: boolean }[] // reps = segundos si el ejercicio es por tiempo
     rpe?: number
+    unidad?: 'seg' | 'cm' // para saber cómo mostrar las reps en el resumen
   }[]
   rodilla?: number
   rpeSesion?: number
@@ -56,12 +57,36 @@ export interface Foto {
   fecha: number
 }
 
+/** Chequeo de cada mañana: cómo amaneció la rodilla y cómo llega a entrenar. */
+export interface Diario {
+  fecha: string // "2026-11-20"
+  rodilla?: number // 0-10 al levantarse
+  test?: number // 0-10: dolor en el test de 5 sentadillas a 1 pierna a silla
+  sueno?: number // 1-5
+  energia?: number // 1-5
+  dolorMuscular?: number // 1-5 (5 = muy cargado)
+}
+
+/** Entrenamiento o partido de vóley (carga para la rodilla fuera del gym). */
+export interface Voley {
+  id: string
+  fecha: string
+  inicio: number
+  tipo: 'entrenamiento' | 'partido' | 'plaza'
+  minutos: number
+  rpe?: number // 5-10
+  rodilla?: number // 0-10 al terminar
+  notas?: string
+}
+
 export const db = new Dexie('entrena') as Dexie & {
   rutinas: EntityTable<RutinaGuardada, 'id'>
   estado: EntityTable<Estado, 'clave'>
   extras: EntityTable<EjercicioExtra, 'clave'>
   sesiones: EntityTable<Sesion, 'id'>
   fotos: EntityTable<Foto, 'ejercicio'>
+  diario: EntityTable<Diario, 'fecha'>
+  voley: EntityTable<Voley, 'id'>
 }
 
 db.version(1).stores({
@@ -70,6 +95,12 @@ db.version(1).stores({
   extras: 'clave',
   sesiones: 'id, fecha, inicio, diaId',
   fotos: 'ejercicio',
+})
+
+// v2 (20/11): chequeo diario de rodilla y registro de vóley. Solo agrega tablas: no toca lo guardado.
+db.version(2).stores({
+  diario: 'fecha',
+  voley: 'id, fecha, inicio',
 })
 
 export const RUTINA_BASE: Rutina = RutinaSchema.parse(rutinaBaseJson)
