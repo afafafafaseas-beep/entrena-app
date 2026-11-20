@@ -144,7 +144,7 @@ function SesionEnCurso({ inicial, sesiones }: { inicial: EnCurso; sesiones: Sesi
       setTimeout(() => {
         const el = document.getElementById(`serie-${siguiente[0]}-${siguiente[1]}`)
         if (!el) return
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        el.scrollIntoView?.({ behavior: 'smooth', block: 'center' })
         el.classList.remove('serie--sigue')
         void el.offsetWidth
         el.classList.add('serie--sigue')

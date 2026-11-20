@@ -38,6 +38,7 @@ Nada más. Si se te ocurre algo extra, proponelo, pero no lo hagas sin que Santi
 - Vite + React + TypeScript.
 - Datos en IndexedDB con Dexie (sesiones, rutina, fotos). Pedir `navigator.storage.persist()` al abrir.
 - `vite-plugin-pwa` para instalarla y que ande sin internet.
+  - **Actualizaciones en iPhone (20/11):** el instalador de la app tiene que ser chico. Si mete todo junto (antes eran 136 archivos y 3,5 MB con las fotos), el iPhone corta la descarga y se queda con la versión vieja. Por eso las fotos de `public/ejercicios/` NO van en el precache: se guardan aparte (CacheFirst) y se bajan de fondo al abrir la app. Sólo letras latinas de @fontsource. La app busca versión nueva al volver a primer plano y cada 30 min, y en Más > Buscar actualización se ve la versión y hay un botón para forzarla (borra la copia guardada de la app, nunca los datos).
 - Zod para revisar el JSON de rutina que se pega.
 - Gráficos simples en SVG o con Recharts.
 - Vitest para probar la lógica.

@@ -79,6 +79,15 @@ describe('App', () => {
     expect(window.location.hash).toBe('#/mas')
   })
 
+  it('Más muestra la versión y deja forzar la actualización', () => {
+    window.location.hash = '#/mas'
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: /Buscar actualización/ }))
+    expect(screen.getByText(/Versión del/)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Buscar ahora' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Forzar actualización' })).toBeInTheDocument()
+  })
+
   it('la pestaña Ejercicios lista y filtra', async () => {
     window.location.hash = '#/ejercicios'
     render(<App />)

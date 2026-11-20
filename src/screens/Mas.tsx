@@ -4,6 +4,7 @@ import { Back, Head, Row } from '../components/ui'
 import { cargarRutina } from '../db'
 import { useRutina } from '../hooks'
 import { revisarRutina, type Revision } from '../lib/rutina'
+import { buscarActualizacion, forzarActualizacion, textoVersion, type Resultado } from '../lib/actualizar'
 import { Backup, ResumenPF, RutinaActual, Rutinas } from './MasExtra'
 import { navegar, rutaA } from '../tabs'
 
@@ -74,6 +75,7 @@ function Menu() {
             </p>
           </div>
         )}
+        <Actualizar />
       </div>
 
       <p className="section-title">Con tu PF</p>
@@ -86,6 +88,47 @@ function Menu() {
       <div className="list">
         <Row icon="backup" title="Backup" sub="Guardar o restaurar tus datos" onClick={() => navegar(rutaA('mas', 'backup'))} />
       </div>
+    </>
+  )
+}
+
+const MENSAJES: Record<Resultado, string> = {
+  nueva: 'Hay una versión nueva. Se está bajando y la app se va a recargar sola en unos segundos. No la cierres.',
+  'al-dia': 'Ya tenés la última versión.',
+  'sin-internet': 'No hay internet. Probá de nuevo cuando tengas señal o wifi.',
+  'no-se-puede': 'Este navegador no deja buscar actualizaciones. Abrila desde el ícono de inicio.',
+}
+
+function Actualizar() {
+  const [abierto, setAbierto] = useState(false)
+  const [estado, setEstado] = useState<Resultado | 'buscando' | null>(null)
+  const buscar = async () => {
+    setEstado('buscando')
+    setEstado(await buscarActualizacion())
+  }
+  const forzar = () => {
+    if (window.confirm('Se vuelve a bajar la app. Tus entrenamientos, tu rutina y tus fotos NO se borran. ¿Seguimos?'))
+      void forzarActualizacion()
+  }
+  return (
+    <>
+      <Row icon="reloj" title="Buscar actualización" sub={`Versión del ${textoVersion()}`} open={abierto} onClick={() => setAbierto(!abierto)} />
+      {abierto && (
+        <div className="row-body">
+          <button type="button" className="btn btn--primary" onClick={buscar} disabled={estado === 'buscando'}>
+            {estado === 'buscando' ? 'Buscando…' : 'Buscar ahora'}
+          </button>
+          {estado && estado !== 'buscando' && (
+            <p className="note" role="status">
+              {MENSAJES[estado]}
+            </p>
+          )}
+          <p className="note">Si te dije que hay algo nuevo y no te aparece, tocá esto. Tus datos no se tocan.</p>
+          <button type="button" className="btn btn--ghost" onClick={forzar}>
+            Forzar actualización
+          </button>
+        </div>
+      )}
     </>
   )
 }

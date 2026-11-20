@@ -8,6 +8,7 @@ const base = '/entrena-app/'
 
 export default defineConfig({
   base,
+  define: { __VERSION__: JSON.stringify(new Date().toISOString()) },
   plugins: [
     react(),
     VitePWA({
@@ -31,9 +32,19 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,jpg,woff2}'],
-        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+        // Las fotos NO van acá: si la app tiene que bajar todo junto, el iPhone corta la
+        // actualización y se queda con la versión vieja. Las fotos se guardan aparte (abajo).
+        globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        globIgnores: ['**/ejercicios/**'],
         navigateFallback: `${base}index.html`,
+        cleanupOutdatedCaches: true,
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.includes('/ejercicios/') && url.pathname.endsWith('.jpg'),
+            handler: 'CacheFirst',
+            options: { cacheName: 'fotos-ejercicios', expiration: { maxEntries: 400 } },
+          },
+        ],
       },
     }),
   ],
