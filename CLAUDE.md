@@ -7,6 +7,7 @@ Este archivo explica toda la app. Leelo entero antes de escribir código y volv�
 - Es para un solo usuario: Santi, 20 años, armador de vóley. Va al gym 3 veces por semana.
 - Tuvo tendinitis en las dos rodillas, por eso anota cómo está la rodilla después de entrenar.
 - Su rutina la arma un preparador físico (el "PF"), que es Claude en otro chat. La app no arma rutinas: las muestra, deja anotar lo que hace y arma un resumen para pasarle al PF.
+- **Cargar la rutina por Santi (20/11):** el PF está en claude.ai, proyecto "PF VOLEY" (Santi tiene la sesión iniciada en el navegador integrado). Cuando pida "cargá la rutina", leer ahí solo los chats del PF (el JSON de la semana y los ajustes que dio después en el chat), pasar los ajustes tal cual los dijo el PF (no inventar reglas propias), revisarla con `revisarRutina` y subirla a su cuenta con `npx dexie-cloud@3.0.7 import` (realm = su mail, campo `owner` = su mail, `estado.rutinaActiva` = id de la rutina). Verificar con `export`. Los otros chats de Santi no se abren.
 - Santi no usa la terminal. Todo lo que tenga que hacer él tiene que ser con clics, en GitHub o en el celular. Explicale cada paso en simple, en español rioplatense, sin palabras técnicas.
 
 ## 2. Qué hace la app (versión 1)
@@ -292,7 +293,7 @@ Es la última rutina del PF anterior, con los pesos de ANTES de que Santi dejara
 ## 10 bis. Agregados del 20/11 (Santi dijo "mete todo")
 
 Salieron de investigar Hevy, Strong, TrainHeroic, apps de tendinopatía y de salto:
-- **Chequeo de la mañana** en Hoy (tabla `diario`, clave fecha): rodilla al levantarse 0-10, el test diario del PF (5 sentadillas a 1 pierna a silla, dolor 0-10), sueño, energía y dolor muscular 1-5. Regla de las 24 h: si la rodilla amanece ≥ 6, o 2 puntos peor que el promedio de las últimas mañanas, aparece un aviso para hablar con el PF.
+- **Chequeo de la mañana** en Hoy (tabla `diario`, clave fecha): rodilla al levantarse 0-10, el test diario del PF (desde el 20/11: 5 sentadillas a 1 pierna sin silla, un cuarto de sentadilla; dolor 0-10 de la izquierda en `test` y de la derecha en `testDer`, y si la izquierda baja menos en `izqMenos`; el resumen lo muestra día por día), sueño, energía y dolor muscular 1-5. Regla de las 24 h: si la rodilla amanece ≥ 6, o 2 puntos peor que el promedio de las últimas mañanas, aparece un aviso para hablar con el PF.
 - **Anotar vóley** (tabla `voley`): entrenamiento, partido o de plaza; minutos, RPE, rodilla al terminar. Cuenta en Hoy, Progreso y el resumen.
 - **Entrenar:** el descanso del PF arranca solo al tildar una serie; la pantalla NO se mueve sola al tildar (20/11: a Santi le molestaba que lo llevara a la serie de otro ejercicio); aviso de récord; calculadora de discos (barra 20/15/10); entrada en calor sugerida para cargas de 40 kg o más.
 - **Ejercicios:** filtro por Día 1/2/3 con los bloques en orden.

@@ -107,8 +107,15 @@ export function resumenPF({ dias, rutinaNombre, sesiones, voley, diario, diasGym
         `- Al levantarme: promedio ${n1(prom(conRodilla.map((d) => d.rodilla!))!)} en ${conRodilla.length} días · peor ${peor.rodilla} (${fechaCorta(new Date(peor.fecha + 'T12:00').getTime())})`,
       )
     }
-    if (conTest.length)
-      l.push(`- Test de 5 sentadillas a 1 pierna: promedio ${n1(prom(conTest.map((d) => d.test!))!)} en ${conTest.length} días`)
+    if (conTest.length) {
+      l.push('- Test de 5 sentadillas a 1 pierna, día por día:')
+      for (const d of conTest) {
+        const p = [`izquierda ${d.test}`]
+        if (d.testDer !== undefined) p.push(`derecha ${d.testDer}`)
+        if (d.izqMenos !== undefined) p.push(d.izqMenos ? 'la izquierda baja menos' : 'bajan igual')
+        l.push(`  ${fechaCorta(new Date(d.fecha + 'T12:00').getTime())}: ${p.join(' · ')}`)
+      }
+    }
   }
 
   const listo = (k: 'sueno' | 'energia' | 'dolorMuscular') => prom(dia.filter((d) => d[k] !== undefined).map((d) => d[k]!))

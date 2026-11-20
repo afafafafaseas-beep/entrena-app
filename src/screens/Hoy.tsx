@@ -259,9 +259,9 @@ function Chequeo({ diario }: { diario: Diario[] }) {
   const hoy = diario.find((d) => d.fecha === fecha) ?? { fecha }
   const [abierto, setAbierto] = useState(false)
   const completo =
-    hoy.rodilla !== undefined && hoy.test !== undefined && hoy.sueno !== undefined && hoy.energia !== undefined && hoy.dolorMuscular !== undefined
+    hoy.rodilla !== undefined && hoy.test !== undefined && hoy.testDer !== undefined && hoy.sueno !== undefined && hoy.energia !== undefined && hoy.dolorMuscular !== undefined
 
-  const poner = (k: keyof Omit<Diario, 'fecha'>, v?: number) => {
+  const poner = (k: keyof Omit<Diario, 'fecha'>, v?: number | boolean) => {
     void db.diario.put({ ...hoy, [k]: v })
   }
 
@@ -288,7 +288,8 @@ function Chequeo({ diario }: { diario: Diario[] }) {
         </div>
         <div className="chequeo__resumen">
           <span className={`rod-txt--${colorRodilla(hoy.rodilla!)}`}>Rodilla {hoy.rodilla}</span>
-          <span className={`rod-txt--${colorRodilla(hoy.test!)}`}>Test {hoy.test}</span>
+          <span className={`rod-txt--${colorRodilla(hoy.test!)}`}>Test izq {hoy.test}</span>
+          <span className={`rod-txt--${colorRodilla(hoy.testDer!)}`}>Der {hoy.testDer}</span>
           <span>Sueño {hoy.sueno}/5</span>
           <span>Energía {hoy.energia}/5</span>
           <span>Músculos {hoy.dolorMuscular}/5</span>
@@ -318,9 +319,26 @@ function Chequeo({ diario }: { diario: Diario[] }) {
       <p className="terminar__label">¿Cómo amaneció la rodilla?</p>
       <EscalaRodilla valor={hoy.rodilla} onElegir={(n) => poner('rodilla', n)} label="Rodilla al levantarte" />
 
-      <p className="terminar__label">Test del PF: 5 sentadillas a 1 pierna a una silla</p>
-      <p className="terminar__hint">¿Cuánto dolió? 0 = nada · 10 = mucho</p>
-      <EscalaRodilla valor={hoy.test} onElegir={(n) => poner('test', n)} label="Dolor en el test" />
+      <p className="terminar__label">Test del PF: 5 sentadillas a 1 pierna</p>
+      <p className="terminar__hint">Sin silla y sin agarrarte. Bajá solo hasta donde controles (un cuarto de sentadilla). ¿Cuánto dolió? 0 = nada · 10 = mucho</p>
+      <p className="terminar__hint">Pierna izquierda</p>
+      <EscalaRodilla valor={hoy.test} onElegir={(n) => poner('test', n)} label="Dolor en el test con la izquierda" />
+      <p className="terminar__hint">Pierna derecha</p>
+      <EscalaRodilla valor={hoy.testDer} onElegir={(n) => poner('testDer', n)} label="Dolor en el test con la derecha" />
+      <p className="terminar__label">¿La izquierda bajó menos que la derecha?</p>
+      <div className="escala5" role="group" aria-label="¿La izquierda bajó menos que la derecha?">
+        {([true, false] as const).map((v) => (
+          <button
+            key={String(v)}
+            type="button"
+            className={hoy.izqMenos === v ? 'rpe__btn rpe__btn--on' : 'rpe__btn'}
+            aria-pressed={hoy.izqMenos === v}
+            onClick={() => poner('izqMenos', hoy.izqMenos === v ? undefined : v)}
+          >
+            {v ? 'Sí' : 'No'}
+          </button>
+        ))}
+      </div>
 
       {(Object.keys(ESCALA_5) as (keyof typeof ESCALA_5)[]).map((k) => (
         <div key={k}>

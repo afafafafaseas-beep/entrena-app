@@ -62,7 +62,9 @@ export interface Foto {
 export interface Diario {
   fecha: string // "2026-11-20"
   rodilla?: number // 0-10 al levantarse
-  test?: number // 0-10: dolor en el test de 5 sentadillas a 1 pierna a silla
+  test?: number // 0-10: dolor en el test del PF con la pierna IZQUIERDA (5 sentadillas a 1 pierna)
+  testDer?: number // 0-10: lo mismo con la derecha (desde el 20/11)
+  izqMenos?: boolean // la izquierda baja menos que la derecha
   sueno?: number // 1-5
   energia?: number // 1-5
   dolorMuscular?: number // 1-5 (5 = muy cargado)

@@ -90,7 +90,7 @@ describe('resumen para el PF', () => {
   const diario: Diario[] = [
     { fecha: '2026-11-08', rodilla: 3 },
     { fecha: '2026-11-17', rodilla: 1, test: 2, sueno: 4, energia: 4, dolorMuscular: 2 },
-    { fecha: '2026-11-18', rodilla: 2, test: 3, sueno: 3, energia: 5, dolorMuscular: 3 },
+    { fecha: '2026-11-18', rodilla: 2, test: 3, testDer: 1, izqMenos: true, sueno: 3, energia: 5, dolorMuscular: 3 },
   ]
   const texto = resumenPF({ dias: 7, rutinaNombre: 'Semana 1 · Re-entrada', sesiones: [s1, s2], voley, diario, hoy: new Date(2026, 10, 19) })
 
@@ -109,7 +109,9 @@ describe('resumen para el PF', () => {
     expect(texto).toContain('VÓLEY (1)')
     expect(texto).toMatch(/- mié 18\/11 · Partido · 90 min · RPE 8 · rodilla al terminar 3/)
     expect(texto).toContain('- Al levantarme: promedio 1,5 en 2 días · peor 2 (18/11)')
-    expect(texto).toContain('- Test de 5 sentadillas a 1 pierna: promedio 2,5 en 2 días')
+    expect(texto).toContain('- Test de 5 sentadillas a 1 pierna, día por día:')
+    expect(texto).toContain('  17/11: izquierda 2')
+    expect(texto).toContain('  18/11: izquierda 3 · derecha 1 · la izquierda baja menos')
     expect(texto).toContain('CÓMO LLEGUÉ (promedio de 1 a 5): sueño 3,5 · energía 4,5 · dolor muscular 2,5')
   })
   it('compara con el período anterior', () => {
