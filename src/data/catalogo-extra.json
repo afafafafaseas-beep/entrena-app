@@ -4,65 +4,121 @@
   {
    "nombre": "Sentadilla trasera al cajón",
    "video": "box squat",
-   "zonas": ["piernas", "rodilla"],
+   "zonas": [
+    "piernas",
+    "rodilla"
+   ],
    "como": "Barra en la espalda y un cajón detrás a la altura que diga el PF. Bajá controlado llevando la cola atrás hasta rozar el cajón, sin sentarte del todo, y subí.",
    "sirve": "Fuerza de piernas con la profundidad siempre igual: cuida la rodilla mientras volvés a cargar."
   },
   {
    "nombre": "Saltos sentado desde banco al cajón",
    "video": "seated box jump",
-   "zonas": ["salto"],
+   "zonas": [
+    "salto"
+   ],
    "como": "Sentado en un banco frente a un cajón, sin balancearte, saltá explosivo desde sentado y caé suave arriba del cajón. Bajá caminando.",
    "sirve": "Potencia de despegue sin rebote y sin el impacto de caer al piso."
   },
   {
    "nombre": "Salto al cajón con 2 piernas",
    "video": "box jump",
-   "zonas": ["salto"],
+   "zonas": [
+    "salto"
+   ],
    "como": "Parado frente al cajón, bajá rápido llevando los brazos atrás, saltá y caé suave arriba con las dos piernas a la vez. Bajá caminando.",
    "sirve": "Potencia de salto sin el impacto de la caída al piso."
   },
   {
    "nombre": "Hang clean high pull",
    "video": "hang clean high pull",
-   "zonas": ["potencia"],
+   "zonas": [
+    "potencia"
+   ],
    "como": "Barra a mitad de muslo. Extendé cadera y rodillas explosivo y tirá la barra hasta el pecho con los codos altos, sin recibirla.",
    "sirve": "La explosión de cadera del salto, sin la técnica de recibir la barra."
   },
   {
    "nombre": "Equilibrio a 1 pierna sobre colchoneta",
    "video": "single leg balance foam pad",
-   "zonas": ["tobillo", "rodilla"],
+   "zonas": [
+    "tobillo",
+    "rodilla"
+   ],
    "como": "Parado en una pierna sobre una colchoneta blanda, rodilla apenas flexionada y cadera derecha. Sostené sin apoyar el otro pie.",
    "sirve": "Tobillo y rodilla más estables para caer en una pierna."
   },
   {
    "nombre": "Bici fija",
    "video": "stationary bike sprint intervals",
-   "zonas": ["acondicionamiento"],
+   "zonas": [
+    "acondicionamiento"
+   ],
    "como": "Pedaleá a fondo el tiempo fuerte y después suave el tiempo de pausa. Repetí las vueltas que diga la rutina.",
    "sirve": "Repetir esfuerzos cortos como en un rally, sin impacto en las rodillas."
   },
   {
    "nombre": "CMJ",
    "video": "countermovement jump hands on hips",
-   "zonas": ["salto"],
+   "zonas": [
+    "salto"
+   ],
    "como": "Salto vertical con las manos en la cintura: bajá rápido y saltá lo más alto que puedas. Caé suave en el mismo lugar.",
    "sirve": "Mide tu potencia de salto sin la ayuda de los brazos. Anotá los centímetros."
   },
   {
    "nombre": "Alcance de bloqueo",
    "video": "volleyball block jump reach",
-   "zonas": ["salto"],
+   "zonas": [
+    "salto"
+   ],
    "como": "Parado como en la red, saltá con las dos piernas como para bloquear y tocá lo más alto posible con las dos manos.",
    "sirve": "Mide hasta dónde llegás en el bloqueo. Anotá los centímetros."
   },
   {
    "nombre": "Pinza de dedos con discos",
    "video": "plate pinch grip",
-   "zonas": ["hombro"],
+   "zonas": [
+    "hombro"
+   ],
    "como": "Agarrá dos discos lisos juntos solo con las yemas de los dedos, brazo al costado del cuerpo, y sostené el tiempo indicado.",
    "sirve": "Dedos firmes para armar y menos esguinces de dedos."
+  },
+  {
+   "nombre": "Isométrico de rodilla solo izquierda",
+   "video": "single leg isometric knee extension",
+   "zonas": [
+    "rodilla"
+   ],
+   "como": "En la máquina de extensión de rodilla con la pierna izquierda sola, empujá y sostené quieto 45 seg con la rodilla a unos 60°. Sin máquina: apoyá la espalda contra la pared en media sentadilla con el peso cargado en la izquierda.",
+   "sirve": "Le da carga extra al tendón de la izquierda, que es la que más lo necesita, y baja el dolor."
+  },
+  {
+   "nombre": "Curl-up de McGill",
+   "video": "mcgill curl up",
+   "zonas": [
+    "core"
+   ],
+   "como": "Boca arriba, una pierna doblada y la otra estirada, las manos debajo de la zona lumbar. Despegá apenas la cabeza y los hombros del piso, sin doblar el cuello ni aplastar la espalda, y sostené 8 seg.",
+   "sirve": "Le da resistencia a los abdominales sin cargar la espalda baja."
+  },
+  {
+   "nombre": "Plancha lateral con rodillas apoyadas",
+   "video": "side plank from knees",
+   "zonas": [
+    "core"
+   ],
+   "como": "De costado, apoyado en el antebrazo con el codo debajo del hombro y las rodillas dobladas. Subí la cadera hasta que hombro, cadera y rodilla queden en línea y sostené. Después del otro lado.",
+   "sirve": "Fortalece los costados del tronco, que sostienen la espalda baja, sin cargarla."
+  },
+  {
+   "nombre": "Bird dog",
+   "video": "bird dog exercise",
+   "zonas": [
+    "core"
+   ],
+   "como": "En cuatro patas, estirá a la vez el brazo de un lado y la pierna del otro hasta que queden en línea con la espalda. Sostené 5 seg sin que la cadera gire ni la espalda se hunda, y cambiá de lado.",
+   "sirve": "Estabilidad de la espalda baja y la cadera sin cargar la columna."
   }
  ],
  "alias": {
@@ -79,6 +135,7 @@
   "Shin box rotación int/ext": "Shin box rotación interna/externa",
   "Alcance con carrera de ataque": "Salto con carrera de ataque",
   "Box squat": "Sentadilla trasera al cajón",
-  "Box jump": "Salto al cajón con 2 piernas"
+  "Box jump": "Salto al cajón con 2 piernas",
+  "Remo con mancuernas en banco inclinado": "Remo con mancuernas pecho apoyado"
  }
 }
