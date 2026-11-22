@@ -129,7 +129,8 @@ describe('App', () => {
   it('entrenar: empieza, ✓ copia lo sugerido, no se pierde al cerrar y se guarda', async () => {
     window.confirm = () => true
     const primera = render(<App />)
-    const empezar = await screen.findByRole('button', { name: 'Empezar' })
+    // en un día de descanso el botón dice "Entrenar igual hoy"
+    const empezar = await screen.findByRole('button', { name: /^(Empezar|Entrenar igual hoy)$/ })
     await waitFor(() => expect(empezar).toBeEnabled())
     fireEvent.click(empezar)
     expect(await screen.findByRole('heading', { level: 1, name: 'Día 1' })).toBeInTheDocument()
