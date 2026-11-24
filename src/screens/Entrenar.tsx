@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Descanso, pedirDescanso } from '../components/Descanso'
 import { FotoEjercicio } from '../components/Foto'
+import { MedirSalto } from '../components/MedirSalto'
 import { Icon } from '../components/Icon'
 import { Empty, Head } from '../components/ui'
 import { descartarEnCurso, guardarEnCurso, guardarSesion, type Sesion } from '../db'
@@ -8,6 +9,7 @@ import { useEnCurso, useFichas, useRutina, useSesiones } from '../hooks'
 import { discosPorLado, entradaEnCalor } from '../lib/discos'
 import { buscarFicha, type Ficha } from '../lib/ejercicios'
 import { mejorMarca } from '../lib/progreso'
+import { seMideConVideo } from '../lib/salto'
 import { seriesDe, type Bloque, type Prescripto } from '../lib/rutina'
 import {
   colorRodilla,
@@ -75,6 +77,7 @@ function SesionEnCurso({ inicial, sesiones }: { inicial: EnCurso; sesiones: Sesi
   const [ahora, setAhora] = useState(Date.now())
   const [aviso, setAviso] = useState<string | null>(null)
   const [discos, setDiscos] = useState<number | null>(null)
+  const [medir, setMedir] = useState<{ i: number; s: number; nombre: string } | null>(null)
   const { fichas } = useFichas()
 
   useEffect(() => {
@@ -206,6 +209,7 @@ function SesionEnCurso({ inicial, sesiones }: { inicial: EnCurso; sesiones: Sesi
                 onCambio={(fn) => actualizar((n) => fn(n.sesion.ejercicios[i]))}
                 onTildada={(serie) => despuesDeTildar(i, serie, p)}
                 onDiscos={(kg) => setDiscos(kg)}
+                onMedir={(s) => setMedir({ i, s, nombre: p.nombre })}
               />
             )
           })}
@@ -229,6 +233,16 @@ function SesionEnCurso({ inicial, sesiones }: { inicial: EnCurso; sesiones: Sesi
       )}
 
       {discos !== null && <Discos inicial={discos} onCerrar={() => setDiscos(null)} />}
+      {medir && (
+        <MedirSalto
+          titulo={`${medir.nombre} · serie ${medir.s + 1}`}
+          onCerrar={() => setMedir(null)}
+          onUsar={(cm) => {
+            actualizar((n) => void (n.sesion.ejercicios[medir.i].series[medir.s].cm = cm))
+            setMedir(null)
+          }}
+        />
+      )}
     </>
   )
 }
@@ -294,6 +308,7 @@ function EjFuerza({
   onCambio,
   onTildada,
   onDiscos,
+  onMedir,
 }: {
   i: number
   p: Prescripto
@@ -305,6 +320,7 @@ function EjFuerza({
   onCambio: (fn: (e: EjSesion) => void) => void
   onTildada: (serie: number) => void
   onDiscos: (kg: number) => void
+  onMedir: (serie: number) => void
 }) {
   const medida = medidaDe(p, ultima)
   const campos = camposDe(medida)
@@ -316,6 +332,11 @@ function EjFuerza({
   const sug0 = sugerencia(0, ultima, p)
   const calor = medida.kg ? entradaEnCalor(sug0.kg) : undefined
   const kgParaDiscos = e.series.find((x) => !x.ok)?.kg ?? sug0.kg
+  // Saltos verticales: se pueden medir con un video en cámara lenta (va a la primera serie sin tildar).
+  const conVideo = medida.segunda === 'cm' && seMideConVideo(p.nombre)
+  const vacia = e.series.findIndex((x) => !x.ok && x.cm === undefined)
+  const sinTildar = e.series.findIndex((x) => !x.ok)
+  const serieAMedir = vacia >= 0 ? vacia : sinTildar >= 0 ? sinTildar : e.series.length - 1
 
   return (
     <div className="ejf">
@@ -425,6 +446,12 @@ function EjFuerza({
         {medida.kg && kgParaDiscos !== undefined && kgParaDiscos > 20 && (
           <button type="button" className="link-chico" onClick={() => onDiscos(kgParaDiscos)}>
             Discos
+          </button>
+        )}
+        {conVideo && e.series.length > 0 && (
+          <button type="button" className="link-chico link-chico--video" onClick={() => onMedir(serieAMedir)}>
+            <Icon name="video" size={16} />
+            Medir con video
           </button>
         )}
       </div>
